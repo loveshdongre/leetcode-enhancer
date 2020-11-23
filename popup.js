@@ -31,6 +31,8 @@ function onChange () {
       options.push({option: chb.value, checked: chb.checked})
     }
 
+    saveLocally(options);
+
     const response = {
       options
     }
@@ -40,3 +42,8 @@ function onChange () {
     }
   });
 }
+
+function saveLocally(options) {
+    browser.storage.local.set({options});
+}
+
