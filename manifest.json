@@ -1,0 +1,35 @@
+{
+	"manifest_version": 2,
+	"name": "Leetcode Enhancer",
+	"version": "1.0",
+	"author": "Lovesh Dongre",
+	"description": "Improves productivity on leetcode",
+	"icons": {
+		"48": "icons/leetcode-enhancer-48.png"
+	},
+	// content script
+	"content_scripts": [
+		{
+		  "matches": ["https://leetcode.com/problemset/all/*"],
+		  "js": ["content-script.js"]
+		}
+	],
+	// popup script
+	"browser_action": {
+		"browser_style": true,
+		"default_icon": {
+			"48": "icons/leetcode-enhancer-48.png"
+		},
+		"default_title": "Leetcode Enhancer",
+		"default_popup": "popup.html",
+		"theme_icons": [
+			{
+				"light": "icons/leetcode-enhancer-48.png",
+				"dark": "icons/leetcode-enhancer-48.png",
+				"size": 48
+			}
+		]
+	},
+	// tabs enable message sharing 
+	"permissions":["tabs", "storage"]
+}

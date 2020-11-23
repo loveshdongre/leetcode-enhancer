@@ -1,0 +1,40 @@
+html, body {
+  margin: none;
+  padding: none;
+}
+
+.wrapper {
+  max-width: 1000px;
+  min-width: 250px;
+}
+
+.wrapper .line {
+  height: 1px;
+  background-color: #6b6b6baf;
+  width: 100%;
+}
+
+.wrapper .brand {
+  background-color: #bdbdbd;
+  margin-top: 10px;
+  font-size: 16px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.wrapper .brand img {
+  height: 30px;
+  width: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.wrapper .brand span {
+  position: absolute;
+  top: 30px;
+}
+
+.wrapper .options div {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
