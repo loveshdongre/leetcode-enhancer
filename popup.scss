@@ -1,0 +1,56 @@
+$f1: 16px;
+$f2: 14px;
+$f3: 12px;
+
+$c1: #bdbdbd;
+$c2: #6b6b6baf;
+
+html, body {
+    margin:none;
+    padding:none;
+}
+
+.wrapper {
+    max-width:1000px;
+    min-width:250px;
+}
+.wrapper {
+    .line {
+        height:1px;
+        background-color: $c2;
+        width:100%;        
+    }
+
+    .link {
+        font-size: $f3;
+        text-align: center;
+    }
+    .brand {
+        background-color: $c1;
+        margin-top:10px;
+        font-size: $f1;
+        padding-top:10px;
+        padding-bottom: 10px;
+    
+    }    
+
+    .brand img {
+        height:30px;
+        width:30px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .brand span {
+        position: absolute;
+        top:30px;
+    }
+        
+    
+    .options {
+        div {
+            margin-top:10px;
+            margin-bottom:10px;
+        }
+    }
+
+}

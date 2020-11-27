@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="popup.css"></link>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class= "brand">
+            <img src="icons/leetcode-enhancer-48.png" alt="logo">
+            <span>Leetcode Enhancer</span>
+        </div>
+
+        <div class="options">
+            <div>
+                <input id="locked" type="checkbox" name="settings" value="locked">
+                <label for="locked"> hide locked problems</label>
+            </div>
+            
+            <div>
+                <input id="highlight" type="checkbox" name="settings" value="highlight">
+                <label for="highlight"> highlight solved problems</label>
+            </div>
+            <div>
+                <input id="solvedDiff" type="checkbox" name="settings" value="solvedDiff">
+                <label for="solvedDiff"> hide solved difficulty count</label>
+            </div>
+
+            <div class = "line"></div>
+
+            <div>
+                <input id="#" type="checkbox" name="settings" value="#">
+                <label for="#"> hide problem No column</label>
+            </div>
+            <div>
+                <input id="solution" type="checkbox" name="settings" value="solution">
+                <label for="solution"> hide solution column</label>
+            </div>
+            <div>
+                <input id="acceptance" type="checkbox" name="settings" value="acceptance">
+                <label for="acceptance"> hide acceptance column</label>
+            </div>
+            <div>
+                <input id="difficulty" type="checkbox" name="settings" value="difficulty">
+                <label for="difficulty"> hide difficulty column</label>
+            </div>
+            <div>
+                <input id="frequency" type="checkbox" name="settings" value="frequency">
+                <label for="frequency"> hide frequency column</label>
+            </div>
+        </div>
+
+        <div class="link">
+            <a target="_blank" href="https://leetcode.com/problemset/all/">https://leetcode.com</a>
+        </div>
+    </div>
+    <!-- popup.js is at the end of the page so it gets loaded last -->
+    <script src="popup.js"></script>
+</body>
+
+</html>
