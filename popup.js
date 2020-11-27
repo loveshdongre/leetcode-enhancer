@@ -11,24 +11,25 @@ for (chb of target) {
 browser.storage.local.get(["options"], updatePopup)
 
 function updatePopup(options) {
-  for(option of options.options) {
-    if(option.checked) {
-      
-      let chb = document.getElementById(option.option);
-      chb.checked = true;
+  if(isIterable(options.options)) {
+    for(option of options.options) {
+      if(option.checked) {
+        let chb = document.getElementById(option.optionName);
+        chb.checked = true;
+      }
     }
   }
 }
 
 
 function onChange () {
-  browser.tabs.query({currentWindow: true}, function(tabs) {
+  browser.tabs.query({}, function(tabs) {
 
     options = [];
 
     var checkboxes = document.querySelectorAll('input[name=settings]')
     for (chb of checkboxes) {
-      options.push({option: chb.value, checked: chb.checked})
+      options.push({optionName: chb.value, checked: chb.checked})
     }
 
     saveLocally(options);
@@ -38,7 +39,7 @@ function onChange () {
     }
 
     for (tab of tabs) {
-      chrome.tabs.sendMessage(tab.id, response);
+      browser.tabs.sendMessage(tab.id, response);
     }
   });
 }
@@ -47,3 +48,10 @@ function saveLocally(options) {
     browser.storage.local.set({options});
 }
 
+function isIterable(obj) {
+  // checks for null and undefined
+  if (obj == null) {
+    return false;
+  }
+  return typeof obj[Symbol.iterator] === 'function';
+}

@@ -1,5 +1,6 @@
 $f1: 16px;
-$f2: 13px;
+$f2: 14px;
+$f3: 12px;
 
 $c1: #bdbdbd;
 $c2: #6b6b6baf;
@@ -20,6 +21,10 @@ html, body {
         width:100%;        
     }
 
+    .link {
+        font-size: $f3;
+        text-align: center;
+    }
     .brand {
         background-color: $c1;
         margin-top:10px;

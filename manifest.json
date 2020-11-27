@@ -10,10 +10,11 @@
 	// content script
 	"content_scripts": [
 		{
-		  "matches": ["https://leetcode.com/problemset/all/*"],
-		  "js": ["content-script.js"]
+		  "matches": ["https://leetcode.com/*"],
+		  // jquery must be loaded first
+		  "js": ["jquery.min.js", "content-script.js"]
 		}
-	],
+	  ],
 	// popup script
 	"browser_action": {
 		"browser_style": true,
@@ -30,6 +31,6 @@
 			}
 		]
 	},
-	// tabs enable message sharing 
+	// tabs enable message sharing and access to DOM
 	"permissions":["tabs", "storage"]
 }
