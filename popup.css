@@ -5,13 +5,7 @@ html, body {
 
 .wrapper {
   max-width: 1000px;
-  min-width: 250px;
-}
-
-.wrapper .line {
-  height: 1px;
-  background-color: #6b6b6baf;
-  width: 100%;
+  min-width: 280px;
 }
 
 .wrapper .link {
@@ -20,26 +14,56 @@ html, body {
 }
 
 .wrapper .brand {
-  background-color: #bdbdbd;
-  margin-top: 10px;
-  font-size: 16px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  background-color: #F0F0F0;
+  font-size: 20px;
+  padding: 10px;
 }
 
 .wrapper .brand img {
-  height: 30px;
-  width: 30px;
-  margin-left: 10px;
-  margin-right: 10px;
+  height: 50px;
+  width: 50px;
+  border-radius: 10px;
 }
 
 .wrapper .brand span {
   position: absolute;
-  top: 30px;
+  padding-left: 10px;
+}
+
+.wrapper .options {
+  padding: 10px;
 }
 
 .wrapper .options div {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+.wrapper .options div input {
+  float: right;
+}
+
+.wrapper .options div input:hover {
+  cursor: pointer;
+}
+
+.wrapper .footer {
+  background-color: #F0F0F0;
+  padding: 5px 10px;
+}
+
+.wrapper .footer a {
+  text-decoration: none;
+}
+
+.wrapper .footer span {
+  position: relative;
+  top: -5px;
+  color: #353535;
+}
+
+.wrapper .footer img {
+  height: 20px;
+  width: auto;
+}
+/*# sourceMappingURL=popup.css.map */

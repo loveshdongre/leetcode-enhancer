@@ -13,15 +13,18 @@ browser.storage.local.get(["options"], updatePopup)
 function updatePopup(options) {
   if(isIterable(options.options)) {
     for(option of options.options) {
+      let chb = document.getElementById(option.optionName);
       if(option.checked) {
-        let chb = document.getElementById(option.optionName);
         chb.checked = true;
+      }
+      else {
+        chb.checked = false;
       }
     }
   }
 }
 
-
+// on clicking checkbox
 function onChange () {
   browser.tabs.query({}, function(tabs) {
 

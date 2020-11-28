@@ -1,9 +1,8 @@
-$f1: 16px;
+$f1: 20px;
 $f2: 14px;
 $f3: 12px;
 
-$c1: #bdbdbd;
-$c2: #6b6b6baf;
+$c1: #F0F0F0;
 
 html, body {
     margin:none;
@@ -12,45 +11,64 @@ html, body {
 
 .wrapper {
     max-width:1000px;
-    min-width:250px;
+    min-width:280px;
 }
 .wrapper {
-    .line {
-        height:1px;
-        background-color: $c2;
-        width:100%;        
-    }
-
     .link {
         font-size: $f3;
         text-align: center;
     }
     .brand {
         background-color: $c1;
-        margin-top:10px;
         font-size: $f1;
-        padding-top:10px;
-        padding-bottom: 10px;
-    
+        padding:10px;
     }    
 
     .brand img {
-        height:30px;
-        width:30px;
-        margin-left: 10px;
-        margin-right: 10px;
+        height:50px;
+        width:50px;
+        border-radius: 10px;
     }
     .brand span {
         position: absolute;
-        top:30px;
+        padding-left:10px;
     }
         
     
     .options {
+        padding:10px;
         div {
             margin-top:10px;
             margin-bottom:10px;
+
+            input {
+                float:right;
+            
+                &:hover {
+                    cursor: pointer;
+                }
+            }
         }
     }
 
+    .footer {
+        background-color: $c1;
+        padding: 5px 10px;
+
+        a {
+            text-decoration: none;
+        }
+        
+        span {
+            position: relative;
+            top:-5px;
+            color:rgb(53, 53, 53);
+               
+        }
+
+        img {
+            height:20px;
+            width: auto;
+        }
+    }
 }

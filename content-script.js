@@ -1,8 +1,8 @@
-console.log('content script attached');
+// No need to write $(document).ready because content scripts is loaded after the page is loaded
 
-// don't need to write $(document).ready because content scripts is loaded after the page is loaded
 var browser = browser || chrome
 
+// Mutation Observer (to load extension only after the page questions)
 const observer = new MutationObserver(function (mutations) {
     mutations.forEach(function(mutation) {
         if(mutation.addedNodes.length) {
@@ -10,11 +10,27 @@ const observer = new MutationObserver(function (mutations) {
         }
     });
 });
-el = document.getElementsByClassName('question-list-base');
-observer.observe(el[0], {
-    childList: true
-});
 
+// all problems page
+el = document.getElementsByClassName('question-list-base');
+if(el.length) {
+    observer.observe(el[0], {
+        childList: true
+    });
+}
+
+// tags page
+el2 = document.getElementsByClassName('table');
+console.log(el2);
+console.log(typeof el2);
+console.log(typeof el2[0]);
+if(el2.length) {
+    observer.observe(el2, {
+        childList: true
+    });
+}
+
+//event listener
 browser.runtime.onMessage.addListener(function(response, sender, sendResponse) {
     ops = []
     for(option of response.options) {
@@ -38,7 +54,6 @@ function applyChanges(options) {
         toggleByColName(name, option.checked);
     }
 }
-
 
 function modifyThenApplyChanges(options) {
     applyChanges(options.options);
@@ -64,7 +79,7 @@ function toggleByColName(colName, checked) {
     colNo = findColNoByColName(colName);
     if(colNo) {
         tar = 'td:eq('+ colNo +')';
-        if(checked) {
+        if(!checked) {
             $('table tr th:eq(' + colNo + ')').hide();
             $('table tr').each(function() {
                 $(this).find(tar).hide();
@@ -82,7 +97,7 @@ function toggleByColName(colName, checked) {
 // hide locked problems
 function hideLockedProblems(checked) {
     colNo = findColNoByColName('title');
-    if(checked) {
+    if(!checked) {
         $('table tr').each(function() {
             if($(this).find('td:eq(' + colNo + ')').find('.fa-lock').length == 1) {
                 $(this).hide();
@@ -124,9 +139,9 @@ function highlightSolvedProblems(checked) {
 // hide solved difficulty
 function hideSolvedDiff(checked) {
     if(checked) {
-        $('.question-solved span:not(:first-child)').hide();
+        $('.question-solved span:not(:first-child)').show();
     }
     else {
-        $('.question-solved span:not(:first-child)').show();
+        $('.question-solved span:not(:first-child)').hide();
     }
 }

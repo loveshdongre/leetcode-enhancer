@@ -4,57 +4,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="popup.css"></link>
+    <link rel="stylesheet" href="popup.css">
+    </link>
 </head>
 
 <body>
     <div class="wrapper">
-        <div class= "brand">
-            <img src="icons/leetcode-enhancer-48.png" alt="logo">
-            <span>Leetcode Enhancer</span>
+        <div class="brand">
+            <img src="icons/logo.png" alt="logo">
+            <span>Leetcode<br>Enhancer</span>
         </div>
 
         <div class="options">
+
             <div>
-                <input id="locked" type="checkbox" name="settings" value="locked">
-                <label for="locked"> hide locked problems</label>
+                <label for="locked">Locked Problems</label>
+                <input id="locked" checked type="checkbox" name="settings" value="locked">
             </div>
-            
+
             <div>
+                <label for="highlight"> Highlight Solved Problems</label>
                 <input id="highlight" type="checkbox" name="settings" value="highlight">
-                <label for="highlight"> highlight solved problems</label>
             </div>
-            <div>
-                <input id="solvedDiff" type="checkbox" name="settings" value="solvedDiff">
-                <label for="solvedDiff"> hide solved difficulty count</label>
+            <div style="margin-bottom: 15px;">
+                <label for="solvedDiff"> Solved Difficulty Count</label>
+                <input id="solvedDiff" checked type="checkbox" name="settings" value="solvedDiff">
             </div>
-
-            <div class = "line"></div>
-
-            <div>
-                <input id="#" type="checkbox" name="settings" value="#">
-                <label for="#"> hide problem No column</label>
-            </div>
-            <div>
-                <input id="solution" type="checkbox" name="settings" value="solution">
-                <label for="solution"> hide solution column</label>
-            </div>
-            <div>
-                <input id="acceptance" type="checkbox" name="settings" value="acceptance">
-                <label for="acceptance"> hide acceptance column</label>
-            </div>
-            <div>
-                <input id="difficulty" type="checkbox" name="settings" value="difficulty">
-                <label for="difficulty"> hide difficulty column</label>
-            </div>
-            <div>
-                <input id="frequency" type="checkbox" name="settings" value="frequency">
-                <label for="frequency"> hide frequency column</label>
-            </div>
+            <fieldset>
+                <legend>Columns</legend>
+                <div>
+                    <label for="#"> Problem No</label>
+                    <input id="#" checked type="checkbox" name="settings" value="#">
+                </div>
+                <div>
+                    <label for="solution"> Solution </label>
+                    <input id="solution" checked type="checkbox" name="settings" value="solution">
+                </div>
+                <div>
+                    <label for="acceptance"> Acceptance </label>
+                    <input id="acceptance" checked type="checkbox" name="settings" value="acceptance">
+                </div>
+                <div>
+                    <label for="difficulty"> Difficulty </label>
+                    <input id="difficulty" checked type="checkbox" name="settings" value="difficulty">
+                </div>
+                <div>
+                    <label for="frequency"> Frequency </label>
+                    <input id="frequency" checked type="checkbox" name="settings" value="frequency">
+                </div>
+            </fieldset>
         </div>
 
-        <div class="link">
-            <a target="_blank" href="https://leetcode.com/problemset/all/">https://leetcode.com</a>
+        <div class= "footer">
+            <a target="_blank" href="mailto:loveshdongre57@gmail.com">
+                <img src="icons/mail.png" alt="github">
+                <span>Any suggestion or feedback ?</span>
+            </a>
+
+            <a style="float:right" target="_blank" href="https://github.com/loveshdongre/leetcode-enhancer">
+                <img src="icons/github.png" alt="github">
+            </a>
         </div>
     </div>
     <!-- popup.js is at the end of the page so it gets loaded last -->
