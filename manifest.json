@@ -15,21 +15,28 @@
 		  "js": ["jquery.min.js", "content-script.js"]
 		}
 	  ],
+
+	"background": {
+		"scripts": ["background.js"]
+	},
 	// popup 
-	"browser_action": {
+	"page_action": {
 		"browser_style": true,
 		"default_icon": {
 			"48": "icons/logo.png"
 		},
 		"default_title": "Leetcode Enhancer",
 		"default_popup": "popup.html",
+		
+		// used by chrome
 		"theme_icons": [
 			{
 				"light": "icons/logo.png",
 				"dark": "icons/logo.png",
 				"size": 48
 			}
-		]
+		],
+		"show_matches": ["https://leetcode.com/*"]
 	},
 	// tabs give additional info of a tab and enables message sharing
 	"permissions":["tabs", "storage"]

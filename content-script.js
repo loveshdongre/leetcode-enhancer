@@ -2,6 +2,8 @@
 
 var browser = browser || chrome
 
+chrome.runtime.sendMessage({"message": "activate_icon"});
+
 // Mutation Observer (to load extension only after the page questions)
 const observer = new MutationObserver(function (mutations) {
     mutations.forEach(function(mutation) {
@@ -20,12 +22,12 @@ if(el.length) {
 }
 
 // tags page
-el2 = document.getElementsByClassName('table');
+el2 = document.getElementsByClassName('row');
 console.log(el2);
 console.log(typeof el2);
 console.log(typeof el2[0]);
 if(el2.length) {
-    observer.observe(el2, {
+    observer.observe(el2[0], {
         childList: true
     });
 }
