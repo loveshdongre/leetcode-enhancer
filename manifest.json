@@ -5,14 +5,15 @@
 	"author": "Lovesh Dongre",
 	"description": "Improves productivity on leetcode",
 	"icons": {
-		"48": "icons/logo.png"
+		"48": "icons/logo.png",
+		"96": "icons/logo-96.png"
 	},
 	// content script - have access to DOM of a tab
 	"content_scripts": [
 		{
 		  "matches": ["https://leetcode.com/*"],
-		  // jquery must be loaded first
-		  "js": ["jquery.min.js", "content-script.js"]
+		  "css": ["content-script.css"],
+		  "js": ["content-script.js"]
 		}
 	  ],
 
@@ -23,7 +24,8 @@
 	"page_action": {
 		"browser_style": true,
 		"default_icon": {
-			"48": "icons/logo.png"
+			"48": "icons/logo.png",
+			"96": "icons/logo-96.png"
 		},
 		"default_title": "Leetcode Enhancer",
 		"default_popup": "popup.html",

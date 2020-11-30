@@ -19,6 +19,15 @@ html, body {
   padding: 10px;
 }
 
+.wrapper .brand .title {
+  text-decoration: none;
+  color: black;
+}
+
+.wrapper .brand .title:hover {
+  color: grey;
+}
+
 .wrapper .brand img {
   height: 50px;
   width: 50px;

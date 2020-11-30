@@ -21,6 +21,15 @@ html, body {
         background-color: $c1;
         font-size: $f1;
         padding:10px;
+
+        .title {
+            text-decoration: none;
+            color:black;
+            
+            &:hover {
+              color:grey;  
+            }
+        }
     }    
 
     .brand img {

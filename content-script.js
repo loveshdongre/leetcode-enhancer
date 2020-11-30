@@ -1,44 +1,41 @@
-// No need to write $(document).ready because content scripts is loaded after the page is loaded
-
+// for compatibility between chrome and firefox
 var browser = browser || chrome
 
+// sends message to enable popup icon
 chrome.runtime.sendMessage({"message": "activate_icon"});
 
 // Mutation Observer (to load extension only after the page questions)
 const observer = new MutationObserver(function (mutations) {
     mutations.forEach(function(mutation) {
         if(mutation.addedNodes.length) {
-                browser.storage.local.get(["options"], modifyThenApplyChanges);
+            browser.storage.local.get(["options"], modifyThenApplyChanges);
         }
     });
 });
 
-// all problems page
+//on page refresh changes should be reflected automatically
 el = document.getElementsByClassName('question-list-base');
+el2 = document.getElementById('app');
+// all problems page
 if(el.length) {
     observer.observe(el[0], {
         childList: true
     });
 }
-
 // tags page
-el2 = document.getElementsByClassName('row');
-console.log(el2);
-console.log(typeof el2);
-console.log(typeof el2[0]);
-if(el2.length) {
-    observer.observe(el2[0], {
+if(el2) {
+    observer.observe(el2, {
         childList: true
     });
 }
 
-//event listener
+// event listener
 browser.runtime.onMessage.addListener(function(response, sender, sendResponse) {
     ops = []
     for(option of response.options) {
         ops.push(option);
     }
-    applyChanges(ops); 
+    applyChanges(ops);
 });
 
 function applyChanges(options) {
@@ -53,7 +50,9 @@ function applyChanges(options) {
         else if(name === 'solvedDiff') {
             hideSolvedDiff(option.checked)
         }
-        toggleByColName(name, option.checked);
+        else {
+            toggleByColName(name, option.checked);
+        }
     }
 }
 
@@ -64,34 +63,34 @@ function modifyThenApplyChanges(options) {
 // hide column
 
 function findColNoByColName(colName) {
+    colList = document.querySelectorAll('table thead tr th')
 
-
-    colNo = 0;
-    $('table thead tr th').each(function(index){
-        if($(this).text().toLowerCase().includes(colName)) {
-            colNo = index;
+    for(i = 0; i < colList.length; i++) {
+        if(colList[i].innerText.toLowerCase().includes(colName)) {
+            return i;
         }
-    });
-    
-    return colNo;
+    }
+
+    return 0;
 }
 
 function toggleByColName(colName, checked) {
 
     colNo = findColNoByColName(colName);
     if(colNo) {
-        tar = 'td:eq('+ colNo +')';
-        if(!checked) {
-            $('table tr th:eq(' + colNo + ')').hide();
-            $('table tr').each(function() {
-                $(this).find(tar).hide();
-            });
+        temp = document.querySelectorAll('table tr td:nth-child(' + (colNo + 1) + ')');
+        if(checked) {
+            document.querySelector('table tr th:nth-child(' + (colNo + 1) + ')').classList.remove('hide');
+            
+            for (i = 0; i < temp.length; i++ ) {
+                temp[i].classList.remove('hide');
+            }
         }
         else {
-            $('table tr th:eq(' + colNo + ')').show();
-            $('table tr').each(function() {
-                $(this).find(tar).show();
-            });
+            document.querySelector('table tr th:nth-child(' + (colNo + 1) + ')').classList.add('hide');
+            for (i = 0; i < temp.length; i++ ) {
+                temp[i].classList.add('hide');
+            }
         }
     }
 }
@@ -99,51 +98,56 @@ function toggleByColName(colName, checked) {
 // hide locked problems
 function hideLockedProblems(checked) {
     colNo = findColNoByColName('title');
-    if(!checked) {
-        $('table tr').each(function() {
-            if($(this).find('td:eq(' + colNo + ')').find('.fa-lock').length == 1) {
-                $(this).hide();
+    temp = document.querySelectorAll('table tr')
+    if(checked) {
+        for(i = 0; i < temp.length; i++) {
+            if(temp[i].querySelector('td:nth-child(3) .fa-lock')) {
+                temp[i].classList.remove('hide');
             }
-        });
+        }
     }
     else {
-        $('table tr').each(function() {
-            if($(this).find('td:eq(' + colNo + ')').find('.fa-lock').length == 1) {
-                $(this).show();
-            }            
-        });
+        for(i = 0; i < temp.length; i++) {
+            if(temp[i].querySelector('td:nth-child(3) .fa-lock')) {
+                temp[i].classList.add('hide');
+            }
+        }
     }
 }
 
 // highlight solved problems
 function highlightSolvedProblems(checked) {
     
+    temp = document.querySelectorAll('table tr')
+
     if(checked) {
-        $('table tr th:first-child').hide();
-        $('table tr').each(function() {
-            $(this).find('td:first-child').hide();
-            if($(this).find('td').find('.fa-check').length == 1) {
-                $(this).css({'background-color': 'rgb(118, 255, 118)'})
+        // document.querySelector('table tr th:first-child').classList.add('hide')
+        for(i = 0; i < temp.length; i++) {
+            temp[i].querySelector('*:nth-child(1)').classList.add('hide');
+            if(temp[i].querySelector('.fa-check')) {
+                temp[i].classList.add('add-bg');
             }
-        });
+        }
     }
     else {
-        $('table tr th:first-child').show();
-        $('table tr').each(function() {
-            $(this).find('td:first-child').show();
-            if($(this).find('td').find('.fa-check').length == 1) {
-                $(this).css({'background-color': 'rgba(118, 255, 118, 0)'})
+        // document.querySelector('table tr th:first-child').classList.remove('hide')
+        for(i = 0; i < temp.length; i++) {
+            temp[i].querySelector('*:nth-child(1)').classList.remove('hide');
+            if(temp[i].querySelector('.fa-check')) {
+                temp[i].classList.remove('add-bg');
             }
-        });
+        }
     }
 }
 
 // hide solved difficulty
 function hideSolvedDiff(checked) {
     if(checked) {
-        $('.question-solved span:not(:first-child)').show();
+        document.querySelectorAll('.question-solved span span:not(:first-child)')
+                .forEach(el => el.style.display = "inline");
     }
     else {
-        $('.question-solved span:not(:first-child)').hide();
+        document.querySelectorAll('.question-solved span span:not(:first-child)')
+                .forEach(el => el.style.display = "none");
     }
 }
