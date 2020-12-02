@@ -9,30 +9,11 @@
 
 It is a light-weight browser extension which runs in the menu bar. It boosts your productivity by hiding unnecessary visual elements from the screen, enabling you to focus on what is required to see. You change your preferences form the UI and find out what best suits your needs.
 
- <div class="row">
-  <div class="column">
+<div align="center">
     <img src="./images/ui.png">
-  </div>
-  <div class="column">
+    <br>
     <img src="./images/ui2-1280x800.png">
-  </div>
-</div> 
-
-<style>
-.row {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.column:nth-child(1){
-  flex:40%;
-  padding: 5px;
-}
-.column:nth-child(2) {
-    flex: 60%;
-    padding: 5px;
-}
-</style>
+</div>
 
 ## :heavy_check_mark: Features
 :white_check_mark: Hide locked problems from the table
@@ -55,7 +36,7 @@ It is a light-weight browser extension which runs in the menu bar. It boosts you
 * ### Mozilla Firefox
     To install this extension from Firefox Browser Addons <a href="https://addons.mozilla.org/en-US/firefox/addon/leetcode-enhancer/" target="_blank">click here</a>
     
-    After installing this extension the button for it will appear next to the address bar and not the where the global extensions are visible. This makes sure the extension is running only when you need it.
+    After installing this extension the button for it will appear next to the address bar and not where the global extensions are visible. This is done to make sure the extension is running only when you need it.
 
 ## :crown: For developers
 Clone the source locally:
