@@ -1,4 +1,4 @@
-<img src="./icons/logoFull.png" alt="logo full" width="500">
+<img src="./images/logoFull.png" alt="logo full" width="500">
 <hr>
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg) 
@@ -8,7 +8,7 @@
 
 It is a light-weight browser extension which runs in the menubar. It boosts your productivity by hiding unnecessary visual elements from the screen, enabling you to focus on what is required to see. You change your preferences form the UI and find out what best suits your needs.
 
-<img src="./icons/ui.png">
+<img src="./images/ui.png">
 
 ## Functionalities
 
@@ -27,7 +27,7 @@ It is a light-weight browser extension which runs in the menubar. It boosts your
     
     After installation you should pin this extension to use its features.
 * ### Mozilla Firefox
-    To install this extension from Firefox Browser Addons [click here]()
+    To install this extension from Firefox Browser Addons [click here](https://addons.mozilla.org/en-US/firefox/addon/leetcode-enhancer/)
     
     After installing this extension the button for it will appear next to the address bar and not the where the global extensions are visible. This makes sure the extension is running only when you need it.
 
