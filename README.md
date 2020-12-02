@@ -6,7 +6,7 @@
 
 **A cross-browser extension to improve productivity on [Leetcode](https://leetcode.com)**
 
-It is a light-weight browser extension which runs in menubar. It boosts your productivity by hiding unnecessary visual elements from the screen enabling you to focus on what is important to see. You can change your preferences from the UI and find out what best suits you.
+It is a light-weight browser extension which runs in the menubar. It boosts your productivity by hiding unnecessary visual elements from the screen, enabling you to focus on what is required to see. You change your preferences form the UI and find out what best suits your needs.
 
 <img src="./icons/ui.png">
 
@@ -47,5 +47,10 @@ $ cd leetcode-enhancer
     - Go to `about:debugging` and click on `This Firefox` (if you are not already there)
     - Click on `Load Temporary Add-on...` and select the `manifest.json` file
     - The addon will appear next to the address bar only when you are on https://leetcode.com
+
+## Development Env
+    - Ubuntu 20.04
+    - Mozilla Firefox 83.0
+    - Google Chrome 87.0
 ## License
 MIT © <a href = "https://loveshdongre.tech" target="_blank">Lovesh Dongre</a>

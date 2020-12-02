@@ -1,14 +1,13 @@
 {
 	"manifest_version": 2,
 	"name": "Leetcode Enhancer",
-	"version": "1.0",
+	"version": "1.21",
 	"author": "Lovesh Dongre",
-	"description": "Improves productivity on leetcode",
+	"description": "A cross-browser extension to improve productivity on Leetcode",
 	"icons": {
 		"48": "icons/logo.png",
 		"96": "icons/logo-96.png"
 	},
-	// content script - have access to DOM of a tab
 	"content_scripts": [
 		{
 		  "matches": ["https://leetcode.com/*"],
@@ -20,7 +19,6 @@
 	"background": {
 		"scripts": ["background.js"]
 	},
-	// popup 
 	"page_action": {
 		"browser_style": true,
 		"default_icon": {
@@ -29,8 +27,6 @@
 		},
 		"default_title": "Leetcode Enhancer",
 		"default_popup": "popup.html",
-		
-		// used by chrome
 		"theme_icons": [
 			{
 				"light": "icons/logo.png",
@@ -40,6 +36,5 @@
 		],
 		"show_matches": ["https://leetcode.com/*"]
 	},
-	// tabs give additional info of a tab and enables message sharing
-	"permissions":["tabs", "storage"]
+	"permissions":["storage"]
 }
