@@ -6,7 +6,7 @@
 
 **A cross-browser extension to improve productivity on [Leetcode](https://leetcode.com)**
 
-It is a light-weight browser extension which runs in menubar. It boosts your productivity by hiding unnecessary visual elements from the screen enabling you to focus on what is important to see. You change your preferences form the UI and find out what best suits your needs.
+It is a light-weight browser extension which runs in menubar. It boosts your productivity by hiding unnecessary visual elements from the screen enabling you to focus on what is important to see. You can change your preferences from the UI and find out what best suits you.
 
 <img src="./icons/ui.png">
 
@@ -14,7 +14,7 @@ It is a light-weight browser extension which runs in menubar. It boosts your pro
 
 - [x] Hide locked problems from the table
 - [x] Highlight solved problems
-- [x] Hide Difficuly count
+- [x] Hide Difficulty count
 - [x] Hide / Show any table column (except for title column)
 
 **Note**: The following functionalities work on these two kinds of URLs
@@ -48,4 +48,4 @@ $ cd leetcode-enhancer
     - Click on `Load Temporary Add-on...` and select the `manifest.json` file
     - The addon will appear next to the address bar only when you are on https://leetcode.com
 ## License
-MIT © [Lovesh Dongre](https://loveshdongre.tech)
+MIT © <a href = "https://loveshdongre.tech" target="_blank">Lovesh Dongre</a>
