@@ -4,34 +4,60 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg) 
 ![HitCount](http://hits.dwyl.com/loveshdongre/leetcode-enhancer.svg)
 
-**A cross-browser extension to improve productivity on [Leetcode](https://leetcode.com)**
+**A cross-browser extension to improve :rocket: productivity on 
+<a href="https://leetcode.com" target="_blank">Leetcode</a>**
 
-It is a light-weight browser extension which runs in the menubar. It boosts your productivity by hiding unnecessary visual elements from the screen, enabling you to focus on what is required to see. You change your preferences form the UI and find out what best suits your needs.
+It is a light-weight browser extension which runs in the menu bar. It boosts your productivity by hiding unnecessary visual elements from the screen, enabling you to focus on what is required to see. You change your preferences form the UI and find out what best suits your needs.
 
-<img src="./images/ui.png">
+ <div class="row">
+  <div class="column">
+    <img src="./images/ui.png">
+  </div>
+  <div class="column">
+    <img src="./images/ui2-1280x800.png">
+  </div>
+</div> 
 
-## Functionalities
+<style>
+.row {
+  display: flex;
+  justify-content: space-evenly;
+}
 
-- [x] Hide locked problems from the table
-- [x] Highlight solved problems
-- [x] Hide Difficulty count
-- [x] Hide / Show any table column (except for title column)
+.column:nth-child(1){
+  flex:40%;
+  padding: 5px;
+}
+.column:nth-child(2) {
+    flex: 60%;
+    padding: 5px;
+}
+</style>
 
-**Note**: The following functionalities work on these two kinds of URLs
+## :heavy_check_mark: Features
+:white_check_mark: Hide locked problems from the table
+
+:white_check_mark: Highlight solved problems
+
+:white_check_mark: Hide Difficulty count
+
+:white_check_mark: Hide / Show any table column (except for title column)
+
+**Note**: The extension can be used only on these two types of URLs
 * https://leetcode.com/problemset/all/*
 * https://leetcode.com/tag/*
 
-## Installation
+## :star2: Installation
 * ### Google Chrome
-    To install this extension from Chrome Web Store [click here]()
+    To install this extension from Chrome Web Store <a href="" target="_blank">click here</a>
     
     After installation you should pin this extension to use its features.
 * ### Mozilla Firefox
-    To install this extension from Firefox Browser Addons [click here](https://addons.mozilla.org/en-US/firefox/addon/leetcode-enhancer/)
+    To install this extension from Firefox Browser Addons <a href="https://addons.mozilla.org/en-US/firefox/addon/leetcode-enhancer/" target="_blank">click here</a>
     
     After installing this extension the button for it will appear next to the address bar and not the where the global extensions are visible. This makes sure the extension is running only when you need it.
 
-## For developers
+## :crown: For developers
 Clone the source locally:
 
 ```sh
@@ -46,11 +72,13 @@ $ cd leetcode-enhancer
 * ### Mozilla Firefox
     - Go to `about:debugging` and click on `This Firefox` (if you are not already there)
     - Click on `Load Temporary Add-on...` and select the `manifest.json` file
-    - The addon will appear next to the address bar only when you are on https://leetcode.com
+    - The addon will appear next to the address bar only when you are on leetcode
 
-## Development Env
-    - Ubuntu 20.04
-    - Mozilla Firefox 83.0
-    - Google Chrome 87.0
-## License
+## :earth_asia: Development Env
+* Ubuntu 20.04
+* Mozilla Firefox 83.0
+* Google Chrome 87.0
+* Live Sass Compiler (Ritwick Dey)
+
+## :clipboard: License
 MIT © <a href = "https://loveshdongre.tech" target="_blank">Lovesh Dongre</a>
