@@ -58,3 +58,13 @@ function isIterable(obj) {
   }
   return typeof obj[Symbol.iterator] === 'function';
 }
+
+// feedback btn
+
+document.getElementById('fBtn').addEventListener("click", function(e) {
+  var isFirefox = typeof InstallTrigger !== 'undefined';
+  if(isFirefox) {
+    console.log(this);
+    this.href = "https://addons.mozilla.org/en-US/firefox/addon/leetcode-enhancer/" // mozilla feedback url  
+  }
+})

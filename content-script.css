@@ -5,3 +5,7 @@
 .hide {
     display: none !important;
 }
+
+.color-alfa0 {
+    color:rgba(0,0,0,0);
+}

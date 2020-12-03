@@ -142,12 +142,19 @@ function highlightSolvedProblems(checked) {
 
 // hide solved difficulty
 function hideSolvedDiff(checked) {
-    if(checked) {
-        document.querySelectorAll('.question-solved span span:not(:first-child)')
-                .forEach(el => el.style.display = "inline");
-    }
-    else {
-        document.querySelectorAll('.question-solved span span:not(:first-child)')
-                .forEach(el => el.style.display = "none");
+
+    if(document.querySelector('.question-solved')) {
+        if(checked) {
+
+            document.querySelectorAll('.question-solved>span>span:not(:first-child)')
+                    .forEach(el => el.classList.remove('hide'));
+
+            document.querySelector('.question-solved span').classList.remove('color-alfa0')
+        }
+        else {
+            document.querySelectorAll('.question-solved span span:not(:first-child)')
+                    .forEach(el => el.classList.add('hide'));
+            document.querySelector('.question-solved span').classList.add('color-alfa0')
+        }
     }
 }
