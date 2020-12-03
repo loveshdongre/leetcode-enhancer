@@ -29,17 +29,17 @@ It is a light-weight browser extension which runs in the menu bar. It boosts you
 
 ## :star2: Installation
 ### Google Chrome
-    To install this extension from Chrome Web Store <a href="https://chrome.google.com/webstore/detail/leetcode-enhancer/gcmncppaaebldbkgkcbojghpmpjkdlmp" target="_blank">click here</a>.
-    
-    After installation, you should pin this extension to use its features.
-### Mozilla Firefox
-    To install this extension from Firefox Browser Addons <a href="https://addons.mozilla.org/en-US/firefox/addon/leetcode-enhancer/" target="_blank">click here</a>.
+* To install this extension from Chrome Web Store <a href="https://chrome.google.com/webstore/detail/leetcode-enhancer/gcmncppaaebldbkgkcbojghpmpjkdlmp" target="_blank">click here</a>.
 
-    <div align = "center">
-        <img src="./images/ui3-m.png" alt="mozilla page action extension location">
-    </div>
-    
-    In case of Mozilla Firefox, the icon will appear in the address bar as this is a page specific extension, this makes sure the extension is running, only when you need it and not all the time.
+* After installation, you should pin this extension to use its features.
+### Mozilla Firefox
+* To install this extension from Firefox Browser Addons <a href="https://addons.mozilla.org/en-US/firefox/addon/leetcode-enhancer/" target="_blank">click here</a>.
+
+<div align = "center">
+    <img src="./images/ui3-m.png" alt="mozilla page action extension location">
+</div>
+
+* In case of Mozilla Firefox, the icon will appear in the address bar as this is a page specific extension, this makes sure the extension is running, only when you need it and not all the time.
 
 ## :crown: For developers
 Clone the source locally:
@@ -49,14 +49,14 @@ $ git clone https://github.com/loveshdongre/leetcode-enhancer/
 $ cd leetcode-enhancer
 ```
 ### Google Chrome
-    - Go to `chrome://extensions/` and enable `Developer mode`
-    - Click on `load unpacked` and select the `manifest.json` file
-    - Pin this extension to use it.
+* Go to `chrome://extensions/` and enable `Developer mode`
+* Click on `load unpacked` and select the `manifest.json` file
+* Pin this extension to use it.
 
 ### Mozilla Firefox
-    - Go to `about:debugging` and click on `This Firefox` (if you are not already there)
-    - Click on `Load Temporary Add-on...` and select the `manifest.json` file
-    - The addon will appear next to the address bar only when you are on leetcode
+* Go to `about:debugging` and click on `This Firefox` (if you are not already there)
+* Click on `Load Temporary Add-on...` and select the `manifest.json` file
+* The addon will appear next to the address bar only when you are on leetcode
 
 ## :handshake: Contributing
 Want to contribute? After running the extension locally, you can create a pull request with your changes and then it can be reviewed for acceptance.
