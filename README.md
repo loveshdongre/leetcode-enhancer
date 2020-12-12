@@ -1,8 +1,7 @@
 <img src="./images/logoFull.png" alt="logo full" width="500">
 <hr>
 
-![License: MIT](https://img.shields.io/badge/License-MIT-green.svg) 
-![HitCount](http://hits.dwyl.com/loveshdongre/leetcode-enhancer.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
 
 **A cross-browser extension to improve :rocket: productivity on 
 <a href="https://leetcode.com" target="_blank">Leetcode</a>**.
