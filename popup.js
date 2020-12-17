@@ -63,8 +63,11 @@ function isIterable(obj) {
 
 document.getElementById('fBtn').addEventListener("click", function(e) {
   var isFirefox = typeof InstallTrigger !== 'undefined';
+  var isEdge = !isIE && !!window.StyleMedia;
   if(isFirefox) {
-    console.log(this);
     this.href = "https://addons.mozilla.org/en-US/firefox/addon/leetcode-enhancer/" // mozilla feedback url  
+  }
+  if(isEdge) {
+    this.href = "https://microsoftedge.microsoft.com/addons/detail/leetcode-enhancer/dgddijgkneackjhmijacbopefpladfia" // edge feedback url
   }
 })

@@ -6,11 +6,10 @@ chrome.runtime.sendMessage({"message": "activate_icon"});
 
 // Mutation Observer (to load extension only after the page questions)
 const observer = new MutationObserver(function (mutations) {
-    mutations.forEach(function(mutation) {
-        if(mutation.addedNodes.length) {
-            browser.storage.local.get(["options"], modifyThenApplyChanges);
-        }
-    });
+    if(mutations.length) {
+        console.log("mutated")
+        browser.storage.local.get(["options"], modifyThenApplyChanges);
+    }
 });
 
 //on page refresh changes should be reflected automatically
@@ -19,13 +18,15 @@ el2 = document.getElementById('app');
 // all problems page
 if(el.length) {
     observer.observe(el[0], {
-        childList: true
+        childList: true,
+        subtree: true,
     });
 }
 // tags page
 if(el2) {
     observer.observe(el2, {
-        childList: true
+        childList: true,
+        subtree:true
     });
 }
 
@@ -121,7 +122,6 @@ function highlightSolvedProblems(checked) {
     temp = document.querySelectorAll('table tr')
 
     if(checked) {
-        // document.querySelector('table tr th:first-child').classList.add('hide')
         for(i = 0; i < temp.length; i++) {
             temp[i].querySelector('*:nth-child(1)').classList.add('hide');
             if(temp[i].querySelector('.fa-check')) {
@@ -130,7 +130,6 @@ function highlightSolvedProblems(checked) {
         }
     }
     else {
-        // document.querySelector('table tr th:first-child').classList.remove('hide')
         for(i = 0; i < temp.length; i++) {
             temp[i].querySelector('*:nth-child(1)').classList.remove('hide');
             if(temp[i].querySelector('.fa-check')) {
