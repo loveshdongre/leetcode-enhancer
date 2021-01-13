@@ -7,7 +7,6 @@ chrome.runtime.sendMessage({"message": "activate_icon"});
 // Mutation Observer (to load extension only after the page questions)
 const observer = new MutationObserver(function (mutations) {
     if(mutations.length) {
-        console.log("mutated")
         browser.storage.local.get(["options"], modifyThenApplyChanges);
     }
 });
@@ -15,6 +14,7 @@ const observer = new MutationObserver(function (mutations) {
 //on page refresh changes should be reflected automatically
 el = document.getElementsByClassName('question-list-base');
 el2 = document.getElementById('app');
+
 // all problems page
 if(el.length) {
     observer.observe(el[0], {
@@ -62,7 +62,6 @@ function modifyThenApplyChanges(options) {
 }
 
 // hide column
-
 function findColNoByColName(colName) {
     colList = document.querySelectorAll('table thead tr th')
 
@@ -75,7 +74,13 @@ function findColNoByColName(colName) {
     return 0;
 }
 
+// toggle columns
 function toggleByColName(colName, checked) {
+
+    //hide diff from coding area
+    if(colName === 'difficulty') {
+        hideSolvedDiffFromCodingArea(checked);
+    }
 
     colNo = findColNoByColName(colName);
     if(colNo) {
@@ -93,6 +98,19 @@ function toggleByColName(colName, checked) {
                 temp[i].classList.add('hide');
             }
         }
+    }
+}
+
+
+//hide difficulty from coding area
+function hideSolvedDiffFromCodingArea(checked) {
+    //hide difficulty from coding area
+    diffCodingArea = document.querySelector('[diff]')
+    if(diffCodingArea){
+        if(checked)
+            diffCodingArea.classList.remove('hide');
+        else
+            diffCodingArea.classList.add('hide');
     }
 }
 
