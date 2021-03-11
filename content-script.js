@@ -51,6 +51,9 @@ function applyChanges(options) {
         else if(name === 'solvedDiff') {
             hideSolvedDiff(option.checked)
         }
+        else if(name === 'solved') {
+            hideSolvedProb(option.checked)
+        }
         else {
             toggleByColName(name, option.checked);
         }
@@ -172,6 +175,25 @@ function hideSolvedDiff(checked) {
             document.querySelectorAll('.question-solved span span:not(:first-child)')
                     .forEach(el => el.classList.add('hide'));
             document.querySelector('.question-solved span').classList.add('color-alfa0')
+        }
+    }
+}
+
+function hideSolvedProb(checked) {
+    colNo = findColNoByColName('title');
+    temp = document.querySelectorAll('table tr')
+    if(checked) {
+        for(i = 0; i < temp.length; i++) {
+            if(temp[i].querySelector('.fa-check')) {
+                temp[i].classList.remove('hide');
+            }
+        }
+    }
+    else {
+        for(i = 0; i < temp.length; i++) {
+            if(temp[i].querySelector('.fa-check')) {
+                temp[i].classList.add('hide');
+            }
         }
     }
 }
