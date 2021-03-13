@@ -107,13 +107,39 @@ function toggleByColName(colName, checked) {
 
 //hide difficulty from coding area
 function hideSolvedDiffFromCodingArea(checked) {
-    //hide difficulty from coding area
+    
+    // hide difficulty from side panel
+    diffType = document.querySelectorAll('.question-row-right__21IS');
+
+    //hide difficulty from problem statement
     diffCodingArea = document.querySelector('[diff]')
+
+    // hide difficulty from next challenge
+    diffNext = document.querySelectorAll('.next-challenge__A4ZV a')
+
     if(diffCodingArea){
-        if(checked)
+        if(checked) {
             diffCodingArea.classList.remove('hide');
-        else
+
+            for (var i = 0; i < diffType.length; ++i) {
+                diffType[i].classList.remove('hide');
+            }
+
+            for (var i = 0; i < diffNext.length; ++i) {
+                diffNext[i].classList.remove('blur');
+            }
+        }
+        else {
             diffCodingArea.classList.add('hide');
+
+            for (var i = 0; i < diffType.length; ++i) {
+                diffType[i].classList.add('hide');
+            }
+
+            for (var i = 0; i < diffNext.length; ++i) {
+                diffNext[i].classList.add('blur');
+            }
+        }
     }
 }
 
@@ -165,7 +191,6 @@ function hideSolvedDiff(checked) {
 
     if(document.querySelector('.question-solved')) {
         if(checked) {
-
             document.querySelectorAll('.question-solved>span>span:not(:first-child)')
                     .forEach(el => el.classList.remove('hide'));
 
