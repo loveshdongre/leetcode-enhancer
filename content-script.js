@@ -166,7 +166,7 @@ function hideLockedProblems(checked) {
 // highlight solved problems
 function highlightSolvedProblems(checked) {
     
-    temp = document.querySelectorAll('table tr')
+    temp = document.querySelectorAll('thead tr, tbody.reactable-data tr')
 
     if(checked) {
         for(i = 0; i < temp.length; i++) {
