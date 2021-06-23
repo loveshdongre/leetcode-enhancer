@@ -11,10 +11,9 @@ const observer = new MutationObserver(function (mutations) {
     }
 });
 
-//on page refresh changes should be reflected automatically
-el = document.getElementsByClassName('question-list-base');
-el2 = document.getElementById('app');
-
+// on page refresh changes should be reflected automatically
+el = document.getElementsByClassName('jsx-3812067982');
+el4 = document.querySelector('div.space-y-4:nth-child(1)')
 // all problems page
 if(el.length) {
     observer.observe(el[0], {
@@ -22,13 +21,11 @@ if(el.length) {
         subtree: true,
     });
 }
-// tags page
-if(el2) {
-    observer.observe(el2, {
+if(el4) [
+    observer.observe(el4, {
         childList: true,
-        subtree:true
-    });
-}
+    })
+]
 
 // event listener
 browser.runtime.onMessage.addListener(function(response, sender, sendResponse) {
@@ -40,6 +37,7 @@ browser.runtime.onMessage.addListener(function(response, sender, sendResponse) {
 });
 
 function applyChanges(options) {
+    console.log('change!')
     for(option of options) {
         let name = option.optionName;
         if(name === 'locked') { 
@@ -145,18 +143,18 @@ function hideSolvedDiffFromCodingArea(checked) {
 
 // hide locked problems
 function hideLockedProblems(checked) {
-    colNo = findColNoByColName('title');
+    // colNo = findColNoByColName('Status');
     temp = document.querySelectorAll('table tr')
     if(checked) {
         for(i = 0; i < temp.length; i++) {
-            if(temp[i].querySelector('td:nth-child(3) .fa-lock')) {
+            if(temp[i].querySelector("td:nth-child(1) path[d='M7 8v2H6a3 3 0 00-3 3v6a3 3 0 003 3h12a3 3 0 003-3v-6a3 3 0 00-3-3h-1V8A5 5 0 007 8zm8 0v2H9V8a3 3 0 116 0zm-3 6a2 2 0 100 4 2 2 0 000-4z']")) {
                 temp[i].classList.remove('hide');
             }
         }
     }
     else {
         for(i = 0; i < temp.length; i++) {
-            if(temp[i].querySelector('td:nth-child(3) .fa-lock')) {
+            if(temp[i].querySelector("td:nth-child(1) path[d='M7 8v2H6a3 3 0 00-3 3v6a3 3 0 003 3h12a3 3 0 003-3v-6a3 3 0 00-3-3h-1V8A5 5 0 007 8zm8 0v2H9V8a3 3 0 116 0zm-3 6a2 2 0 100 4 2 2 0 000-4z']")) {
                 temp[i].classList.add('hide');
             }
         }
@@ -166,21 +164,30 @@ function hideLockedProblems(checked) {
 // highlight solved problems
 function highlightSolvedProblems(checked) {
     
-    temp = document.querySelectorAll('thead tr, tbody.reactable-data tr')
+    temp = document.querySelectorAll('tbody > tr')
 
     if(checked) {
+        
         for(i = 0; i < temp.length; i++) {
-            temp[i].querySelector('*:nth-child(1)').classList.add('hide');
-            if(temp[i].querySelector('.fa-check')) {
-                temp[i].classList.add('add-bg');
+            // temp[i].querySelector('*:nth-child(1)').classList.add('hide');
+            if(temp[i].querySelector("path[d='M9.688 15.898l-3.98-3.98a1 1 0 00-1.415 1.414L8.98 18.02a1 1 0 001.415 0L20.707 7.707a1 1 0 00-1.414-1.414l-9.605 9.605z']")) {
+                // temp[i].classList.remove('add-bg');
+                temp[i].querySelector('td:nth-child(1)').classList.add('add-bg');
+                temp[i].querySelector('td:nth-child(2)').classList.add('add-bg');
+                // temp[i].querySelector('td:nth-child(3)').classList.add('add-bg');
+                // temp[i].querySelector('td:nth-child(4)').classList.add('add-bg');
+                // temp[i].querySelector('td:nth-child(5)').classList.add('add-bg');
+                // temp[i].querySelector('td:nth-child(6)').classList.add('add-bg');
             }
         }
     }
     else {
         for(i = 0; i < temp.length; i++) {
-            temp[i].querySelector('*:nth-child(1)').classList.remove('hide');
-            if(temp[i].querySelector('.fa-check')) {
-                temp[i].classList.remove('add-bg');
+            // temp[i].querySelector('*:nth-child(1)').classList.remove('hide');
+            if(temp[i].querySelector("path[d='M9.688 15.898l-3.98-3.98a1 1 0 00-1.415 1.414L8.98 18.02a1 1 0 001.415 0L20.707 7.707a1 1 0 00-1.414-1.414l-9.605 9.605z']")) {
+                // temp[i].classList.remove('add-bg');
+                temp[i].querySelector('td:nth-child(1)').classList.remove('add-bg');
+                temp[i].querySelector('td:nth-child(2)').classList.remove('add-bg');
             }
         }
     }
@@ -189,34 +196,32 @@ function highlightSolvedProblems(checked) {
 // hide solved difficulty
 function hideSolvedDiff(checked) {
 
-    if(document.querySelector('.question-solved')) {
-        if(checked) {
-            document.querySelectorAll('.question-solved>span>span:not(:first-child)')
-                    .forEach(el => el.classList.remove('hide'));
+    // document.getElementsByClassName('py-2 bg-overlay-3 rounded-lg')[1] // use full maybe
 
-            document.querySelector('.question-solved span').classList.remove('color-alfa0')
+    // if(document.querySelector('.question-solved')) {
+        if(checked) {
+            document.getElementsByClassName('py-2 bg-overlay-3 rounded-lg')[1].classList.remove('hide');
         }
         else {
-            document.querySelectorAll('.question-solved span span:not(:first-child)')
-                    .forEach(el => el.classList.add('hide'));
-            document.querySelector('.question-solved span').classList.add('color-alfa0')
+            document.getElementsByClassName('py-2 bg-overlay-3 rounded-lg')[1].classList.add('hide');
         }
-    }
+    // }
 }
 
 function hideSolvedProb(checked) {
-    colNo = findColNoByColName('title');
-    temp = document.querySelectorAll('table tr')
+    temp = document.querySelectorAll('tbody > tr')
+
     if(checked) {
+        
         for(i = 0; i < temp.length; i++) {
-            if(temp[i].querySelector('.fa-check')) {
+            if(temp[i].querySelector("path[d='M9.688 15.898l-3.98-3.98a1 1 0 00-1.415 1.414L8.98 18.02a1 1 0 001.415 0L20.707 7.707a1 1 0 00-1.414-1.414l-9.605 9.605z']")) {
                 temp[i].classList.remove('hide');
             }
         }
     }
     else {
         for(i = 0; i < temp.length; i++) {
-            if(temp[i].querySelector('.fa-check')) {
+            if(temp[i].querySelector("path[d='M9.688 15.898l-3.98-3.98a1 1 0 00-1.415 1.414L8.98 18.02a1 1 0 001.415 0L20.707 7.707a1 1 0 00-1.414-1.414l-9.605 9.605z']")) {
                 temp[i].classList.add('hide');
             }
         }

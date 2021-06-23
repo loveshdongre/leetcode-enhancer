@@ -22,9 +22,9 @@ It is a light-weight browser extension which runs in the menu bar. It boosts you
 * Hide Difficulty count
 * Hide / Show any table column (except for title column)
 
-**Note**: The extension functions on the following URLs :
+**Note**: The extension functions on the following URL :
 * https://leetcode.com/problemset/all/*
-* https://leetcode.com/tag/*
+[](https://leetcode.com/tag/*)
 
 ## :star2: Installation
 ### Google Chrome

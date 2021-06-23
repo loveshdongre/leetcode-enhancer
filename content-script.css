@@ -1,5 +1,9 @@
 .add-bg {
-    background-color: rgb(118, 255, 118) !important;
+    /* background-color: rgb(118, 255, 118) !important; */
+    /* background-color: rgb(44, 187, 93) !important; */
+    /* background-image: linear-gradient(to left, rgb(56, 151, 255), rgb(10, 132, 255)) !important; */
+    background-color: rgb(44, 187, 93) !important;
+    /* background-color: rgb(74 255 136) !important; */
 }
 
 .hide {
