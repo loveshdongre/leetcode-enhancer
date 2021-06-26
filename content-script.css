@@ -6,6 +6,10 @@
     /* background-color: rgb(74 255 136) !important; */
 }
 
+.add-bg-old {
+    background-color: rgb(118, 255, 118) !important;
+}
+
 .hide {
     display: none !important;
 }
