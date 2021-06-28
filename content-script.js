@@ -96,17 +96,10 @@ function toggleByColName(colName, checked) {
     if (colNo) {
         temp = document.querySelectorAll('table tr td:nth-child(' + (colNo + 1) + ')');
         if (checked) {
-            document.querySelector('table tr th:nth-child(' + (colNo + 1) + ')').classList.remove('hide');
-
-            for (i = 0; i < temp.length; i++) {
-                temp[i].classList.remove('hide');
-            }
+            document.querySelector(`colgroup > col:nth-child(${colNo + 1})`).classList.remove('hide-col');
         }
         else {
-            document.querySelector('table tr th:nth-child(' + (colNo + 1) + ')').classList.add('hide');
-            for (i = 0; i < temp.length; i++) {
-                temp[i].classList.add('hide');
-            }
+            document.querySelector(`colgroup > col:nth-child(${colNo + 1})`).classList.add('hide-col');
         }
     }
 }
