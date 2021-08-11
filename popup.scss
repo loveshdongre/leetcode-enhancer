@@ -1,16 +1,17 @@
 $f1: 20px;
 $f2: 12px;
 $c1: #F0F0F0;
-
-html, body {
-    margin:none;
-    padding:none;
+html,
+body {
+    margin: none;
+    padding: none;
 }
 
 .wrapper {
-    max-width:1000px;
-    min-width:280px;
+    max-width: 1000px;
+    min-width: 280px;
 }
+
 .wrapper {
     .link {
         font-size: $f2;
@@ -19,62 +20,57 @@ html, body {
     .brand {
         background-color: $c1;
         font-size: $f1;
-        padding:10px;
-
+        padding: 10px;
         .title {
             text-decoration: none;
-            color:black;
-            
+            color: black;
             &:hover {
-              color:grey;  
+                color: grey;
             }
         }
-    }    
-
+    }
     .brand img {
-        height:50px;
-        width:50px;
+        height: 50px;
+        width: 50px;
         border-radius: 10px;
     }
     .brand span {
         position: absolute;
-        padding-left:10px;
+        padding-left: 10px;
     }
-        
-    
+    .notice {
+        padding: 10px;
+        font-weight: bold;
+        color: black;
+        line-height: 15px;
+        background-color: #FFAB00;
+    }
     .options {
-        padding:10px;
+        padding: 10px;
         div {
-            margin-top:10px;
-            margin-bottom:10px;
-
+            margin-top: 10px;
+            margin-bottom: 10px;
             input {
-                float:right;
-            
+                float: right;
                 &:hover {
                     cursor: pointer;
                 }
             }
         }
     }
-
     .footer {
         background-color: $c1;
         padding: 5px 10px;
-
         a {
             text-decoration: none;
         }
-        
         span {
             position: relative;
-            top:-5px;
-            color:rgb(53, 53, 53);
-               
+            top: -5px;
+            color: rgb(53, 53, 53);
         }
-
         img {
-            height:20px;
+            height: 20px;
             width: auto;
         }
     }

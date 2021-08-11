@@ -1,40 +1,36 @@
 {
-	"manifest_version": 2,
-	"name": "Leetcode Enhancer",
-	"version": "1.33",
-	"author": "Lovesh Dongre",
-	"description": "A browser extension to improve productivity on Leetcode.",
-	"icons": {
-		"48": "icons/logo.png",
-		"96": "icons/logo-96.png"
-	},
-	"content_scripts": [
-		{
-		  "matches": ["https://leetcode.com/*"],
-		  "css": ["content-script.css"],
-		  "js": ["content-script.js"]
-		}
-	  ],
+    "manifest_version": 2,
+    "name": "Leetcode Enhancer",
+    "version": "1.34",
+    "author": "Lovesh Dongre",
+    "description": "A browser extension to improve productivity on Leetcode.",
+    "icons": {
+        "48": "icons/logo.png",
+        "96": "icons/logo-96.png"
+    },
+    "content_scripts": [{
+        "matches": ["https://leetcode.com/*"],
+        "css": ["content-script.css"],
+        "js": ["content-script.js"]
+    }],
 
-	"background": {
-		"scripts": ["background.js"]
-	},
-	"page_action": {
-		"browser_style": true,
-		"default_icon": {
-			"48": "icons/logo.png",
-			"96": "icons/logo-96.png"
-		},
-		"default_title": "Leetcode Enhancer",
-		"default_popup": "popup.html",
-		"theme_icons": [
-			{
-				"light": "icons/logo.png",
-				"dark": "icons/logo.png",
-				"size": 48
-			}
-		],
-		"show_matches": ["https://leetcode.com/*"]
-	},
-	"permissions":["storage"]
+    "background": {
+        "scripts": ["background.js"]
+    },
+    "page_action": {
+        "browser_style": true,
+        "default_icon": {
+            "48": "icons/logo.png",
+            "96": "icons/logo-96.png"
+        },
+        "default_title": "Leetcode Enhancer",
+        "default_popup": "popup.html",
+        "theme_icons": [{
+            "light": "icons/logo.png",
+            "dark": "icons/logo.png",
+            "size": 48
+        }],
+        "show_matches": ["https://leetcode.com/*"]
+    },
+    "permissions": ["storage"]
 }

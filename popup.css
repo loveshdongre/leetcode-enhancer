@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   margin: none;
   padding: none;
 }
@@ -37,6 +38,14 @@ html, body {
 .wrapper .brand span {
   position: absolute;
   padding-left: 10px;
+}
+
+.wrapper .notice {
+  padding: 10px;
+  font-weight: bold;
+  color: black;
+  line-height: 15px;
+  background-color: #FFAB00;
 }
 
 .wrapper .options {
