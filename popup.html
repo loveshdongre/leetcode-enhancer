@@ -11,16 +11,20 @@
 <body>
     <div class="wrapper">
         <div class="brand">
-            <img src="icons/logo.png" alt="logo">
+            <img class="logo" src="icons/logo.png" alt="logo">
             <span>
                <a href="https://leetcode.com/problemset/all" class="title" target="_blank">Leetcode</a>
                 <br>enhancer</span>
+
+            <a style="float:right" target="_blank" href="https://github.com/loveshdongre/leetcode-enhancer">
+                <img class="github" src="icons/github.png" alt="github">
+            </a>
         </div>
 
 
-        <div class="notice">
+        <!-- <div class="notice">
             Please switch to the older UI, the extension will work for the new UI within this week. Sorry for the inconvenience.
-        </div>
+        </div> -->
 
         <div class="options">
 
@@ -70,12 +74,12 @@
         <div class="footer">
             <a id="fBtn" target="_blank" href="https://chrome.google.com/webstore/detail/leetcode-enhancer/gcmncppaaebldbkgkcbojghpmpjkdlmp">
                 <img src="icons/mail.png" alt="mail">
-                <span>Any suggestion or feedback ?</span>
-            </a>
+                <span>Issues/Suggestions/feedback ?</span>
+            </a><span id="deBtn">show</span>
+        </div>
 
-            <a style="float:right" target="_blank" href="https://github.com/loveshdongre/leetcode-enhancer">
-                <img src="icons/github.png" alt="github">
-            </a>
+        <div class="details" id="msg">
+            How reviews are helpful to me? <br> - Bugs are reported earlier. <br> - Your suggestion could be in the next update. <br> - Encourages me!
         </div>
     </div>
     <!-- popup.js is at the end of the page so it gets loaded last -->

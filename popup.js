@@ -62,7 +62,7 @@ function isIterable(obj) {
 
 document.getElementById('fBtn').addEventListener("click", function(e) {
     var isFirefox = typeof InstallTrigger !== 'undefined';
-    var isEdge = !isIE && !!window.StyleMedia;
+    var isEdge = /Edge/.test(navigator.userAgent);
     if (isFirefox) {
         this.href = "https://addons.mozilla.org/en-US/firefox/addon/leetcode-enhancer/" // mozilla feedback url  
     }
@@ -70,3 +70,17 @@ document.getElementById('fBtn').addEventListener("click", function(e) {
         this.href = "https://microsoftedge.microsoft.com/addons/detail/leetcode-enhancer/dgddijgkneackjhmijacbopefpladfia" // edge feedback url
     }
 })
+
+document.getElementById('msg').style.display = "none";
+
+// show details
+document.getElementById('deBtn').addEventListener("click", function() {
+    isClose = document.getElementById('deBtn').innerText == 'show';
+    if (isClose) {
+        document.getElementById('msg').style.display = "block";
+        document.getElementById('deBtn').innerText = 'hide';
+    } else {
+        document.getElementById('msg').style.display = "none";
+        document.getElementById('deBtn').innerText = 'show';
+    }
+});

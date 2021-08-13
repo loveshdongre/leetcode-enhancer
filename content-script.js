@@ -60,7 +60,9 @@ function modifyThenApplyChanges(options) {
 
 const observer = new MutationObserver(function(mutations) {
     if (mutations.length) {
+        print('hit');
         browser.storage.local.get(["options"], modifyThenApplyChanges);
+
     }
 });
 
@@ -76,20 +78,11 @@ if (mode == 0) {
         });
     }
 } else if (mode == 1) {
-    // all problems table
-    new_ui_page = document.getElementsByClassName('jsx-3812067982');
-    if (new_ui_page.length) {
-        observer.observe(new_ui_page[0], {
+    ui = document.getElementById('__next')
+    if (ui) {
+        observer.observe(ui, {
             childList: true,
-            subtree: true,
-        });
-    }
-
-    // solved difficulty
-    new_ui_sd = document.querySelector('div.space-y-4:nth-child(1)')
-    if (new_ui_sd) {
-        observer.observe(new_ui_sd, {
-            childList: true,
+            subtree: true
         });
     }
 
@@ -146,6 +139,16 @@ function findColNoByColName(colName) {
         if (colList[i].innerText.toLowerCase().includes(colName)) {
             return i;
         }
+    }
+    return 0;
+}
+
+//hide column2 - for new ui
+function findColNoByColName2(colName) {
+    colList = document.querySelectorAll('[role="table"] [role="columnheader"]')
+    for (i = 0; i < colList.length; i++) {
+        if (colList[i].outerText.toLowerCase().includes(colName))
+            return i;
     }
     return 0;
 }
@@ -208,6 +211,19 @@ function toggleByColName(colName, checked) {
             }
         }
     } else if (mode == 1) {
+        colNo = findColNoByColName2(colName);
+        if (colNo) {
+            temp = document.querySelectorAll('[role="table"] [role="row"]')
+            if (checked) {
+                for (i = 0; i < temp.length; i++) {
+                    temp[i].querySelector('div:nth-child(' + (colNo + 1) + ')').classList.remove('hide');
+                }
+            } else {
+                for (i = 0; i < temp.length; i++) {
+                    temp[i].querySelector('div:nth-child(' + (colNo + 1) + ')').classList.add('hide');
+                }
+            }
+        }
 
     } else if (mode == 3) {
         //hide diff from coding area
@@ -238,14 +254,20 @@ function hideLockedProblems(checked) {
             }
         }
     } else if (mode == 1) {
-        // for (i = 0; i < temp.length; i++) {
-        //     if (temp[i].querySelector("td:nth-child(1) path[d='M7 8v2H6a3 3 0 00-3 3v6a3 3 0 003 3h12a3 3 0 003-3v-6a3 3 0 00-3-3h-1V8A5 5 0 007 8zm8 0v2H9V8a3 3 0 116 0zm-3 6a2 2 0 100 4 2 2 0 000-4z']")) {
-        //         if (checked)
-        //             temp[i].classList.remove('hide');
-        //         else
-        //             temp[i].classList.add('hide');
-        //     }
-        // }
+        temp = document.querySelectorAll('[role="table"] [role="row"]')
+        if (checked) {
+            for (i = 0; i < temp.length; i++) {
+                if (temp[i].querySelector('[role="cell"]:nth-child(1) path[d="M7 8v2H6a3 3 0 00-3 3v6a3 3 0 003 3h12a3 3 0 003-3v-6a3 3 0 00-3-3h-1V8A5 5 0 007 8zm8 0v2H9V8a3 3 0 116 0zm-3 6a2 2 0 100 4 2 2 0 000-4z"]')) {
+                    temp[i].classList.remove('hide');
+                }
+            }
+        } else {
+            for (i = 0; i < temp.length; i++) {
+                if (temp[i].querySelector('[role="cell"]:nth-child(1) path[d="M7 8v2H6a3 3 0 00-3 3v6a3 3 0 003 3h12a3 3 0 003-3v-6a3 3 0 00-3-3h-1V8A5 5 0 007 8zm8 0v2H9V8a3 3 0 116 0zm-3 6a2 2 0 100 4 2 2 0 000-4z"]')) {
+                    temp[i].classList.add('hide');
+                }
+            }
+        }
     } else if (mode == 2) {
         temp = document.querySelectorAll('table tr')
         for (i = 0; i < temp.length; i++) {
@@ -268,32 +290,38 @@ function highlightSolvedProblems(checked) {
 
         if (checked) {
             for (i = 0; i < temp.length; i++) {
-                temp[i].querySelector('*:nth-child(1)').classList.add('hide');
+                // temp[i].querySelector('*:nth-child(1)').classList.add('hide');
                 if (temp[i].querySelector('.fa-check')) {
                     temp[i].classList.add('add-bg-old');
                 }
             }
         } else {
             for (i = 0; i < temp.length; i++) {
-                temp[i].querySelector('*:nth-child(1)').classList.remove('hide');
+                // temp[i].querySelector('*:nth-child(1)').classList.remove('hide');
                 if (temp[i].querySelector('.fa-check')) {
                     temp[i].classList.remove('add-bg-old');
                 }
             }
         }
     } else if (mode == 1) {
-        // temp = document.querySelectorAll('tbody > tr')
-        // for (i = 0; i < temp.length; i++) {
-        //     if (temp[i].querySelector("path[d='M9.688 15.898l-3.98-3.98a1 1 0 00-1.415 1.414L8.98 18.02a1 1 0 001.415 0L20.707 7.707a1 1 0 00-1.414-1.414l-9.605 9.605z']")) {
-        //         if (checked) {
-        //             temp[i].querySelector('td:nth-child(1)').classList.add('add-bg');
-        //             temp[i].querySelector('td:nth-child(2)').classList.add('add-bg');
-        //         } else {
-        //             temp[i].querySelector('td:nth-child(1)').classList.remove('add-bg');
-        //             temp[i].querySelector('td:nth-child(2)').classList.remove('add-bg');
-        //         }
-        //     }
-        // }
+        temp = document.querySelectorAll('[role="table"] [role="row"]')
+
+        add_bg_class = document.querySelector('html').classList.contains('dark') ? 'add-bg-dark' : 'add-bg-old';
+        if (checked) {
+            for (i = 0; i < temp.length; i++) {
+                if (temp[i].querySelector('[role="cell"]:nth-child(1) path[d="M9.688 15.898l-3.98-3.98a1 1 0 00-1.415 1.414L8.98 18.02a1 1 0 001.415 0L20.707 7.707a1 1 0 00-1.414-1.414l-9.605 9.605z"]')) {
+                    temp[i].classList.add(add_bg_class);
+                } else {
+                    temp[i].classList.remove(add_bg_class);
+                }
+            }
+        } else {
+            for (i = 0; i < temp.length; i++) {
+                if (temp[i].querySelector('[role="cell"]:nth-child(1) path[d="M9.688 15.898l-3.98-3.98a1 1 0 00-1.415 1.414L8.98 18.02a1 1 0 001.415 0L20.707 7.707a1 1 0 00-1.414-1.414l-9.605 9.605z"]')) {
+                    temp[i].classList.remove(add_bg_class);
+                }
+            }
+        }
     } else if (mode == 2) {
         temp = document.querySelectorAll('thead tr, tbody.reactable-data tr')
         for (i = 0; i < temp.length; i++) {
@@ -355,15 +383,20 @@ function hideSolvedProb(checked) {
             }
         }
     } else if (mode == 1) {
-        // temp = document.querySelectorAll('tbody > tr')
-        // for (i = 0; i < temp.length; i++) {
-        //     if (temp[i].querySelector("path[d='M9.688 15.898l-3.98-3.98a1 1 0 00-1.415 1.414L8.98 18.02a1 1 0 001.415 0L20.707 7.707a1 1 0 00-1.414-1.414l-9.605 9.605z']")) {
-        //         if (checked)
-        //             temp[i].classList.remove('hide');
-        //         else
-        //             temp[i].classList.add('hide')
-        //     }
-        // }
+        temp = document.querySelectorAll('[role="table"] [role="row"]')
+        if (checked) {
+            for (i = 0; i < temp.length; i++) {
+                if (temp[i].querySelector('[role="cell"]:nth-child(1) path[d="M9.688 15.898l-3.98-3.98a1 1 0 00-1.415 1.414L8.98 18.02a1 1 0 001.415 0L20.707 7.707a1 1 0 00-1.414-1.414l-9.605 9.605z"]')) {
+                    temp[i].classList.remove('hide');
+                }
+            }
+        } else {
+            for (i = 0; i < temp.length; i++) {
+                if (temp[i].querySelector('[role="cell"]:nth-child(1) path[d="M9.688 15.898l-3.98-3.98a1 1 0 00-1.415 1.414L8.98 18.02a1 1 0 001.415 0L20.707 7.707a1 1 0 00-1.414-1.414l-9.605 9.605z"]')) {
+                    temp[i].classList.add('hide');
+                }
+            }
+        }
     } else if (mode == 2) {
         temp = document.querySelectorAll('table tr')
         for (i = 0; i < temp.length; i++) {

@@ -29,10 +29,14 @@ body {
   color: grey;
 }
 
-.wrapper .brand img {
+.wrapper .logo {
   height: 50px;
   width: 50px;
   border-radius: 10px;
+}
+
+.wrapper .github {
+  margin-top: 10px;
 }
 
 .wrapper .brand span {
@@ -80,8 +84,16 @@ body {
   color: #353535;
 }
 
-.wrapper .footer img {
-  height: 20px;
-  width: auto;
+.wrapper .footer #deBtn {
+  float: right;
+  top: 2px;
+  cursor: pointer;
+}
+
+.wrapper .details {
+  color: #353535;
+  background-color: #F0F0F0;
+  padding: 5px 10px;
+  line-height: 15px;
 }
 /*# sourceMappingURL=popup.css.map */
