@@ -147,7 +147,7 @@ function findColNoByColName(colName) {
 function findColNoByColName2(colName) {
     colList = document.querySelectorAll('[role="table"] [role="columnheader"]')
     for (i = 0; i < colList.length; i++) {
-        if (colList[i].outerText.toLowerCase().includes(colName))
+        if (colList[i].innerText.toLowerCase().includes(colName))
             return i;
     }
     return 0;
