@@ -39,7 +39,7 @@ function isCodingArea() {
     return url.includes('/problems/')
 }
 
-mode = 0;
+mode = 2;
 if (isOldProbSetPage())
     mode = 0;
 else if (isNewProbSetPage())
@@ -134,13 +134,18 @@ function applyChanges(options) {
 
 // hide column
 function findColNoByColName(colName) {
+
+    // hard coded fix
+    if (colName === 'status')
+        return 0;
+
     colList = document.querySelectorAll('table thead tr th')
     for (i = 0; i < colList.length; i++) {
         if (colList[i].innerText.toLowerCase().includes(colName)) {
             return i;
         }
     }
-    return 0;
+    return -1;
 }
 
 //hide column2 - for new ui
@@ -150,7 +155,7 @@ function findColNoByColName2(colName) {
         if (colList[i].innerText.toLowerCase().includes(colName))
             return i;
     }
-    return 0;
+    return -1;
 }
 
 //####################### HIDE DIFFICULTY FROM CODING AREA #######################
@@ -195,7 +200,7 @@ function toggleByColName(colName, checked) {
 
     if (mode == 0 || mode == 2) {
         colNo = findColNoByColName(colName);
-        if (colNo) {
+        if (colNo != -1) {
             temp = document.querySelectorAll('table tr td:nth-child(' + (colNo + 1) + ')');
             if (checked) {
                 document.querySelector('table tr th:nth-child(' + (colNo + 1) + ')').classList.remove('hide');
@@ -212,7 +217,8 @@ function toggleByColName(colName, checked) {
         }
     } else if (mode == 1) {
         colNo = findColNoByColName2(colName);
-        if (colNo) {
+
+        if (colNo != -1) {
             temp = document.querySelectorAll('[role="table"] [role="row"]')
             if (checked) {
                 for (i = 0; i < temp.length; i++) {

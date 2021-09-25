@@ -75,7 +75,7 @@ body {
 }
 
 .wrapper .footer a {
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .wrapper .footer span {
