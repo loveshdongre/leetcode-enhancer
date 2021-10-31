@@ -18,13 +18,14 @@ It is a light-weight browser extension which runs in the menu bar. It boosts you
 
 ## :heavy_check_mark: Features
 * Hide locked problems from the table
+* Hide / Show any table column (including Difficulty, Acceptance, etc)
 * Highlight solved problems
 * Hide Difficulty count
-* Hide / Show any table column (except for title column)
 
 **Note**: The extension functions on the following URLs :
-* https://leetcode.com/problemset/all/*
+* https://leetcode.com/problemset/all/* (old and new UI)
 * https://leetcode.com/tag/*
+* https://leetcode.com/problems/* 
 
 ## :star2: Installation
 ### Google Chrome
@@ -34,6 +35,9 @@ It is a light-weight browser extension which runs in the menu bar. It boosts you
 ### Mozilla Firefox
 * To install this extension from Firefox Browser Addons <a href="https://addons.mozilla.org/en-US/firefox/addon/leetcode-enhancer/" target="_blank">click here</a>.
 
+### Microsoft Edge
+* To install this extension from Microsoft Edge Addons <a href="https://microsoftedge.microsoft.com/addons/detail/leetcode-enhancer/dgddijgkneackjhmijacbopefpladfia" target="_blank">click here</a>.
+
 <div align = "center">
     <img src="./images/ui3-m.png" alt="mozilla page action extension location">
 </div>
@@ -41,7 +45,7 @@ It is a light-weight browser extension which runs in the menu bar. It boosts you
 * In case of Mozilla Firefox, the icon will appear in the address bar as this is a page specific extension, this makes sure the extension is running, only when you need it and not all the time.
 
 ## :crown: For developers
-Clone the source locally:
+Clone the source code locally:
 
 ```sh
 $ git clone https://github.com/loveshdongre/leetcode-enhancer/
@@ -49,7 +53,7 @@ $ cd leetcode-enhancer
 ```
 ### Google Chrome
 * Go to `chrome://extensions/` and enable `Developer mode`
-* Click on `load unpacked` and select the `manifest.json` file
+* Click on `load unpacked` and select the folder containing `manifest.json` file
 * Pin this extension to use it.
 
 ### Mozilla Firefox
@@ -57,8 +61,13 @@ $ cd leetcode-enhancer
 * Click on `Load Temporary Add-on...` and select the `manifest.json` file
 * The addon will appear next to the address bar only when you are on leetcode
 
-## :handshake: Contributing
-Want to contribute? After running the extension locally, you can create a pull request with your changes and then it can be reviewed for acceptance.
+### Microsoft Edge
+* follow steps in this [link](https://www.windowscentral.com/how-install-non-store-extensions-microsoft-edge)
+
+## :handshake: Contribution
+Contributions are always welcomed, here is what you need to do:
+1. Work on an existing issue or create a new one [here](https://github.com/loveshdongre/leetcode-enhancer/issues)
+2. Create a pull request linked to that issue
 
 Know more about [pull request](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests).
 
