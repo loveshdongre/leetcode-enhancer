@@ -371,6 +371,7 @@ function hideSolvedDiff(checked) {
     }
 }
 
+// ################## HIDE SOLVED PROBLEMS #######################
 function hideSolvedProb(checked) {
     if (mode == 0) {
         colNo = findColNoByColName('title');
@@ -392,13 +393,13 @@ function hideSolvedProb(checked) {
         temp = document.querySelectorAll('[role="table"] [role="row"]')
         if (checked) {
             for (i = 0; i < temp.length; i++) {
-                if (temp[i].querySelector('[role="cell"]:nth-child(1) path[d="M9.688 15.898l-3.98-3.98a1 1 0 00-1.415 1.414L8.98 18.02a1 1 0 001.415 0L20.707 7.707a1 1 0 00-1.414-1.414l-9.605 9.605z"]')) {
+                if (temp[i].querySelector('[role="cell"]:nth-child(1) path[d="M9.688 15.898l-3.98-3.98a1 1 0 00-1.415 1.414L8.98 18.02a1 1 0 001.415 0L20.707 7.707a1 1 0 00-1.414-1.414l-9.605 9.605z"]') || temp[i].querySelector('[role="cell"]:nth-child(1) path[d="M20 12.005v-.828a1 1 0 112 0v.829a10 10 0 11-5.93-9.14 1 1 0 01-.814 1.826A8 8 0 1020 12.005zM8.593 10.852a1 1 0 011.414 0L12 12.844l8.293-8.3a1 1 0 011.415 1.413l-9 9.009a1 1 0 01-1.415 0l-2.7-2.7a1 1 0 010-1.414z"]')) {
                     temp[i].classList.remove('hide');
                 }
             }
         } else {
             for (i = 0; i < temp.length; i++) {
-                if (temp[i].querySelector('[role="cell"]:nth-child(1) path[d="M9.688 15.898l-3.98-3.98a1 1 0 00-1.415 1.414L8.98 18.02a1 1 0 001.415 0L20.707 7.707a1 1 0 00-1.414-1.414l-9.605 9.605z"]')) {
+                if (temp[i].querySelector('[role="cell"]:nth-child(1) path[d="M9.688 15.898l-3.98-3.98a1 1 0 00-1.415 1.414L8.98 18.02a1 1 0 001.415 0L20.707 7.707a1 1 0 00-1.414-1.414l-9.605 9.605z"]') || temp[i].querySelector('[role="cell"]:nth-child(1) path[d="M20 12.005v-.828a1 1 0 112 0v.829a10 10 0 11-5.93-9.14 1 1 0 01-.814 1.826A8 8 0 1020 12.005zM8.593 10.852a1 1 0 011.414 0L12 12.844l8.293-8.3a1 1 0 011.415 1.413l-9 9.009a1 1 0 01-1.415 0l-2.7-2.7a1 1 0 010-1.414z"]')) {
                     temp[i].classList.add('hide');
                 }
             }
