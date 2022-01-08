@@ -194,6 +194,13 @@ function hideSolvedDiffFromCodingArea(checked) {
         }
     }
 }
+// ################ HIDE DIFFICULTY OF SIMILAR PROBLEMS ########
+function hideDiffOfSimilarProb(checked) {
+    if (checked)
+        document.querySelectorAll('.difficulty__ES5S').forEach(el => el.classList.remove('hide'));
+    else
+        document.querySelectorAll('.difficulty__ES5S').forEach(el => el.classList.add('hide'));
+}
 
 // ################## TOGGLE COLUMNS ##########################
 function toggleByColName(colName, checked) {
@@ -235,6 +242,7 @@ function toggleByColName(colName, checked) {
         //hide diff from coding area
         if (colName === 'difficulty') {
             hideSolvedDiffFromCodingArea(checked);
+            hideDiffOfSimilarProb(checked);
         }
     }
 
