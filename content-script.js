@@ -51,6 +51,12 @@ else if (isCodingArea())
 
 print("mode = " + mode)
 
+function resetHide() {
+    temp = document.querySelectorAll('[role="rowgroup"] [role="row"]');
+    for (i = 0; i < temp.length; i++)
+        temp[i].classList.remove('hide');
+}
+
 // ################### MUTATION OBSERVER #####################
 // to load extension only after the page content
 
@@ -59,8 +65,12 @@ function modifyThenApplyChanges(options) {
 }
 
 const observer = new MutationObserver(function(mutations) {
+    print(mutations)
     if (mutations.length) {
         print('hit');
+        if (mode == 1) {
+            resetHide();
+        }
         browser.storage.local.get(["options"], modifyThenApplyChanges);
 
     }
@@ -78,7 +88,8 @@ if (mode == 0) {
         });
     }
 } else if (mode == 1) {
-    ui = document.getElementById('__next')
+    // ui = document.getElementById('__next')
+    ui = document.querySelector('div [role="table"]')
     if (ui) {
         observer.observe(ui, {
             childList: true,

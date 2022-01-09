@@ -73,14 +73,14 @@ document.getElementById('fBtn').addEventListener("click", function(e) {
 
 document.getElementById('msg').style.display = "none";
 
-// show details
+// more details
 document.getElementById('deBtn').addEventListener("click", function() {
-    isClose = document.getElementById('deBtn').innerText == 'show';
+    isClose = document.getElementById('deBtn').innerText == 'more';
     if (isClose) {
         document.getElementById('msg').style.display = "block";
-        document.getElementById('deBtn').innerText = 'hide';
+        document.getElementById('deBtn').innerText = 'less';
     } else {
         document.getElementById('msg').style.display = "none";
-        document.getElementById('deBtn').innerText = 'show';
+        document.getElementById('deBtn').innerText = 'more';
     }
 });
