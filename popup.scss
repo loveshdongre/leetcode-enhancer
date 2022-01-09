@@ -1,10 +1,16 @@
 $f1: 20px;
 $f2: 12px;
 $c1: #F0F0F0;
+$bg-dark: rgba(40, 42, 46, 1);
+$bg2-dark: rgba(34, 35, 37, 1);
+$c1-dark: rgba(255, 255, 255, 0.9);
 html,
 body {
-    margin: none;
-    padding: none;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    vertical-align: baseline;
+    background: transparent;
 }
 
 .wrapper {
@@ -18,16 +24,22 @@ body {
         text-align: center;
     }
     .brand {
-        background-color: $c1;
+        background-color: $bg-dark;
         font-size: $f1;
         padding: 10px;
+        color: $c1-dark;
         .title {
             text-decoration: none;
-            color: black;
+            color: $c1-dark;
             &:hover {
                 color: grey;
             }
         }
+        ;
+        box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0.25) 0px 4px 4px 0px,
+        rgba(0, 0, 0, 0.3) 0px 1px 2px 0px;
     }
     .logo {
         height: 50px;
@@ -36,6 +48,7 @@ body {
     }
     .github {
         margin-top: 10px;
+        filter: invert(1);
     }
     .brand span {
         position: absolute;
@@ -50,6 +63,8 @@ body {
     }
     .options {
         padding: 10px;
+        background-color: $bg2-dark;
+        color: $c1-dark;
         div {
             margin-top: 10px;
             margin-bottom: 10px;
@@ -62,7 +77,7 @@ body {
         }
     }
     .footer {
-        background-color: $c1;
+        background-color: $bg-dark;
         padding: 5px 10px;
         a {
             text-decoration: underline;
@@ -70,7 +85,7 @@ body {
         span {
             position: relative;
             top: -5px;
-            color: rgb(53, 53, 53);
+            color: $c1-dark;
         }
         // img {
         //     height: 20px;
@@ -83,9 +98,10 @@ body {
         }
     }
     .details {
-        color: rgb(53, 53, 53);
-        background-color: $c1;
+        color: $c1-dark;
+        background-color: $bg-dark;
         padding: 5px 10px;
         line-height: 15px;
+        box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.25) 0px 4px 4px 0px, rgba(0, 0, 0, 0.3) 0px 1px 2px 0px;
     }
 }
