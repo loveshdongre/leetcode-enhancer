@@ -18,6 +18,7 @@ chrome.runtime.sendMessage({ "message": "activate_icon" });
     1 - new version of leetcode/problemset
     2 - for https://leetcode.com/tag/* (example - https://leetcode.com/tag/array/)
     3 - coding area (example - https://leetcode.com/problems/remove-duplicates-from-sorted-array/)
+    4 - discussion
 */
 
 function isOldProbSetPage() {
@@ -39,17 +40,28 @@ function isCodingArea() {
     return url.includes('/problems/')
 }
 
-mode = 2;
-if (isOldProbSetPage())
-    mode = 0;
-else if (isNewProbSetPage())
-    mode = 1;
-else if (isTagPage())
-    mode = 2;
-else if (isCodingArea())
-    mode = 3;
+function isDiscussion() {
+    url = window.location.href;
+    return url.includes('/discuss/')
+}
 
-print("mode = " + mode)
+function setMode() {
+    mode = 2;
+    if (isOldProbSetPage())
+        mode = 0;
+    else if (isNewProbSetPage())
+        mode = 1;
+    else if (isTagPage())
+        mode = 2;
+    else if (isDiscussion()) // should be before isCodingArea() since url will also contain /problems/
+        mode = 4;
+    else if (isCodingArea())
+        mode = 3;
+
+    print("mode = " + mode)
+}
+
+setMode();
 
 function resetHide() {
     temp = document.querySelectorAll('[role="rowgroup"] [role="row"]');
@@ -66,6 +78,7 @@ function modifyThenApplyChanges(options) {
 
 const observer = new MutationObserver(function(mutations) {
     print(mutations)
+    setMode();
     if (mutations.length) {
         print('hit');
         if (mode == 1) {
@@ -115,6 +128,17 @@ if (mode == 0) {
             subtree: true
         });
     }
+} else if (mode == 4) {
+    disPage = document.getElementById('app');
+    console.log('observe');
+    console.log(disPage);
+    // discussion page
+    if (disPage) {
+        observer.observe(disPage, {
+            childList: true,
+            subtree: true
+        });
+    }
 }
 
 // ################### EVENT LISTENER #####################
@@ -137,7 +161,10 @@ function applyChanges(options) {
             hideSolvedDiff(option.checked)
         } else if (name === 'solved') {
             hideSolvedProb(option.checked)
-        } else {
+        } else if(name === 'disUsers') {
+            setDiscussionUsers(option.checked)
+        } 
+        else {
             toggleByColName(name, option.checked);
         }
     }
@@ -377,14 +404,14 @@ function hideSolvedDiff(checked) {
             document.querySelector('.question-solved span').classList.add('color-alfa0')
         }
     } else if (mode == 1) {
-        el = document.getElementsByClassName('py-2 bg-overlay-3 rounded-lg');
+        el = document.getElementsByClassName('py-2 bg-layer-1 rounded-lg');
         if (checked) {
             if (el.length) {
-                el[1].classList.remove('hide');
+                el[0].classList.remove('hide');
             }
         } else {
             if (el.length) {
-                el[1].classList.add('hide');
+                el[0].classList.add('hide');
             }
         }
     }
@@ -435,4 +462,39 @@ function hideSolvedProb(checked) {
         }
     }
 
+}
+
+// ################## HIDE DISCUSSION USERS #######################
+function setDiscussionUsers(checked) {
+    if(mode == 4) {
+        const posts = document.getElementsByClassName("topic-item-wrap__2FSZ")
+        if(posts) {
+            if(checked) {
+                for(let i = 0; i < posts.length; i++) {
+                    posts[i].querySelector('a.topic-info__tdz0').style.visibility = 'visible';
+                }
+            }
+            else {
+                for(let i = 0; i < posts.length; i++) {
+                    posts[i].querySelector('a.topic-info__tdz0').style.visibility = 'hidden';
+                }
+            }
+        }
+
+        const postDetails = document.getElementsByClassName('root__3bcS');
+
+        if(postDetails) {
+            if(checked) {
+                for(let i = 0; i < postDetails.length; i++) {
+                    postDetails[i].querySelector('a').style.visibility = 'visible';
+                }
+            }
+            else {
+                for(let i = 0; i < postDetails.length; i++) {
+                    postDetails[i].querySelector('a').style.visibility = 'hidden';
+                }
+            }
+        }
+
+    }
 }
