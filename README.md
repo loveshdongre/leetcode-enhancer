@@ -9,11 +9,11 @@
 It is a light-weight browser extension which runs in the menu bar. It boosts your productivity by hiding unnecessary visual elements from the screen, enabling you to focus on what is important. You can change your preferences form the popup menu and find out what best suits your needs.
 
 <div align="center">
-    <img src="./images/ui.png">
+    <img src="./images/ui-dark.png">
     <br>
-    <img src="./images/ui4.png">
+    <img src="./images/ui4-dark.png">
     <br>
-    <img src="./images/ui3.png">
+    <img src="./images/ui3-dark.png">
 </div>
 
 ## :heavy_check_mark: Features
@@ -21,11 +21,13 @@ It is a light-weight browser extension which runs in the menu bar. It boosts you
 * Hide / Show any table column (including Difficulty, Acceptance, etc)
 * Highlight solved problems
 * Hide Difficulty count
+* Hide Discussion users profile pic
 
 **Note**: The extension functions on the following URLs :
 * https://leetcode.com/problemset/all/* (old and new UI)
 * https://leetcode.com/tag/*
 * https://leetcode.com/problems/* 
+* https://leetcode.com/problems/ * /discuss/*
 
 ## :star2: Installation
 ### Google Chrome
