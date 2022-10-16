@@ -19,6 +19,7 @@ chrome.runtime.sendMessage({ "message": "activate_icon" });
     2 - for https://leetcode.com/tag/* (example - https://leetcode.com/tag/array/)
     3 - coding area (example - https://leetcode.com/problems/remove-duplicates-from-sorted-array/)
     4 - discussion
+    5 - contest
 */
 
 function isOldProbSetPage() {
@@ -45,6 +46,11 @@ function isDiscussion() {
     return url.includes('/discuss/')
 }
 
+function isContest() {
+    url = window.location.href;
+    return url.includes('/contest/')
+}
+
 function setMode() {
     mode = 2;
     if (isOldProbSetPage())
@@ -55,6 +61,8 @@ function setMode() {
         mode = 2;
     else if (isDiscussion()) // should be before isCodingArea() since url will also contain /problems/
         mode = 4;
+    else if (isContest())
+        mode = 5;
     else if (isCodingArea())
         mode = 3;
 
@@ -110,31 +118,18 @@ if (mode == 0) {
         });
     }
 
-} else if (mode == 2) {
-    tag_page = document.getElementById('app');
-    // tags page
-    if (tag_page) {
-        observer.observe(tag_page, {
+} else if (mode == 2 || mode == 3 || mode == 4) {
+    page = document.getElementById('app');
+    if (page) {
+        observer.observe(page, {
             childList: true,
             subtree: true
         });
     }
-} else if (mode == 3) {
-    coding_page = document.getElementById('app');
-    // tags page
-    if (coding_page) {
-        observer.observe(coding_page, {
-            childList: true,
-            subtree: true
-        });
-    }
-} else if (mode == 4) {
-    disPage = document.getElementById('app');
-    console.log('observe');
-    console.log(disPage);
-    // discussion page
-    if (disPage) {
-        observer.observe(disPage, {
+} else if (mode == 5) {
+    ui = document.getElementById('base_content')
+    if (ui) {
+        observer.observe(ui, {
             childList: true,
             subtree: true
         });
@@ -240,6 +235,16 @@ function hideDiffOfSimilarProb(checked) {
         document.querySelectorAll('.difficulty__ES5S').forEach(el => el.classList.add('hide'));
 }
 
+// ############### HIDE DIFFICULTY FROM CONTEST ##############
+function hideDiffFromContest(checked) {
+    if(checked) {
+        document.querySelectorAll('.contest-question-info .list-group .list-group-item:nth-child(5) .label')[0].style.visibility = 'visible'
+    }
+    else {
+        document.querySelectorAll('.contest-question-info .list-group .list-group-item:nth-child(5) .label')[0].style.visibility = 'hidden'
+    }
+}
+
 // ################## TOGGLE COLUMNS ##########################
 function toggleByColName(colName, checked) {
 
@@ -281,6 +286,12 @@ function toggleByColName(colName, checked) {
         if (colName === 'difficulty') {
             hideSolvedDiffFromCodingArea(checked);
             hideDiffOfSimilarProb(checked);
+        }
+    }
+    else if (mode == 5) {
+        // hide diff from contest
+        if(colName === 'difficulty') {
+            hideDiffFromContest(checked);
         }
     }
 
