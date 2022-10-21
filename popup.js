@@ -86,7 +86,7 @@ document.getElementById('deBtn').addEventListener("click", function() {
 });
 
 // quote
-fetch('https://api.quotable.io/random').then(res => {
+fetch('https://api.quotable.io/random?tags=inspirational|success|motivational|competition|famous-quotes').then(res => {
     
     if(res.ok) {
         res.json().then(data => {

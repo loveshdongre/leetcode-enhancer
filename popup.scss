@@ -78,6 +78,8 @@ body {
         }
     }
     .quote {
+        max-width: 350px;
+        max-height: 300px;
         display: none;
         background-color: $bg3-dark;
         padding: 5px 10px;

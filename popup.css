@@ -80,6 +80,8 @@ body {
 }
 
 .wrapper .quote {
+  max-width: 350px;
+  max-height: 300px;
   display: none;
   background-color: #3c3c3d;
   padding: 5px 10px;
