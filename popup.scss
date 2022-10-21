@@ -3,6 +3,7 @@ $f2: 12px;
 $c1: #F0F0F0;
 $bg-dark: rgba(40, 42, 46, 1);
 $bg2-dark: rgba(34, 35, 37, 1);
+$bg3-dark: rgb(60, 60, 61);
 $c1-dark: rgba(255, 255, 255, 0.9);
 html,
 body {
@@ -74,6 +75,22 @@ body {
                     cursor: pointer;
                 }
             }
+        }
+    }
+    .quote {
+        display: none;
+        background-color: $bg3-dark;
+        padding: 5px 10px;
+        color: $c1-dark;
+        .quote-text {
+            width: 90%;
+            margin: 0 auto;
+            text-align: center;
+            font-style: italic;
+            line-height: 17px;
+        }
+        .quote-author {
+            text-align: right;
         }
     }
     .footer {

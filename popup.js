@@ -84,3 +84,15 @@ document.getElementById('deBtn').addEventListener("click", function() {
         document.getElementById('deBtn').innerText = 'more';
     }
 });
+
+// quote
+fetch('https://api.quotable.io/random').then(res => {
+    
+    if(res.ok) {
+        res.json().then(data => {
+            document.getElementsByClassName('quote')[0].style.display = 'block';
+            document.getElementsByClassName('quote-text')[0].innerHTML = "\" " + data.content + " \"";
+            document.getElementsByClassName('quote-author')[0].innerHTML = "~ " + data.author;
+        })
+    }
+})

@@ -79,6 +79,25 @@ body {
   cursor: pointer;
 }
 
+.wrapper .quote {
+  display: none;
+  background-color: #3c3c3d;
+  padding: 5px 10px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.wrapper .quote .quote-text {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  font-style: italic;
+  line-height: 17px;
+}
+
+.wrapper .quote .quote-author {
+  text-align: right;
+}
+
 .wrapper .footer {
   background-color: #282a2e;
   padding: 5px 10px;
