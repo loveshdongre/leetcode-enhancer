@@ -20,6 +20,7 @@ chrome.runtime.sendMessage({ "message": "activate_icon" });
     3 - coding area (example - https://leetcode.com/problems/remove-duplicates-from-sorted-array/)
     4 - discussion
     5 - contest
+    6 - new coding area
 */
 
 function isOldProbSetPage() {
@@ -53,19 +54,21 @@ function isContest() {
 
 function setMode() {
     mode = 2;
-    if (isOldProbSetPage())
+    if (isDiscussion()) // should be before isCodingArea() since url will also contain /problems/
+        mode = 4;
+    else if (isCodingArea() && document.querySelector('#app') != null)
+        mode = 3;
+    else if (isCodingArea())
+        mode = 6
+    else if (isOldProbSetPage()) // atlast because it uses a class to check
         mode = 0;
     else if (isNewProbSetPage())
         mode = 1;
     else if (isTagPage())
         mode = 2;
-    else if (isDiscussion()) // should be before isCodingArea() since url will also contain /problems/
-        mode = 4;
     else if (isContest())
         mode = 5;
-    else if (isCodingArea())
-        mode = 3;
-
+    
     print("mode = " + mode)
 }
 
@@ -130,6 +133,15 @@ if (mode == 0) {
     ui = document.getElementById('base_content')
     if (ui) {
         observer.observe(ui, {
+            childList: true,
+            subtree: true
+        });
+    }
+}
+else if (mode == 6) {
+    new_code_ui = document.getElementById('qd-content');
+    if (new_code_ui) {
+        observer.observe(new_code_ui, {
             childList: true,
             subtree: true
         });
@@ -227,6 +239,65 @@ function hideSolvedDiffFromCodingArea(checked) {
         }
     }
 }
+
+//###################### HIDE DIFF OF SIMILAR Problems FROM NEW CODING AREA
+function hideDiffOfSimilarProbFromNewCodingArea(checked) {
+    allAnchors = document.querySelectorAll('a');
+    if(!allAnchors || allAnchors.length == 0)
+        return;
+
+    anchors = [];
+    for(i = 0; i < allAnchors.length; i++)
+        if(allAnchors[i].href.startsWith("https://leetcode.com/problems/"))
+            anchors.push(allAnchors[i]);
+
+    if (checked) {
+        for(i = 0; i < anchors.length; i++) {
+            if(anchors[i] && anchors[i].parentElement && anchors[i].parentElement.parentElement && anchors[i].parentElement.parentElement.parentElement && anchors[i].parentElement.parentElement.parentElement.nextElementSibling) {
+                anchors[i].parentElement.parentElement.parentElement.nextElementSibling.classList.remove('hide')
+            }
+        }
+    }
+    else {
+        for(i = 0; i < anchors.length; i++) {
+            if(anchors[i] && anchors[i].parentElement && anchors[i].parentElement.parentElement && anchors[i].parentElement.parentElement.parentElement && anchors[i].parentElement.parentElement.parentElement.nextElementSibling) {
+                anchors[i].parentElement.parentElement.parentElement.nextElementSibling.classList.add('hide')
+            }
+        }
+    }
+}
+
+//####################### HIDE DIFFICULTY FROM NEW CODING AREA #######################
+function hideSolvedDiffFromNewCodingArea(checked) {
+
+    //hide difficulty from problem statement
+    diffCodingArea = document.querySelector(".ssg__qd-splitter-primary-w > div > div > div > div > div > div > div > div > div.mt-3.flex.space-x-4 > div:nth-child(1) > div");
+
+    // hide difficulty from next challenge
+    diffNext = document.querySelectorAll("a[rel ='noopener noreferrer'] div")
+
+    if (diffCodingArea) {
+        if (checked) {
+            diffCodingArea.classList.remove('hide');
+        } else {
+            diffCodingArea.classList.add('hide');
+        }
+    }
+
+    if(diffNext) {
+        if(checked) {
+            for (var i = 0; i < diffNext.length; ++i) {
+                diffNext[i].classList.remove('hide');
+            }
+        }
+        else {
+            for (var i = 0; i < diffNext.length; ++i) {
+                diffNext[i].classList.add('hide');
+            }
+        }
+    }
+}
+
 // ################ HIDE DIFFICULTY OF SIMILAR PROBLEMS ########
 function hideDiffOfSimilarProb(checked) {
     if (checked)
@@ -284,7 +355,7 @@ function toggleByColName(colName, checked) {
     } else if (mode == 3) {
         //hide diff from coding area
         if (colName === 'difficulty') {
-            hideSolvedDiffFromCodingArea(checked);
+            hideSolvedDiffFromCodingArea(checked); // difficulty from problem statement and problem list
             hideDiffOfSimilarProb(checked);
         }
     }
@@ -294,9 +365,30 @@ function toggleByColName(colName, checked) {
             hideDiffFromContest(checked);
         }
     }
+    else if(mode == 6) {
+        if(colName === 'difficulty') {
+            hideSolvedDiffFromNewCodingArea(checked);
+            hideDiffOfSimilarProbFromNewCodingArea(checked);
+        }
+        else if(colName === 'status') {
+            hideStatusFromNewCodingArea(checked);
+        }
+    }
 
 }
 
+// ################# HIDE STATUS FROM NEW CODING AREA ############
+function hideStatusFromNewCodingArea(checked) {
+    solvedMark = document.querySelector(".ssg__qd-splitter-primary-w > div > div > div > div > div > div > div > div > div.mt-3.flex.space-x-4 > div.text-green-s");
+    if(solvedMark) {
+        if(checked) {
+            solvedMark.classList.remove('hide');
+        }
+        else {
+            solvedMark.classList.add('hide');
+        }
+    }
+}
 
 // ################# HIDE LOCKED PROBLEMS ########################
 function hideLockedProblems(checked) {
