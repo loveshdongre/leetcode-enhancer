@@ -139,9 +139,9 @@ if (mode == 0) {
     }
 }
 else if (mode == 6) {
-    new_code_ui = document.getElementById('qd-content');
-    if (new_code_ui) {
-        observer.observe(new_code_ui, {
+    new_code_ui = document.getElementsByClassName('ssg__qd-splitter-primary-h');
+    if (new_code_ui.length) {
+        observer.observe(new_code_ui[0], {
             childList: true,
             subtree: true
         });
@@ -270,7 +270,7 @@ function hideDiffOfSimilarProbFromNewCodingArea(checked) {
 //####################### HIDE DIFFICULTY FROM NEW CODING AREA #######################
 function hideSolvedDiffFromNewCodingArea(checked) {
 
-    //hide difficulty from problem statement
+    // hide difficulty from problem statement // IMP: if below class is changed make sure to change it in content-script.css
     diffCodingArea = document.querySelector(".ssg__qd-splitter-primary-w > div > div > div > div > div > div > div > div > div.mt-3.flex.space-x-4 > div:nth-child(1) > div");
 
     // hide difficulty from next challenge
@@ -278,9 +278,9 @@ function hideSolvedDiffFromNewCodingArea(checked) {
 
     if (diffCodingArea) {
         if (checked) {
-            diffCodingArea.classList.remove('hide');
+            diffCodingArea.classList.add('visible');
         } else {
-            diffCodingArea.classList.add('hide');
+            diffCodingArea.classList.remove('visible');
         }
     }
 

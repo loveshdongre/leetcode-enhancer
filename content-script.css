@@ -1,3 +1,9 @@
+/* hide difficulty status from new coding area UI */
+
+.ssg__qd-splitter-primary-w>div>div>div>div>div>div>div>div>div.mt-3.flex.space-x-4>div:nth-child(1)>div {
+    display: none;
+}
+
 .add-bg {
     /* background-color: rgb(118, 255, 118) !important; */
     /* background-color: rgb(44, 187, 93) !important; */
@@ -16,6 +22,10 @@
 
 .hide {
     display: none !important;
+}
+
+.visible {
+    display: block !important;
 }
 
 .color-alfa0 {
