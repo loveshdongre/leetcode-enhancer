@@ -112,8 +112,8 @@ if (mode == 0) {
         });
     }
 } else if (mode == 1) {
-    // ui = document.getElementById('__next')
-    ui = document.querySelector('div [role="table"]')
+    ui = document.getElementById('__next')
+    // ui = document.querySelector('div [role="table"]')
     if (ui) {
         observer.observe(ui, {
             childList: true,

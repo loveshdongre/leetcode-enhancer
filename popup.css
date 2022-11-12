@@ -106,18 +106,20 @@ body {
 }
 
 .wrapper .footer a {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .wrapper .footer span {
   position: relative;
-  top: -5px;
   color: rgba(255, 255, 255, 0.9);
+}
+
+.wrapper .footer #fBtn span {
+  text-decoration: underline;
 }
 
 .wrapper .footer #deBtn {
   float: right;
-  top: 2px;
   cursor: pointer;
 }
 
@@ -128,5 +130,18 @@ body {
   line-height: 15px;
   -webkit-box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.25) 0px 4px 4px 0px, rgba(0, 0, 0, 0.3) 0px 1px 2px 0px;
           box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.25) 0px 4px 4px 0px, rgba(0, 0, 0, 0.3) 0px 1px 2px 0px;
+}
+
+.wrapper .creator {
+  color: rgba(255, 255, 255, 0.9);
+  background-color: #282a2e;
+  padding: 5px 10px;
+  text-align: center;
+}
+
+.wrapper .creator .linkedin {
+  height: 20px;
+  width: 20px;
+  margin-bottom: -5px;
 }
 /*# sourceMappingURL=popup.css.map */
