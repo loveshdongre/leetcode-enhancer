@@ -1,4 +1,4 @@
-debug = false
+debug = false;
 
 function print(x) {
     if (debug) {
@@ -92,9 +92,9 @@ const observer = new MutationObserver(function(mutations) {
     setMode();
     if (mutations.length) {
         print('hit');
-        if (mode == 1) {
-            resetHide();
-        }
+        // if (mode == 1) {
+            // resetHide();
+        // }
         browser.storage.local.get(["options"], modifyThenApplyChanges);
 
     }
@@ -247,8 +247,10 @@ function hideDiffOfSimilarProbFromNewCodingArea(checked) {
         return;
 
     anchors = [];
+    urlProb = "https://leetcode.com/problems/";
+    curUrl = urlProb + window.location.pathname.split("\/")[2];
     for(i = 0; i < allAnchors.length; i++)
-        if(allAnchors[i].href.startsWith("https://leetcode.com/problems/"))
+        if(allAnchors[i].href.startsWith(urlProb) && !allAnchors[i].href.startsWith(curUrl))
             anchors.push(allAnchors[i]);
 
     if (checked) {
