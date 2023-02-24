@@ -139,9 +139,10 @@ if (mode == 0) {
     }
 }
 else if (mode == 6) {
-    new_code_ui = document.getElementsByClassName('ssg__qd-splitter-primary-h');
-    if (new_code_ui.length) {
-        observer.observe(new_code_ui[0], {
+    new_code_ui = document.querySelector('#__next')
+    print(new_code_ui)
+    if (new_code_ui) {
+        observer.observe(new_code_ui, {
             childList: true,
             subtree: true
         });
@@ -248,7 +249,7 @@ function hideDiffOfSimilarProbFromNewCodingArea(checked) {
 
     anchors = [];
     urlProb = "https://leetcode.com/problems/";
-    curUrl = urlProb + window.location.pathname.split("\/")[2];
+    curUrl = urlProb + window.location.pathname.split("\/")[2] + "/";
     for(i = 0; i < allAnchors.length; i++)
         if(allAnchors[i].href.startsWith(urlProb) && !allAnchors[i].href.startsWith(curUrl))
             anchors.push(allAnchors[i]);
@@ -273,7 +274,7 @@ function hideDiffOfSimilarProbFromNewCodingArea(checked) {
 function hideSolvedDiffFromNewCodingArea(checked) {
 
     // hide difficulty from problem statement // IMP: if below class is changed make sure to change it in content-script.css
-    diffCodingArea = document.querySelector(".ssg__qd-splitter-primary-w > div > div > div > div > div > div > div > div > div.mt-3.flex.space-x-4 > div:nth-child(1) > div");
+    diffCodingArea = document.querySelector('.ssg__qd-splitter-primary-w > div > div > div > div > div > div > div > div > div > div.text-xs');
 
     // hide difficulty from next challenge
     diffNext = document.querySelectorAll("a[rel ='noopener noreferrer'] div")

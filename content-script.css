@@ -1,6 +1,6 @@
 /* hide difficulty status from new coding area UI */
 
-.ssg__qd-splitter-primary-w>div>div>div>div>div>div>div>div>div.mt-3.flex.space-x-4>div:nth-child(1)>div {
+.ssg__qd-splitter-primary-w>div>div>div>div>div>div>div>div>div>div.text-xs {
     display: none;
 }
 
