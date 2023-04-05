@@ -9,7 +9,7 @@
 It is a light-weight browser extension which runs in the menu bar. It boosts your productivity by hiding unnecessary visual elements from the screen, enabling you to focus on what is important. You can change your preferences form the popup menu and find out what best suits your needs.
 
 <div align="center">
-    <img src="./images/ui-dark.png">
+    <img src="./images/ui-dark-new.png">
     <br>
     <img src="./images/ui4-dark.png">
     <br>
