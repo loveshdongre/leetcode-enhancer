@@ -119,9 +119,16 @@ body {
   width: 20px;
   margin-bottom: -5px;
 }
-/* Checkbox UI enhancement */
+.wrapper .contributors {
+  padding: 5px 10px;
+  text-align: center;
+}
+.wrapper .contributors a {
+  color: rgba(255, 255, 255, 0.9);
+}
 
-input[type="checkbox"] {
+/* Checkbox UI enhancement */
+input[type=checkbox] {
   display: none;
 }
 
@@ -129,17 +136,16 @@ input[type="checkbox"] {
   display: inline-block;
   width: 1.2rem;
   height: 1.2rem;
-  background-image: url('/images/close_eye.png');
+  background-image: url("/images/close_eye.png");
   background-size: contain;
 }
 
-input[type="checkbox"]:checked + .checkbox-label {
-  background-image: url('/images/eye_open.png');
+input[type=checkbox]:checked + .checkbox-label {
+  background-image: url("/images/eye_open.png");
 }
 
-
-.option-div{
+.option-div {
   width: 100%;
   display: flex;
   justify-content: space-between;
-}
+}/*# sourceMappingURL=popup.css.map */

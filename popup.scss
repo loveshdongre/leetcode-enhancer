@@ -135,4 +135,38 @@ body {
             margin-bottom: -5px;
         }
     }
+
+    .contributors {
+        a {
+            color: $c1-dark;
+        }
+        padding: 5px 10px;
+        text-align: center;
+    }
 }
+
+/* Checkbox UI enhancement */
+
+input[type="checkbox"] {
+    display: none;
+  }
+  
+  .checkbox-label {
+    display: inline-block;
+    width: 1.2rem;
+    height: 1.2rem;
+    background-image: url('/images/close_eye.png');
+    background-size: contain;
+  }
+  
+  input[type="checkbox"]:checked + .checkbox-label {
+    background-image: url('/images/eye_open.png');
+  }
+  
+  
+  .option-div{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  
