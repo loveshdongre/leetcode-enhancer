@@ -16,42 +16,33 @@ body {
   font-size: 12px;
   text-align: center;
 }
-
 .wrapper .brand {
-  background-color: #282a2e;
+  background-color: rgb(40, 42, 46);
   font-size: 20px;
   padding: 10px;
   color: rgba(255, 255, 255, 0.9);
-  -webkit-box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.25) 0px 4px 4px 0px, rgba(0, 0, 0, 0.3) 0px 1px 2px 0px;
-          box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.25) 0px 4px 4px 0px, rgba(0, 0, 0, 0.3) 0px 1px 2px 0px;
+  box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.25) 0px 4px 4px 0px, rgba(0, 0, 0, 0.3) 0px 1px 2px 0px;
 }
-
 .wrapper .brand .title {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.9);
 }
-
 .wrapper .brand .title:hover {
   color: grey;
 }
-
 .wrapper .logo {
   height: 50px;
   width: 50px;
   border-radius: 10px;
 }
-
 .wrapper .github {
   margin-top: 10px;
-  -webkit-filter: invert(1);
-          filter: invert(1);
+  filter: invert(1);
 }
-
 .wrapper .brand span {
   position: absolute;
   padding-left: 10px;
 }
-
 .wrapper .notice {
   padding: 10px;
   font-weight: bold;
@@ -59,35 +50,29 @@ body {
   line-height: 15px;
   background-color: #FFAB00;
 }
-
 .wrapper .options {
   padding: 10px;
-  background-color: #222325;
+  background-color: rgb(34, 35, 37);
   color: rgba(255, 255, 255, 0.9);
 }
-
 .wrapper .options div {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-
 .wrapper .options div input {
   float: right;
 }
-
 .wrapper .options div input:hover {
   cursor: pointer;
 }
-
 .wrapper .quote {
   max-width: 350px;
   max-height: 300px;
   display: none;
-  background-color: #3c3c3d;
+  background-color: rgb(60, 60, 61);
   padding: 5px 10px;
   color: rgba(255, 255, 255, 0.9);
 }
-
 .wrapper .quote .quote-text {
   width: 90%;
   margin: 0 auto;
@@ -95,58 +80,45 @@ body {
   font-style: italic;
   line-height: 17px;
 }
-
 .wrapper .quote .quote-author {
   text-align: right;
 }
-
 .wrapper .footer {
-  background-color: #282a2e;
+  background-color: rgb(40, 42, 46);
   padding: 5px 10px;
 }
-
 .wrapper .footer a {
   text-decoration: none;
 }
-
 .wrapper .footer span {
   position: relative;
   color: rgba(255, 255, 255, 0.9);
 }
-
 .wrapper .footer #fBtn span {
   text-decoration: underline;
 }
-
 .wrapper .footer #deBtn {
   float: right;
   cursor: pointer;
 }
-
 .wrapper .details {
   color: rgba(255, 255, 255, 0.9);
-  background-color: #282a2e;
+  background-color: rgb(40, 42, 46);
   padding: 5px 10px;
   line-height: 15px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.25) 0px 4px 4px 0px, rgba(0, 0, 0, 0.3) 0px 1px 2px 0px;
-          box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.25) 0px 4px 4px 0px, rgba(0, 0, 0, 0.3) 0px 1px 2px 0px;
+  box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.25) 0px 4px 4px 0px, rgba(0, 0, 0, 0.3) 0px 1px 2px 0px;
 }
-
 .wrapper .creator {
   color: rgba(255, 255, 255, 0.9);
-  background-color: #282a2e;
+  background-color: rgb(40, 42, 46);
   padding: 5px 10px;
   text-align: center;
 }
-
 .wrapper .creator .linkedin {
   height: 20px;
   width: 20px;
   margin-bottom: -5px;
 }
-/*# sourceMappingURL=popup.css.map */
-
-
 /* Checkbox UI enhancement */
 
 input[type="checkbox"] {
