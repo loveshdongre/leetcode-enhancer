@@ -66,6 +66,20 @@ $ cd leetcode-enhancer
 ### Microsoft Edge
 * follow steps in this [link](https://www.windowscentral.com/how-install-non-store-extensions-microsoft-edge)
 
+## :file_folder: File Description
+- icons: contains app logo, custom checkmark logos, etc
+- images: contains display images for web stores (not deployed so don't add images in this folder)
+- .gitignore: files ignored by git
+- background.js: One important function is listens event from the content-script and enables extensioin icon in the browser
+- content-script.css: for injecting custom style sheet.
+- LICENSE: MIT License file
+- manifest.json: Heart of the extension which contains all the configurations. (tip: understand this first)
+- popup.css: style sheet for extension pop
+- popup.css.map: intermediate file generated while converting .scss file to .css file with Live Sass Compiler extension (Vscode)
+- popup.html: html file for extension pop
+- popup.js: js file to handle changes like storaging checkbox preferences.
+- README.md: Guide for the entire extension
+
 ## :handshake: Contribution
 Contributions are always welcomed, here is what you need to do:
 1. Work on an existing issue or create a new one [here](https://github.com/loveshdongre/leetcode-enhancer/issues)
