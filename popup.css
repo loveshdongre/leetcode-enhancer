@@ -136,12 +136,12 @@ input[type=checkbox] {
   display: inline-block;
   width: 1.2rem;
   height: 1.2rem;
-  background-image: url("/images/close_eye.png");
+  background-image: url("/icons/close_eye.png");
   background-size: contain;
 }
 
 input[type=checkbox]:checked + .checkbox-label {
-  background-image: url("/images/eye_open.png");
+  background-image: url("/icons/eye_open.png");
 }
 
 .option-div {
