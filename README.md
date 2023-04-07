@@ -17,17 +17,17 @@ It is a light-weight browser extension which runs in the menu bar. It boosts you
 </div>
 
 ## :heavy_check_mark: Features
-* Hide locked problems from the table
-* Hide / Show any table column (including Difficulty, Acceptance, etc)
-* Highlight solved problems
-* Hide Difficulty count
-* Hide Discussion users profile pic
+* Hide Locked Problems
+* Hide / Show Specific Table Columns (incl. Difficulty, Acceptance etc.)
+* Highlight Solved Problems
+* Hide Difficulty Count
+* Hide Discussion Users' Profile Images
 
 **Note**: The extension functions on the following URLs :
-* https://leetcode.com/problemset/all/* (old and new UI)
-* https://leetcode.com/tag/*
-* https://leetcode.com/problems/* 
-* https://leetcode.com/problems/ * /discuss/*
+* https://leetcode.com/problemset/all/ (old and new UI)
+* https://leetcode.com/tag/
+* https://leetcode.com/problems/
+* https://leetcode.com/problems/discuss/
 
 ## :star2: Installation
 ### Google Chrome
