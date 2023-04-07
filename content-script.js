@@ -1,4 +1,4 @@
-debug = true;
+debug = false;
 
 function print(x) {
     if (debug) {
