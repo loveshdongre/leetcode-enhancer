@@ -21,7 +21,7 @@ It is a light-weight browser extension which runs in the menu bar. It boosts you
 * Hide / Show Specific Table Columns (incl. Difficulty, Acceptance etc.)
 * Highlight Solved Problems
 * Hide Difficulty Count
-* Hide Discussion Users' Profile Images
+* Hide Solutions Users' Profile Images
 
 **Note**: The extension functions on the following URLs :
 * https://leetcode.com/problemset/all/ (old and new UI)

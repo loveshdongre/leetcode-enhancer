@@ -1,4 +1,4 @@
-debug = false;
+debug = true;
 
 function print(x) {
     if (debug) {
@@ -20,7 +20,7 @@ chrome.runtime.sendMessage({ "message": "activate_icon" });
     1 - new version of leetcode/problemset
     2 - for https://leetcode.com/tag/* (example - https://leetcode.com/tag/array/)
     3 - coding area (example - https://leetcode.com/problems/remove-duplicates-from-sorted-array/)
-    4 - discussion
+    4 - solutions (discussion)
     5 - contest
     6 - new coding area
 */
@@ -44,9 +44,9 @@ function isCodingArea() {
     return url.includes('/problems/')
 }
 
-function isDiscussion() {
+function isSolutions() {
     url = window.location.href;
-    return url.includes('/discuss/')
+    return url.includes('/solutions/')
 }
 
 function isContest() {
@@ -56,7 +56,7 @@ function isContest() {
 
 function setMode() {
     mode = 2;
-    if (isDiscussion()) // should be before isCodingArea() since url will also contain /problems/
+    if (isSolutions()) // should be before isCodingArea() since url will also contain /problems/
         mode = 4;
     else if (isCodingArea() && document.querySelector('#app') != null)
         mode = 3;
@@ -172,7 +172,7 @@ function applyChanges(options) {
         } else if (name === 'solved') {
             hideSolvedProb(option.checked)
         } else if(name === 'disUsers') {
-            setDiscussionUsers(option.checked)
+            setSolutionsUsers(option.checked)
         } 
         else {
             toggleByColName(name, option.checked);
@@ -572,8 +572,8 @@ function hideSolvedProb(checked) {
 
 }
 
-// ################## HIDE DISCUSSION USERS #######################
-function setDiscussionUsers(checked) {
+// ################## HIDE SOLUTIONS USERS #######################
+function setSolutionsUsers(checked) {
     if(mode == 4) {
         const posts = document.getElementsByClassName("topic-item-wrap__2FSZ")
         if(posts) {
