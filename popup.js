@@ -91,8 +91,19 @@ fetch('https://api.quotable.io/random?tags=inspirational|success|motivational|co
     if(res.ok) {
         res.json().then(data => {
             document.getElementsByClassName('quote')[0].style.display = 'block';
-            document.getElementsByClassName('quote-text')[0].innerHTML = "\" " + data.content + " \"";
-            document.getElementsByClassName('quote-author')[0].innerHTML = "~ " + data.author;
+
+            // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Safely_inserting_external_content_into_a_page
+            let quoteText = document.createElement("div");
+            quoteText.className = "quote-text";
+            quoteText.textContent = data.content;
+
+            let quoteAuthor = document.createElement("div");
+            quoteAuthor.className = "quote-author";
+            quoteAuthor.textContent = data.author;
+
+            let quote = document.getElementsByClassName('quote-text')[0];
+            quote.appendChild(quoteText);
+            quote.appendChild(quoteAuthor);
         })
     }
 })
