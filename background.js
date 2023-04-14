@@ -9,15 +9,19 @@ browser.runtime.onMessage.addListener(
 });
 
 // uninstall feedback redirect
-var isFirefox = typeof InstallTrigger !== 'undefined';
+const isFirefox = typeof InstallTrigger !== 'undefined';
+
+// The variable (isEdge) has been updated successfully by the (isFirefox) variable above
 // var isEdge = !isIE && !!window.StyleMedia;
 
 if(isFirefox) {
     browser.runtime.setUninstallURL("https://addons.mozilla.org/en-US/firefox/addon/leetcode-enhancer/"); // mozilla feedback url
 }
+
 // else if(isEdge) {
     // browser.runtime.setUninstallURL("https://microsoftedge.microsoft.com/addons/detail/leetcode-enhancer/dgddijgkneackjhmijacbopefpladfia") // edge feedback url
 // }
+
 else {
     browser.runtime.setUninstallURL("https://chrome.google.com/webstore/detail/leetcode-enhancer/gcmncppaaebldbkgkcbojghpmpjkdlmp");
 }
