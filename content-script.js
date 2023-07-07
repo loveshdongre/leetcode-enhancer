@@ -618,11 +618,11 @@ const setHideTab = (checked, tabValue) => {
         {
             if (checked) 
             {
-                tab.style.display = 'block';
+                tab.classList.remove('hide');
             } 
             else 
             {
-                tab.style.display = 'none';
+                tab.classList.add('hide');
             }
             return;
         }
