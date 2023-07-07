@@ -173,7 +173,9 @@ function applyChanges(options) {
             hideSolvedProb(option.checked)
         } else if(name === 'disUsers') {
             setSolutionsUsers(option.checked)
-        } 
+        } else if(name == 'submissions') {
+            setHideSubmission(option.checked)
+        }
         else {
             toggleByColName(name, option.checked);
         }
@@ -604,5 +606,20 @@ function setSolutionsUsers(checked) {
             }
         }
 
+    }
+}
+
+// ################## HIDE USERS PREVIOUS SUBMISSIONS #######################
+
+const setHideSubmission = (checked) => {
+    const submissionSection = document.querySelector('#qd-content > div.h-full.flex-col.ssg__qd-splitter-primary-w > div > div > div > div.flex.h-full.w-full.overflow-y-auto.rounded-b > div > div.h-full');
+
+    if(checked)
+    {
+        submissionSection.classList.remove('hide');
+    }
+    else
+    {
+        submissionSection.classList.add('hide');
     }
 }
