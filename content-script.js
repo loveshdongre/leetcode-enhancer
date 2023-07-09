@@ -377,6 +377,8 @@ function toggleByColName(colName, checked) {
         }
         else if(colName === 'status') {
             hideStatusFromNewCodingArea(checked);
+        } else if(colName === "acceptance") {
+            hideAcceptanceFromNewCodingArea(checked);
         }
     }
 
@@ -393,6 +395,19 @@ function hideStatusFromNewCodingArea(checked) {
             solvedMark.classList.add('hide');
         }
     }
+}
+
+// ################# HIDE ACCEPTANCE FROM NEW CODING AREA ############
+function hideAcceptanceFromNewCodingArea(checked) {
+    const acceptanceDiv = document.getElementsByClassName("px-5 py-3 pt-[38px]")[0]
+    if(acceptanceDiv) {
+        if(checked) {
+            acceptanceDiv.classList.remove('hide')
+        } else {
+            acceptanceDiv.classList.add('hide')
+        }
+    }
+    
 }
 
 // ################# HIDE LOCKED PROBLEMS ########################
