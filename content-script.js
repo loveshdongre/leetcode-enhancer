@@ -399,7 +399,7 @@ function hideStatusFromNewCodingArea(checked) {
 
 // ################# HIDE ACCEPTANCE FROM NEW CODING AREA ############
 function hideAcceptanceFromNewCodingArea(checked) {
-    const acceptanceDiv = document.getElementsByClassName("px-5 py-3 pt-[38px]")[0]
+    const acceptanceDiv = document.querySelector(".ssg__qd-splitter-primary-w div.px-5.py-3.pt-\\[38px\\] div")
     if(acceptanceDiv) {
         if(checked) {
             acceptanceDiv.classList.remove('hide')
