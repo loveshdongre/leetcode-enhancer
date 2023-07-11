@@ -425,7 +425,6 @@ function hideAcceptanceFromCodingArea(checked) {
     
 }
 
-
 // ################# HIDE LOCKED PROBLEMS ########################
 function hideLockedProblems(checked) {
     if (mode == 0) {
