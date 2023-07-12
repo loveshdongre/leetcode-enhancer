@@ -49,6 +49,8 @@ It is a light-weight browser extension which runs in the menu bar. It boosts you
 ## :crown: For developers
 Clone the source code locally:
 
+Would really appreciate if you can :star: the repository
+
 ```sh
 $ git clone https://github.com/loveshdongre/leetcode-enhancer/
 $ cd leetcode-enhancer
