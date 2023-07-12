@@ -362,6 +362,8 @@ function toggleByColName(colName, checked) {
         if (colName === 'difficulty') {
             hideSolvedDiffFromCodingArea(checked); // difficulty from problem statement and problem list
             hideDiffOfSimilarProb(checked);
+        } else if(colName === "acceptance") {
+            hideAcceptanceFromCodingArea(checked)
         }
     }
     else if (mode == 5) {
@@ -400,6 +402,19 @@ function hideStatusFromNewCodingArea(checked) {
 // ################# HIDE ACCEPTANCE FROM NEW CODING AREA ############
 function hideAcceptanceFromNewCodingArea(checked) {
     const acceptanceDiv = document.querySelector(".ssg__qd-splitter-primary-w div.px-5.py-3.pt-\\[38px\\] div")
+    if(acceptanceDiv) {
+        if(checked) {
+            acceptanceDiv.classList.remove('hide')
+        } else {
+            acceptanceDiv.classList.add('hide')
+        }
+    }
+    
+}
+
+// ################# HIDE ACCEPTANCE FROM OLD CODING AREA ############
+function hideAcceptanceFromCodingArea(checked) {
+    const acceptanceDiv = document.querySelector(".description__24sA div:nth-child(3) .css-q9155n")
     if(acceptanceDiv) {
         if(checked) {
             acceptanceDiv.classList.remove('hide')
