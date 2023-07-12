@@ -85,7 +85,7 @@ Contributions are always welcomed, here is what you need to do:
 1. Work on an existing issue or create a new one [here](https://github.com/loveshdongre/leetcode-enhancer/issues)
 2. Create a pull request linked to that issue
 
-Note: Please set up your [git config](https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration) for user and email
+Note: Please set up your [git config](https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration) for user and email so your name gets updated as a contributor
 
 Know more about [pull request](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests).
 
