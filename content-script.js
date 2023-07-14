@@ -173,8 +173,9 @@ function applyChanges(options) {
             hideSolvedProb(option.checked)
         } else if(name === 'disUsers') {
             setSolutionsUsers(option.checked)
-        } 
-        else {
+        } else if(name == 'submissions') {
+            setHideTab(option.checked, 'Submissions')
+        }else {
             toggleByColName(name, option.checked);
         }
     }
@@ -635,4 +636,25 @@ function setSolutionsUsers(checked) {
         }
 
     }
+}
+
+// ################## HIDE TAB such as Editorial, Solutions and Submissions FROM THE CODING AREA #######################
+
+const setHideTab = (checked, tabValue) => {
+    const tabList = document.querySelectorAll('#qd-content > div.h-full.flex-col.ssg__qd-splitter-primary-w > div > div > div > div > div > div > a > div > span');
+
+    tabList.forEach(tab => {
+        if (tab.innerText.trim() === tabValue) 
+        {
+            if (checked) 
+            {
+                tab.classList.remove('hide');
+            } 
+            else 
+            {
+                tab.classList.add('hide');
+            }
+            return;
+        }
+    })
 }
