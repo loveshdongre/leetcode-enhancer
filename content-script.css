@@ -1,6 +1,6 @@
 /* hide difficulty status from new coding area UI */
 
-.ssg__qd-splitter-primary-w>div>div>div>div>div>div>div>div>div>div.text-xs {
+#qd-content>div.h-full.flex-col.ssg__qd-splitter-primary-w > div > div > div > div.flex.h-full.w-full.overflow-y-auto.rounded-b > div > div > div.w-full.px-5.pt-5 > div > div.mt-3.flex.items-center.space-x-4 >.inline-block.text-sm.font-medium.capitalize.leading-\[22px\] {
     display: none;
 }
 

@@ -275,8 +275,8 @@ function hideDiffOfSimilarProbFromNewCodingArea(checked) {
 //####################### HIDE DIFFICULTY FROM NEW CODING AREA #######################
 function hideSolvedDiffFromNewCodingArea(checked) {
 
-    // hide difficulty from problem statement // IMP: if below class is changed make sure to change it in content-script.css
-    diffCodingArea = document.querySelector('.ssg__qd-splitter-primary-w > div > div > div > div > div > div > div > div > div > div.text-xs');
+    // hide difficulty from problem statement // IMP: if below class is changed make sure to change it in content-script.css as well
+    diffCodingArea = document.querySelector("#qd-content > div.h-full.flex-col.ssg__qd-splitter-primary-w > div > div > div > div.flex.h-full.w-full.overflow-y-auto.rounded-b > div > div > div.w-full.px-5.pt-5 > div > div.mt-3.flex.items-center.space-x-4 >.inline-block.text-sm.font-medium.capitalize.leading-\\[22px\\]");
 
     // hide difficulty from next challenge
     diffNext = document.querySelectorAll("a[rel ='noopener noreferrer'] div")
