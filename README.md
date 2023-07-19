@@ -72,7 +72,7 @@ $ cd leetcode-enhancer
 - icons: contains app logo, custom checkmark logos, etc
 - images: contains display images for web stores (not deployed so don't add images in this folder)
 - .gitignore: files ignored by git
-- background.js: One important function is listens event from the content-script and enables extensioin icon in the browser
+- (service_worker.js) background.js: One important function is listens event from the content-script and enables extensioin icon in the browser
 - content-script.css: for injecting custom style sheet.
 - LICENSE: MIT License file
 - manifest.json: Heart of the extension which contains all the configurations. (tip: understand this first)

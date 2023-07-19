@@ -18,19 +18,13 @@
         "service_worker": "service_worker.js"
     },
     "action": {
-        "browser_style": true,
-        "default_icon": {
-            "48": "icons/logo.png",
-            "96": "icons/logo-96.png"
-        },
-        "default_title": "Leetcode Enhancer",
         "default_popup": "popup.html",
         "theme_icons": [{
             "light": "icons/logo.png",
             "dark": "icons/logo.png",
             "size": 48
-        }],
-        "show_matches": ["https://leetcode.com/*"]
+        }]
     },
+    "host_permissions": ["https://leetcode.com/*"],
     "permissions": ["storage"]
 }
