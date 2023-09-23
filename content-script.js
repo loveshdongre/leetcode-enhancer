@@ -79,7 +79,7 @@ setMode();
 function resetHide() {
     temp = document.querySelectorAll('[role="rowgroup"] [role="row"]');
     for (i = 0; i < temp.length; i++)
-        temp[i].classList.remove('hide');
+        temp[i].classList.remove('hide_leetcode-enhancer');
 }
 
 // ################### MUTATION OBSERVER #####################
@@ -220,20 +220,20 @@ function hideSolvedDiffFromCodingArea(checked) {
 
     if (diffCodingArea) {
         if (checked) {
-            diffCodingArea.classList.remove('hide');
+            diffCodingArea.classList.remove('hide_leetcode-enhancer');
 
             for (var i = 0; i < diffType.length; ++i) {
-                diffType[i].classList.remove('hide');
+                diffType[i].classList.remove('hide_leetcode-enhancer');
             }
 
             for (var i = 0; i < diffNext.length; ++i) {
                 diffNext[i].classList.remove('blur');
             }
         } else {
-            diffCodingArea.classList.add('hide');
+            diffCodingArea.classList.add('hide_leetcode-enhancer');
 
             for (var i = 0; i < diffType.length; ++i) {
-                diffType[i].classList.add('hide');
+                diffType[i].classList.add('hide_leetcode-enhancer');
             }
 
             for (var i = 0; i < diffNext.length; ++i) {
@@ -259,14 +259,14 @@ function hideDiffOfSimilarProbFromNewCodingArea(checked) {
     if (checked) {
         for(i = 0; i < anchors.length; i++) {
             if(anchors[i] && anchors[i].parentElement && anchors[i].parentElement.parentElement && anchors[i].parentElement.parentElement.parentElement && anchors[i].parentElement.parentElement.parentElement.nextElementSibling) {
-                anchors[i].parentElement.parentElement.parentElement.nextElementSibling.classList.remove('hide')
+                anchors[i].parentElement.parentElement.parentElement.nextElementSibling.classList.remove('hide_leetcode-enhancer')
             }
         }
     }
     else {
         for(i = 0; i < anchors.length; i++) {
             if(anchors[i] && anchors[i].parentElement && anchors[i].parentElement.parentElement && anchors[i].parentElement.parentElement.parentElement && anchors[i].parentElement.parentElement.parentElement.nextElementSibling) {
-                anchors[i].parentElement.parentElement.parentElement.nextElementSibling.classList.add('hide')
+                anchors[i].parentElement.parentElement.parentElement.nextElementSibling.classList.add('hide_leetcode-enhancer')
             }
         }
     }
@@ -276,28 +276,28 @@ function hideDiffOfSimilarProbFromNewCodingArea(checked) {
 function hideSolvedDiffFromNewCodingArea(checked) {
 
     // hide difficulty from problem statement // IMP: if below class is changed make sure to change it in content-script.css as well
-    diffCodingArea = document.querySelector("#qd-content > div.h-full.flex-col.ssg__qd-splitter-primary-w > div > div > div > div.flex.h-full.w-full.overflow-y-auto.rounded-b > div > div > div.w-full.px-5.pt-5 > div > div.mt-3.flex.items-center.space-x-4 >.inline-block.text-sm.font-medium.capitalize.leading-\\[22px\\]");
-
+    diffCodingArea = document.querySelector("#qd-content .dEI87").previousSibling.firstChild;
+    
     // hide difficulty from next challenge
     diffNext = document.querySelectorAll("a[rel ='noopener noreferrer'] div")
 
     if (diffCodingArea) {
         if (checked) {
-            diffCodingArea.classList.add('visible');
+            diffCodingArea.classList.remove('hide_leetcode-enhancer');
         } else {
-            diffCodingArea.classList.remove('visible');
+            diffCodingArea.classList.add('hide_leetcode-enhancer');
         }
     }
 
     if(diffNext) {
         if(checked) {
             for (var i = 0; i < diffNext.length; ++i) {
-                diffNext[i].classList.remove('hide');
+                diffNext[i].classList.remove('hide_leetcode-enhancer');
             }
         }
         else {
             for (var i = 0; i < diffNext.length; ++i) {
-                diffNext[i].classList.add('hide');
+                diffNext[i].classList.add('hide_leetcode-enhancer');
             }
         }
     }
@@ -306,15 +306,15 @@ function hideSolvedDiffFromNewCodingArea(checked) {
 // ################ HIDE DIFFICULTY OF SIMILAR PROBLEMS ########
 function hideDiffOfSimilarProb(checked) {
     if (checked)
-        document.querySelectorAll('.difficulty__ES5S').forEach(el => el.classList.remove('hide'));
+        document.querySelectorAll('.difficulty__ES5S').forEach(el => el.classList.remove('hide_leetcode-enhancer'));
     else
-        document.querySelectorAll('.difficulty__ES5S').forEach(el => el.classList.add('hide'));
+        document.querySelectorAll('.difficulty__ES5S').forEach(el => el.classList.add('hide_leetcode-enhancer'));
 }
 
 // ############### HIDE DIFFICULTY FROM CONTEST ##############
 function hideDiffFromContest(checked) {
     if(checked) {
-        document.querySelectorAll('.contest-question-info .list-group .list-group-item:nth-child(5) .label')[0].style.visibility = 'visible'
+        document.querySelectorAll('.contest-question-info .list-group .list-group-item:nth-child(5) .label')[0].style.visibility = 'visible_leetcode-enhancer'
     }
     else {
         document.querySelectorAll('.contest-question-info .list-group .list-group-item:nth-child(5) .label')[0].style.visibility = 'hidden'
@@ -329,15 +329,15 @@ function toggleByColName(colName, checked) {
         if (colNo != -1) {
             temp = document.querySelectorAll('table tr td:nth-child(' + (colNo + 1) + ')');
             if (checked) {
-                document.querySelector('table tr th:nth-child(' + (colNo + 1) + ')').classList.remove('hide');
+                document.querySelector('table tr th:nth-child(' + (colNo + 1) + ')').classList.remove('hide_leetcode-enhancer');
 
                 for (i = 0; i < temp.length; i++) {
-                    temp[i].classList.remove('hide');
+                    temp[i].classList.remove('hide_leetcode-enhancer');
                 }
             } else {
-                document.querySelector('table tr th:nth-child(' + (colNo + 1) + ')').classList.add('hide');
+                document.querySelector('table tr th:nth-child(' + (colNo + 1) + ')').classList.add('hide_leetcode-enhancer');
                 for (i = 0; i < temp.length; i++) {
-                    temp[i].classList.add('hide');
+                    temp[i].classList.add('hide_leetcode-enhancer');
                 }
             }
         }
@@ -348,11 +348,11 @@ function toggleByColName(colName, checked) {
             temp = document.querySelectorAll('[role="table"] [role="row"]')
             if (checked) {
                 for (i = 0; i < temp.length; i++) {
-                    temp[i].querySelector('div:nth-child(' + (colNo + 1) + ')').classList.remove('hide');
+                    temp[i].querySelector('div:nth-child(' + (colNo + 1) + ')').classList.remove('hide_leetcode-enhancer');
                 }
             } else {
                 for (i = 0; i < temp.length; i++) {
-                    temp[i].querySelector('div:nth-child(' + (colNo + 1) + ')').classList.add('hide');
+                    temp[i].querySelector('div:nth-child(' + (colNo + 1) + ')').classList.add('hide_leetcode-enhancer');
                 }
             }
         }
@@ -374,11 +374,13 @@ function toggleByColName(colName, checked) {
     }
     else if(mode == 6) {
         if(colName === 'difficulty') {
-            hideSolvedDiffFromNewCodingArea(checked);
+            hideSolvedDiffFromNewCodingArea(checked); // Lag possiblity mild
             hideDiffOfSimilarProbFromNewCodingArea(checked);
+            hideDiffFromProblemSetTableOfCodingArea(checked); // Lag possiblity high
         }
         else if(colName === 'status') {
             hideStatusFromNewCodingArea(checked);
+            hideStatusFromProblemSetTableOfCodingArea(checked); // Lag possibility high
         } else if(colName === "acceptance") {
             hideAcceptanceFromNewCodingArea(checked);
         }
@@ -386,27 +388,74 @@ function toggleByColName(colName, checked) {
 
 }
 
+// ################# HIDE DIFF FROM PROBLEM SET TABLE OF CODING AREA
+function hideDiffFromProblemSetTableOfCodingArea(checked) {
+    diffTextList = document.querySelectorAll('.chakra-text');
+    
+    if(diffTextList == null)
+        return;
+
+    if(checked) {
+        for(i = 0; i < diffTextList.length; i++) {
+            diffTextList[i].classList.remove('hide_leetcode-enhancer');
+        }
+    }
+    else {
+        for(i = 0; i < diffTextList.length; i++) {
+            diffTextList[i].classList.add('hide_leetcode-enhancer');
+        }
+    }
+}
+
+// ################# HIDE STATUS FROM PROBLEM SET TABLE OF CODING AREA
+function hideStatusFromProblemSetTableOfCodingArea(checked) {
+    
+    solved = document.querySelectorAll('.chakra-icon.css-1hwpjif');
+    unsolved = document.querySelectorAll('.chakra-icon.css-5uhenc');
+    attempted = document.querySelectorAll('.chakra-icon.css-atp543');
+
+    statusList = [...solved, ...unsolved, ...attempted]
+    if(statusList == null)
+        return;
+
+    if(checked) {
+        for(i = 0; i < statusList.length; i++) {
+            statusList[i].classList.remove('hide_leetcode-enhancer');
+        }
+    }
+    else {
+        for(i = 0; i < statusList.length; i++) {
+            statusList[i].classList.add('hide_leetcode-enhancer');
+        }
+    }
+}
+
 // ################# HIDE STATUS FROM NEW CODING AREA ############
 function hideStatusFromNewCodingArea(checked) {
-    solvedMark = document.querySelector(".ssg__qd-splitter-primary-w > div > div > div > div > div > div > div > div > div.mt-3.flex.space-x-4 > div.text-green-s");
+    solvedMarkParent = document.querySelector("#qd-content .dEI87").previousSibling.previousSibling.childNodes
+    if(solvedMarkParent[1] == null)
+        return;
+
+    solvedMark = solvedMarkParent[1];
+    
     if(solvedMark) {
         if(checked) {
-            solvedMark.classList.remove('hide');
+            solvedMark.classList.remove('hide_leetcode-enhancer');
         }
         else {
-            solvedMark.classList.add('hide');
+            solvedMark.classList.add('hide_leetcode-enhancer');
         }
     }
 }
 
 // ################# HIDE ACCEPTANCE FROM NEW CODING AREA ############
 function hideAcceptanceFromNewCodingArea(checked) {
-    const acceptanceDiv = document.querySelector(".ssg__qd-splitter-primary-w div.px-5.py-3.pt-\\[38px\\] div")
+    const acceptanceDiv = document.querySelector("#qd-content .dEI87").nextSibling.firstChild.lastChild;
     if(acceptanceDiv) {
         if(checked) {
-            acceptanceDiv.classList.remove('hide')
+            acceptanceDiv.classList.remove('hide_leetcode-enhancer')
         } else {
-            acceptanceDiv.classList.add('hide')
+            acceptanceDiv.classList.add('hide_leetcode-enhancer')
         }
     }
     
@@ -417,9 +466,9 @@ function hideAcceptanceFromCodingArea(checked) {
     const acceptanceDiv = document.querySelector(".description__24sA div:nth-child(3) .css-q9155n")
     if(acceptanceDiv) {
         if(checked) {
-            acceptanceDiv.classList.remove('hide')
+            acceptanceDiv.classList.remove('hide_leetcode-enhancer')
         } else {
-            acceptanceDiv.classList.add('hide')
+            acceptanceDiv.classList.add('hide_leetcode-enhancer')
         }
     }
     
@@ -433,13 +482,13 @@ function hideLockedProblems(checked) {
         if (checked) {
             for (i = 0; i < temp.length; i++) {
                 if (temp[i].querySelector('td:nth-child(3) .fa-lock')) {
-                    temp[i].classList.remove('hide');
+                    temp[i].classList.remove('hide_leetcode-enhancer');
                 }
             }
         } else {
             for (i = 0; i < temp.length; i++) {
                 if (temp[i].querySelector('td:nth-child(3) .fa-lock')) {
-                    temp[i].classList.add('hide');
+                    temp[i].classList.add('hide_leetcode-enhancer');
                 }
             }
         }
@@ -448,13 +497,13 @@ function hideLockedProblems(checked) {
         if (checked) {
             for (i = 0; i < temp.length; i++) {
                 if (temp[i].querySelector('[role="cell"]:nth-child(1) path[d="M7 8v2H6a3 3 0 00-3 3v6a3 3 0 003 3h12a3 3 0 003-3v-6a3 3 0 00-3-3h-1V8A5 5 0 007 8zm8 0v2H9V8a3 3 0 116 0zm-3 6a2 2 0 100 4 2 2 0 000-4z"]')) {
-                    temp[i].classList.remove('hide');
+                    temp[i].classList.remove('hide_leetcode-enhancer');
                 }
             }
         } else {
             for (i = 0; i < temp.length; i++) {
                 if (temp[i].querySelector('[role="cell"]:nth-child(1) path[d="M7 8v2H6a3 3 0 00-3 3v6a3 3 0 003 3h12a3 3 0 003-3v-6a3 3 0 00-3-3h-1V8A5 5 0 007 8zm8 0v2H9V8a3 3 0 116 0zm-3 6a2 2 0 100 4 2 2 0 000-4z"]')) {
-                    temp[i].classList.add('hide');
+                    temp[i].classList.add('hide_leetcode-enhancer');
                 }
             }
         }
@@ -463,9 +512,9 @@ function hideLockedProblems(checked) {
         for (i = 0; i < temp.length; i++) {
             if (temp[i].querySelector('td:nth-child(3) .fa-lock')) {
                 if (checked)
-                    temp[i].classList.remove('hide');
+                    temp[i].classList.remove('hide_leetcode-enhancer');
                 else
-                    temp[i].classList.add('hide');
+                    temp[i].classList.add('hide_leetcode-enhancer');
             }
         }
     }
@@ -533,23 +582,23 @@ function hideSolvedDiff(checked) {
     if (mode == 0) {
         if (checked) {
             document.querySelectorAll('.question-solved>span>span:not(:first-child)')
-                .forEach(el => el.classList.remove('hide'));
+                .forEach(el => el.classList.remove('hide_leetcode-enhancer'));
 
             document.querySelector('.question-solved span').classList.remove('color-alfa0')
         } else {
             document.querySelectorAll('.question-solved span span:not(:first-child)')
-                .forEach(el => el.classList.add('hide'));
+                .forEach(el => el.classList.add('hide_leetcode-enhancer'));
             document.querySelector('.question-solved span').classList.add('color-alfa0')
         }
     } else if (mode == 1) {
-        el = document.getElementsByClassName('py-2 bg-layer-1 rounded-lg');
+        el = document.querySelector("div.col-span-4.md\\:col-span-1").children;
         if (checked) {
-            if (el.length) {
-                el[0].classList.remove('hide');
+            if (el && el.length && el[3]) {
+                el[3].classList.remove('hide_leetcode-enhancer');
             }
         } else {
-            if (el.length) {
-                el[0].classList.add('hide');
+            if (el && el.length && el[3]) {
+                el[3].classList.add('hide_leetcode-enhancer');
             }
         }
     }
@@ -609,7 +658,7 @@ function setSolutionsUsers(checked) {
         if(posts) {
             if(checked) {
                 for(let i = 0; i < posts.length; i++) {
-                    posts[i].querySelector('a.topic-info__tdz0').style.visibility = 'visible';
+                    posts[i].querySelector('a.topic-info__tdz0').style.visibility = 'visible_leetcode-enhancer';
                 }
             }
             else {
@@ -624,7 +673,7 @@ function setSolutionsUsers(checked) {
         if(postDetails) {
             if(checked) {
                 for(let i = 0; i < postDetails.length; i++) {
-                    postDetails[i].querySelector('a').style.visibility = 'visible';
+                    postDetails[i].querySelector('a').style.visibility = 'visible_leetcode-enhancer';
                 }
             }
             else {

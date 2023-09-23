@@ -57,10 +57,10 @@ body {
     }
     .notice {
         padding: 10px;
-        font-weight: bold;
-        color: black;
+        color: white;
         line-height: 15px;
-        background-color: #FFAB00;
+        background-color: $bg3-dark;
+        font-size: $f2;
     }
     .options {
         padding: 10px;
@@ -123,6 +123,10 @@ body {
         padding: 5px 10px;
         line-height: 15px;
         box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.25) 0px 4px 4px 0px, rgba(0, 0, 0, 0.3) 0px 1px 2px 0px;
+
+        a {
+            color: $c1-dark;
+        }
     }
     .creator {
         color: $c1-dark;
@@ -155,12 +159,12 @@ input[type="checkbox"] {
     display: inline-block;
     width: 1.2rem;
     height: 1.2rem;
-    background-image: url('/images/close_eye.png');
+    background-image: url('/icons/close_eye.png');
     background-size: contain;
   }
   
   input[type="checkbox"]:checked + .checkbox-label {
-    background-image: url('/images/eye_open.png');
+    background-image: url('/icons/eye_open.png');
   }
   
   

@@ -1,9 +1,3 @@
-/* hide difficulty status from new coding area UI */
-
-#qd-content>div.h-full.flex-col.ssg__qd-splitter-primary-w > div > div > div > div.flex.h-full.w-full.overflow-y-auto.rounded-b > div > div > div.w-full.px-5.pt-5 > div > div.mt-3.flex.items-center.space-x-4 >.inline-block.text-sm.font-medium.capitalize.leading-\[22px\] {
-    display: none;
-}
-
 .add-bg {
     /* background-color: rgb(118, 255, 118) !important; */
     /* background-color: rgb(44, 187, 93) !important; */
@@ -20,11 +14,11 @@
     background-color: rgb(115, 115, 115) !important;
 }
 
-.hide {
+.hide_leetcode-enhancer {
     display: none !important;
 }
 
-.visible {
+.visible_leetcode-enhancer {
     display: block !important;
 }
 

@@ -45,10 +45,10 @@ body {
 }
 .wrapper .notice {
   padding: 10px;
-  font-weight: bold;
-  color: black;
+  color: white;
   line-height: 15px;
-  background-color: #FFAB00;
+  background-color: rgb(60, 60, 61);
+  font-size: 12px;
 }
 .wrapper .options {
   padding: 10px;
@@ -107,6 +107,9 @@ body {
   padding: 5px 10px;
   line-height: 15px;
   box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.25) 0px 4px 4px 0px, rgba(0, 0, 0, 0.3) 0px 1px 2px 0px;
+}
+.wrapper .details a {
+  color: rgba(255, 255, 255, 0.9);
 }
 .wrapper .creator {
   color: rgba(255, 255, 255, 0.9);
