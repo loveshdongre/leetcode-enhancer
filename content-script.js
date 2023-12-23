@@ -56,9 +56,9 @@ function isContest() {
 
 function setMode() {
     mode = 2;
-    if (isSolutions()) // should be before isCodingArea() since url will also contain /problems/
-        mode = 4;
-    else if (isCodingArea() && document.querySelector('#app') != null)
+    // if (isSolutions()) // should be before isCodingArea() since url will also contain /problems/
+    //     mode = 4;
+    if (isCodingArea() && document.querySelector('#app') != null)
         mode = 3;
     else if (isCodingArea())
         mode = 6
@@ -276,7 +276,7 @@ function hideDiffOfSimilarProbFromNewCodingArea(checked) {
 function hideSolvedDiffFromNewCodingArea(checked) {
 
     // hide difficulty from problem statement // IMP: if below class is changed make sure to change it in content-script.css as well
-    diffCodingArea = document.querySelector("#qd-content .dEI87").previousSibling.firstChild;
+    diffCodingArea = document.querySelector('[data-track-load="description_content"]').previousSibling.firstChild;
     
     // hide difficulty from next challenge
     diffNext = document.querySelectorAll("a[rel ='noopener noreferrer'] div")
@@ -432,7 +432,7 @@ function hideStatusFromProblemSetTableOfCodingArea(checked) {
 
 // ################# HIDE STATUS FROM NEW CODING AREA ############
 function hideStatusFromNewCodingArea(checked) {
-    solvedMarkParent = document.querySelector("#qd-content .dEI87").previousSibling.previousSibling.childNodes
+    solvedMarkParent = document.querySelector('[data-track-load="description_content"]').previousSibling.previousSibling.childNodes
     if(solvedMarkParent[1] == null)
         return;
 
@@ -450,7 +450,7 @@ function hideStatusFromNewCodingArea(checked) {
 
 // ################# HIDE ACCEPTANCE FROM NEW CODING AREA ############
 function hideAcceptanceFromNewCodingArea(checked) {
-    const acceptanceDiv = document.querySelector("#qd-content .dEI87").nextSibling.firstChild.lastChild;
+    const acceptanceDiv = document.querySelector('[data-track-load="description_content"]').nextSibling.firstChild.lastChild;
     if(acceptanceDiv) {
         if(checked) {
             acceptanceDiv.classList.remove('hide_leetcode-enhancer')
