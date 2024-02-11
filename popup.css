@@ -12,23 +12,26 @@ body {
   min-width: 280px;
 }
 
+.wrapper fieldset {
+  border-color: white;
+}
 .wrapper .link {
   font-size: 12px;
   text-align: center;
 }
 .wrapper .brand {
-  background-color: rgb(40, 42, 46);
+  background-color: #FE4D63;
   font-size: 20px;
   padding: 10px;
-  color: rgba(255, 255, 255, 0.9);
+  color: white;
   box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.25) 0px 4px 4px 0px, rgba(0, 0, 0, 0.3) 0px 1px 2px 0px;
 }
 .wrapper .brand .title {
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.9);
+  color: white;
 }
 .wrapper .brand .title:hover {
-  color: grey;
+  color: #ee528e;
 }
 .wrapper .logo {
   height: 50px;
@@ -47,13 +50,13 @@ body {
   padding: 10px;
   color: white;
   line-height: 15px;
-  background-color: rgb(60, 60, 61);
+  background-color: #FE4D63;
   font-size: 12px;
 }
 .wrapper .options {
   padding: 10px;
-  background-color: rgb(34, 35, 37);
-  color: rgba(255, 255, 255, 0.9);
+  background-color: #FA6D96;
+  color: white;
 }
 .wrapper .options div {
   margin-top: 10px;
@@ -69,9 +72,9 @@ body {
   max-width: 350px;
   max-height: 300px;
   display: none;
-  background-color: rgb(60, 60, 61);
+  background-color: #FE4D63;
   padding: 5px 10px;
-  color: rgba(255, 255, 255, 0.9);
+  color: white;
 }
 .wrapper .quote .quote-text {
   width: 90%;
@@ -84,7 +87,7 @@ body {
   text-align: right;
 }
 .wrapper .footer {
-  background-color: rgb(40, 42, 46);
+  background-color: #FE4D63;
   padding: 5px 10px;
 }
 .wrapper .footer a {
@@ -92,7 +95,7 @@ body {
 }
 .wrapper .footer span {
   position: relative;
-  color: rgba(255, 255, 255, 0.9);
+  color: white;
 }
 .wrapper .footer #fBtn span {
   text-decoration: underline;
@@ -102,18 +105,18 @@ body {
   cursor: pointer;
 }
 .wrapper .details {
-  color: rgba(255, 255, 255, 0.9);
-  background-color: rgb(40, 42, 46);
+  color: white;
+  background-color: #FE4D63;
   padding: 5px 10px;
   line-height: 15px;
   box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.25) 0px 4px 4px 0px, rgba(0, 0, 0, 0.3) 0px 1px 2px 0px;
 }
 .wrapper .details a {
-  color: rgba(255, 255, 255, 0.9);
+  color: white;
 }
 .wrapper .creator {
-  color: rgba(255, 255, 255, 0.9);
-  background-color: rgb(40, 42, 46);
+  color: white;
+  background-color: #FE4D63;
   padding: 5px 10px;
   text-align: center;
 }
@@ -127,7 +130,7 @@ body {
   text-align: center;
 }
 .wrapper .contributors a {
-  color: rgba(255, 255, 255, 0.9);
+  color: white;
 }
 
 /* Checkbox UI enhancement */

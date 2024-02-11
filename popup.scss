@@ -1,10 +1,11 @@
 $f1: 20px;
 $f2: 12px;
-$c1: #F0F0F0;
-$bg-dark: rgba(40, 42, 46, 1);
-$bg2-dark: rgba(34, 35, 37, 1);
-$bg3-dark: rgb(60, 60, 61);
-$c1-dark: rgba(255, 255, 255, 0.9);
+$c1: #f8a6f6;
+$bg-dark: #FE4D63;
+$bg2-dark: #FA6D96;
+$bg3-dark: #FE4D63;
+$c1-dark: white;
+
 html,
 body {
     margin: 0;
@@ -20,6 +21,9 @@ body {
 }
 
 .wrapper {
+    fieldset {
+        border-color: white;
+    }
     .link {
         font-size: $f2;
         text-align: center;
@@ -33,7 +37,7 @@ body {
             text-decoration: none;
             color: $c1-dark;
             &:hover {
-                color: grey;
+                color: #ee528e;
             }
         }
         ;
