@@ -1,5 +1,5 @@
 {
-    "manifest_version": 3,
+    "manifest_version": 2,
     "name": "Leetcode Enhancer",
     "version": "1.62",
     "author": "Lovesh Dongre",
@@ -15,9 +15,9 @@
     }],
 
     "background": {
-        "service_worker": "service_worker.js"
+        "scripts": ["background.js"]
     },
-    "action": {
+    "page_action": {
         "browser_style": true,
         "default_icon": {
             "48": "icons/logo.png",
