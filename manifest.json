@@ -1,7 +1,7 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "Leetcode Enhancer",
-    "version": "1.60",
+    "version": "1.62",
     "author": "Lovesh Dongre",
     "description": "A browser extension to improve productivity on Leetcode.",
     "icons": {
@@ -15,9 +15,9 @@
     }],
 
     "background": {
-        "scripts": ["background.js"]
+        "service_worker": "service_worker.js"
     },
-    "page_action": {
+    "action": {
         "browser_style": true,
         "default_icon": {
             "48": "icons/logo.png",

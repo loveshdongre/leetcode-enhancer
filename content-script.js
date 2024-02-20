@@ -9,7 +9,7 @@ function print(x) {
 var browser = browser || chrome
 
 // svg for encircled green checkmark icon
-const solvedCheckMarkSvg = 'M21.6004 12C21.6004 17.302 17.3023 21.6 12.0004 21.6C6.69846 21.6 2.40039 17.302 2.40039 12C2.40039 6.69809 6.69846 2.40002 12.0004 2.40002C13.5066 2.40002 14.9318 2.74689 16.2004 3.3651M19.8004 6.00002L11.4004 14.4L9.00039 12'
+const solvedCheckMarkSvg = 'M21.6 12a9.6 9.6 0 01-9.6 9.6 9.6 9.6 0 110-19.2c1.507 0 2.932.347 4.2.965M19.8 6l-8.4 8.4L9 12'
 
 // sends message to enable extension popup icon
 chrome.runtime.sendMessage({ "message": "activate_icon" });
@@ -275,8 +275,7 @@ function hideDiffOfSimilarProbFromNewCodingArea(checked) {
 //####################### HIDE DIFFICULTY FROM NEW CODING AREA #######################
 function hideSolvedDiffFromNewCodingArea(checked) {
 
-    // hide difficulty from problem statement // IMP: if below class is changed make sure to change it in content-script.css as well
-    diffCodingArea = document.querySelector('[data-track-load="description_content"]').previousSibling.firstChild;
+    diffCodingArea = document.querySelector('[data-track-load="description_content"]').parentNode.childNodes[1].firstChild;
     
     // hide difficulty from next challenge
     diffNext = document.querySelectorAll("a[rel ='noopener noreferrer'] div")
@@ -612,13 +611,13 @@ function hideSolvedProb(checked) {
         if (checked) {
             for (i = 0; i < temp.length; i++) {
                 if (temp[i].querySelector('.fa-check')) {
-                    temp[i].classList.remove('hide');
+                    temp[i].classList.remove('hide_leetcode-enhancer');
                 }
             }
         } else {
             for (i = 0; i < temp.length; i++) {
                 if (temp[i].querySelector('.fa-check')) {
-                    temp[i].classList.add('hide');
+                    temp[i].classList.add('hide_leetcode-enhancer');
                 }
             }
         }
@@ -627,13 +626,13 @@ function hideSolvedProb(checked) {
         if (checked) {
             for (i = 0; i < temp.length; i++) {
                 if (temp[i].querySelector('[role="cell"]:nth-child(1) path[d=\"' + solvedCheckMarkSvg + '\"]') || temp[i].querySelector('[role="cell"]:nth-child(1) path[d="M20 12.005v-.828a1 1 0 112 0v.829a10 10 0 11-5.93-9.14 1 1 0 01-.814 1.826A8 8 0 1020 12.005zM8.593 10.852a1 1 0 011.414 0L12 12.844l8.293-8.3a1 1 0 011.415 1.413l-9 9.009a1 1 0 01-1.415 0l-2.7-2.7a1 1 0 010-1.414z"]')) {
-                    temp[i].classList.remove('hide');
+                    temp[i].classList.remove('hide_leetcode-enhancer');
                 }
             }
         } else {
             for (i = 0; i < temp.length; i++) {
                 if (temp[i].querySelector('[role="cell"]:nth-child(1) path[d=\"' + solvedCheckMarkSvg + '\"]') || temp[i].querySelector('[role="cell"]:nth-child(1) path[d="M20 12.005v-.828a1 1 0 112 0v.829a10 10 0 11-5.93-9.14 1 1 0 01-.814 1.826A8 8 0 1020 12.005zM8.593 10.852a1 1 0 011.414 0L12 12.844l8.293-8.3a1 1 0 011.415 1.413l-9 9.009a1 1 0 01-1.415 0l-2.7-2.7a1 1 0 010-1.414z"]')) {
-                    temp[i].classList.add('hide');
+                    temp[i].classList.add('hide_leetcode-enhancer');
                 }
             }
         }
@@ -642,9 +641,9 @@ function hideSolvedProb(checked) {
         for (i = 0; i < temp.length; i++) {
             if (temp[i].querySelector('.fa-check')) {
                 if (checked)
-                    temp[i].classList.remove('hide');
+                    temp[i].classList.remove('hide_leetcode-enhancer');
                 else
-                    temp[i].classList.add('hide')
+                    temp[i].classList.add('hide_leetcode-enhancer')
             }
         }
     }
