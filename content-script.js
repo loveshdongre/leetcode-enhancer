@@ -94,9 +94,9 @@ const observer = new MutationObserver(function(mutations) {
     setMode();
     if (mutations.length) {
         print('hit');
-        // if (mode == 1) {
-            // resetHide();
-        // }
+        if (mode == 1) {
+            resetHide();
+        }
         browser.storage.local.get(["options"], modifyThenApplyChanges);
 
     }
