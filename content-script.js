@@ -275,7 +275,7 @@ function hideDiffOfSimilarProbFromNewCodingArea(checked) {
 //####################### HIDE DIFFICULTY FROM NEW CODING AREA #######################
 function hideSolvedDiffFromNewCodingArea(checked) {
 
-    diffCodingArea = document.querySelector('[data-track-load="description_content"]').parentNode.childNodes[1].firstChild;
+    diffCodingArea = document.querySelector('[data-track-load="description_content"]').parentElement.previousElementSibling.firstChild;
     
     // hide difficulty from next challenge
     diffNext = document.querySelectorAll("a[rel ='noopener noreferrer'] div")
@@ -389,19 +389,19 @@ function toggleByColName(colName, checked) {
 
 // ################# HIDE DIFF FROM PROBLEM SET TABLE OF CODING AREA
 function hideDiffFromProblemSetTableOfCodingArea(checked) {
-    diffTextList = document.querySelectorAll('.chakra-text');
+    diffTextList = document.querySelectorAll('[rel="https://leetcode.com/problemset/"]');
     
     if(diffTextList == null)
         return;
 
     if(checked) {
         for(i = 0; i < diffTextList.length; i++) {
-            diffTextList[i].classList.remove('hide_leetcode-enhancer');
+            diffTextList[i].lastChild.lastChild.lastChild.classList.remove('hide_leetcode-enhancer');
         }
     }
     else {
         for(i = 0; i < diffTextList.length; i++) {
-            diffTextList[i].classList.add('hide_leetcode-enhancer');
+            diffTextList[i].lastChild.lastChild.lastChild.classList.add('hide_leetcode-enhancer');
         }
     }
 }
@@ -431,32 +431,30 @@ function hideStatusFromProblemSetTableOfCodingArea(checked) {
 
 // ################# HIDE STATUS FROM NEW CODING AREA ############
 function hideStatusFromNewCodingArea(checked) {
-    solvedMarkParent = document.querySelector('[data-track-load="description_content"]').previousSibling.previousSibling.childNodes
-    if(solvedMarkParent[1] == null)
+    solvedMarkParent = document.querySelector('[data-track-load="description_content"]').parentNode.previousSibling.previousSibling.lastChild
+    if(solvedMarkParent == null || !solvedMarkParent.classList.contains('text-body'))
         return;
-
-    solvedMark = solvedMarkParent[1];
     
-    if(solvedMark) {
+    if(solvedMarkParent) {
         if(checked) {
-            solvedMark.classList.remove('hide_leetcode-enhancer');
+            solvedMarkParent.classList.remove('hide_leetcode-enhancer');
         }
         else {
-            solvedMark.classList.add('hide_leetcode-enhancer');
+            solvedMarkParent.classList.add('hide_leetcode-enhancer');
         }
     }
 }
 
 // ################# HIDE ACCEPTANCE FROM NEW CODING AREA ############
 function hideAcceptanceFromNewCodingArea(checked) {
-    const acceptanceDiv = document.querySelector('[data-track-load="description_content"]').nextSibling.firstChild.lastChild;
-    if(acceptanceDiv) {
-        if(checked) {
-            acceptanceDiv.classList.remove('hide_leetcode-enhancer')
-        } else {
-            acceptanceDiv.classList.add('hide_leetcode-enhancer')
+        const acceptanceDiv =  document.querySelector('[data-track-load="description_content"]').parentElement.nextSibling.children[3].lastElementChild;
+        if(acceptanceDiv) {
+            if(checked) {
+                acceptanceDiv.classList.remove('hide_leetcode-enhancer')
+            } else {
+                acceptanceDiv.classList.add('hide_leetcode-enhancer')
+            }
         }
-    }
     
 }
 
