@@ -15,7 +15,7 @@
     }],
 
     "background": {
-        "service_worker": "service_worker.js"
+        "scripts": ["service_worker.js"]
     },
     "action": {
         "browser_style": true,
@@ -32,5 +32,10 @@
         }],
         "show_matches": ["https://leetcode.com/*"]
     },
-    "permissions": ["storage"]
+    "permissions": ["storage"],
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "{ca2d6de6-3a5e-4ab3-afae-2ef6e1f241f0}"
+        }
+    }
 }
