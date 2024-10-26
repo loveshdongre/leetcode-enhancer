@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="popup.css">
-    </link>
 </head>
 
 <body>
@@ -21,19 +20,12 @@
             </a>
         </div>
 
-
-        <!-- <div class="notice">
-            Is your search overridden? You can choose to keep it to support the extension, or you can disable it from Settings > Search Engine.
-        </div> -->
-
         <div class="options">
-
-            <div class="option-div">                
+            <div class="option-div">
                 <label for="locked">Locked Problems</label>
                 <input id="locked" checked type="checkbox" name="settings" value="locked">
                 <label for="locked" class="checkbox-label"></label>
             </div>
-
             <div class="option-div">
                 <label for="highlight"> Highlight Solved Problems</label>
                 <input id="highlight" type="checkbox" name="settings" value="highlight">
@@ -49,11 +41,6 @@
                 <input id="solved" checked type="checkbox" name="settings" value="solved">
                 <label for="solved" class="checkbox-label"></label>
             </div>
-            <!-- <div style="margin-bottom: 15px;" class="option-div">
-                <label for="disUsers"> Solutions Users' Profile Images</label>
-                <input id="disUsers" checked type="checkbox" name="settings" value="disUsers">
-                <label for="disUsers" class="checkbox-label"></label>
-            </div> -->
 
             <fieldset>
                 <legend>Problem Set Table Columns</legend>
@@ -67,7 +54,7 @@
                     <input id="solution" checked type="checkbox" name="settings" value="solution">
                     <label for="solution" class="checkbox-label"></label>
                 </div>
-                <div class="option-div"> 
+                <div class="option-div">
                     <label for="acceptance"> Acceptance Rate<small>(includes coding area)</small> </label>
                     <input id="acceptance" checked type="checkbox" name="settings" value="acceptance">
                     <label for="acceptance" class="checkbox-label"></label>
@@ -85,48 +72,57 @@
             </fieldset>
         </div>
 
-        <div class="footer">
-            <a id="fBtn" target="_blank"
-                href="https://chrome.google.com/webstore/detail/leetcode-enhancer/gcmncppaaebldbkgkcbojghpmpjkdlmp">
-                <!-- <img src="icons/mail.png" alt="mail"> -->
-                <span>Rate / Report Issue / Suggestion ?</span>
-            </a><span id="deBtn">more</span>
+        <div class="ai-box">
+            <fieldset>
+                <legend>Use AI to Improve Code Quality</legend>
+                <div class="ai-terms">
+                    <input type="checkbox" id="terms-checkbox" />
+                    <label for="terms-checkbox">I've read and accept the <a href="" target="_blank">terms and conditions</a></label>
+                </div>
+                <div class="ai-getKey">
+                    <a>How to get API Key?</a>
+                </div>
+                <div class="ai-inputs">
+                    <input type="text" id="api-key" placeholder="Enter your API Key" />
+                    <button id="delete-api-key" class="ai-button">Delete Key</button>
+                    <button id="trigger-action" class="ai-button">Refactor Code</button>
+                </div>
+
+                <!-- Output Area and Copy Button -->
+                <div id="output" contenteditable="true">
+                    <!-- This is where the output from the API will be displayed -->
+                </div>
+                <!-- <button id="copy-output" class="ai-button">Copy Output</button> -->
+            </fieldset>
         </div>
 
-        <div class="details" id="msg">
+        <div class="footer">
+            <a id="fBtn" target="_blank" href="https://chrome.google.com/webstore/detail/leetcode-enhancer/gcmncppaaebldbkgkcbojghpmpjkdlmp">
+                <span>Rate / Report Issue / Suggestion ?</span>
+            </a><span id="deBtn">►</span>
+        </div>
+
+        <div class="details" id="msg" style="display: none;">
             <p>
                 Please report bugs or suggest improvements for timely updates to the extension.<br><br>
                 For bug reports please add a description for the issue clearly, mention browser being used and the leetcode url where the issue is observed<br>
                 Options for communicating:
-                
                 <br>
                 1. <a href="mailto:loveshdongre57@gmail.com">Send email</a> - loveshdongre57@gmail.com
                 <br>
                 2. Create issue on <a href="https://github.com/loveshdongre/leetcode-enhancer/issues">Github</a>
                 <br>
                 3. Rate on <a href="https://chrome.google.com/webstore/detail/leetcode-enhancer/gcmncppaaebldbkgkcbojghpmpjkdlmp">Google Chrome webstore</a>
-                
             </p>
-            <!-- <p>How reviews are helpful to me?</p>
-            <p>- Bugs are reported early.</p>
-            <p>- Your suggestion can be in the next update.</p>
-            <p>- Makes my day :)</p> -->
             <div class="creator">
-                Made with ❤️ by Lovesh Dongre<a target="_blank" href="https://www.linkedin.com/in/loveshdongre/"> <img
-                        class="linkedin" src="icons/linkedin.png" alt="linkedin"></a>
+                Made with ❤️ by Lovesh Dongre<a target="_blank" href="https://www.linkedin.com/in/loveshdongre/"> <img class="linkedin" src="icons/linkedin.png" alt="linkedin"></a>
             </div>
             <div class="contributors">
                 Huge thanks to the <a href="https://github.com/loveshdongre/leetcode-enhancer/graphs/contributors">contributors</a> !
             </div>
         </div>
-
-        <div class="quote">
-            <div class="quote-text">
-            </div>
-            <div class="quote-author">
-            </div>
-        </div>
     </div>
+
     <!-- popup.js is at the end of the page so it gets loaded last -->
     <script src="popup.js"></script>
 </body>

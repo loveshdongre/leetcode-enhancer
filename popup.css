@@ -65,23 +65,8 @@ body {
 .wrapper .options div input:hover {
   cursor: pointer;
 }
-.wrapper .quote {
-  max-width: 350px;
-  max-height: 300px;
+.wrapper .options input[type=checkbox] {
   display: none;
-  background-color: rgb(60, 60, 61);
-  padding: 5px 10px;
-  color: rgba(255, 255, 255, 0.9);
-}
-.wrapper .quote .quote-text {
-  width: 90%;
-  margin: 0 auto;
-  text-align: center;
-  font-style: italic;
-  line-height: 17px;
-}
-.wrapper .quote .quote-author {
-  text-align: right;
 }
 .wrapper .footer {
   background-color: rgb(40, 42, 46);
@@ -131,10 +116,6 @@ body {
 }
 
 /* Checkbox UI enhancement */
-input[type=checkbox] {
-  display: none;
-}
-
 .checkbox-label {
   display: inline-block;
   width: 1.2rem;
@@ -151,4 +132,35 @@ input[type=checkbox]:checked + .checkbox-label {
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+.ai-box {
+  background-color: rgb(34, 35, 37);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 10px;
+}
+.ai-box .ai-terms {
+  margin-bottom: 5px;
+}
+.ai-box #api-key {
+  width: 99%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.ai-box .ai-inputs {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.ai-box .ai-button {
+  margin-left: 5px;
+}
+.ai-box .ai-getKey {
+  font-size: 12px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.ai-box .ai-getKey :hover {
+  color: rgb(14, 115, 222);
+  -webkit-text-decoration: rgb(14, 115, 222);
+          text-decoration: rgb(14, 115, 222);
 }/*# sourceMappingURL=popup.css.map */

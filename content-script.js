@@ -12,7 +12,13 @@ var browser = browser || chrome
 const solvedCheckMarkSvg = 'M21.6 12a9.6 9.6 0 01-9.6 9.6 9.6 9.6 0 110-19.2c1.507 0 2.932.347 4.2.965M19.8 6l-8.4 8.4L9 12'
 
 // sends message to enable extension popup icon
-chrome.runtime.sendMessage({ "message": "activate_icon" });
+try {
+    browser.runtime.sendMessage({ "message": "activate_icon" });
+}
+catch (err) {
+    print("Unable to send activate_icon message from content-script");
+    // console.error("Failed to send message:", err);
+}
 
 // ################### MODES #####################
 /*
@@ -76,29 +82,31 @@ function setMode() {
 
 setMode();
 
-function resetHide() {
-    temp = document.querySelectorAll('[role="rowgroup"] [role="row"]');
-    for (i = 0; i < temp.length; i++)
-        temp[i].classList.remove('hide_leetcode-enhancer');
-}
-
 // ################### MUTATION OBSERVER #####################
 // to load extension only after the page content
 
 function modifyThenApplyChanges(options) {
+    if(!isIterable(options))
+        return;
     applyChanges(options.options);
 }
 
 const observer = new MutationObserver(function(mutations) {
-    print(mutations)
-    setMode();
-    if (mutations.length) {
-        print('hit');
-        if (mode == 1) {
-            resetHide();
+    try {
+        print(mutations);
+        setMode();
+        if (mutations.length) {
+            print('hit');
+            browser.storage.local.get(["options"], modifyThenApplyChanges);
         }
-        browser.storage.local.get(["options"], modifyThenApplyChanges);
-
+    } catch (error) {
+        // Log the error
+        print('Error in MutationObserver callback: ' + error);
+        
+        // Perform error handling or recovery actions
+        // ...
+        // Restart the observer
+        // observer.disconnect();
     }
 });
 
@@ -153,6 +161,8 @@ else if (mode == 6) {
 
 // ################### EVENT LISTENER #####################
 browser.runtime.onMessage.addListener(function(response, sender, sendResponse) {
+    if(!isIterable(response.options))
+        return;
     ops = []
     for (option of response.options) {
         ops.push(option);
@@ -681,4 +691,32 @@ function setSolutionsUsers(checked) {
         }
 
     }
+}
+
+// Listen for messages from the popup
+browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.action === 'getCode') {
+        const code = getUserCode();
+        sendResponse({ code: code });
+    }
+});
+
+function getUserCode() {
+    const codeEditor = document.querySelector('div.editor-scrollable'); // Adjust this selector based on the actual editor
+    if (codeEditor) {
+        return codeEditor.textContent; // Return the code content (adjust as needed)
+    }
+    else {
+        alert('Unable to read the code, please report this issue by referring *Rate / Report Issue / Suggestion ?* section in bottom of extension pop-up box')
+    }
+    return '';
+}
+
+/**
+ * Checks if an object is iterable
+ * @param {Object} obj - Object to check
+ * @returns {Boolean} - True if iterable, otherwise false
+ */
+function isIterable(obj) {
+    return obj != null && typeof obj[Symbol.iterator] === 'function';
 }

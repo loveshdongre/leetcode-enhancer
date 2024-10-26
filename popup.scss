@@ -5,6 +5,8 @@ $bg-dark: rgba(40, 42, 46, 1);
 $bg2-dark: rgba(34, 35, 37, 1);
 $bg3-dark: rgb(60, 60, 61);
 $c1-dark: rgba(255, 255, 255, 0.9);
+$link-color: rgb(14, 115, 222);
+
 html,
 body {
     margin: 0;
@@ -24,37 +26,45 @@ body {
         font-size: $f2;
         text-align: center;
     }
+
     .brand {
         background-color: $bg-dark;
         font-size: $f1;
         padding: 10px;
         color: $c1-dark;
+
         .title {
             text-decoration: none;
             color: $c1-dark;
+
             &:hover {
                 color: grey;
             }
         }
+
         ;
         box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
         rgba(0, 0, 0, 0) 0px 0px 0px 0px,
         rgba(0, 0, 0, 0.25) 0px 4px 4px 0px,
         rgba(0, 0, 0, 0.3) 0px 1px 2px 0px;
     }
+
     .logo {
         height: 50px;
         width: 50px;
         border-radius: 10px;
     }
+
     .github {
         margin-top: 10px;
         filter: invert(1);
     }
+
     .brand span {
         position: absolute;
         padding-left: 10px;
     }
+
     .notice {
         padding: 10px;
         color: white;
@@ -62,52 +72,47 @@ body {
         background-color: $bg3-dark;
         font-size: $f2;
     }
+
     .options {
         padding: 10px;
         background-color: $bg2-dark;
         color: $c1-dark;
+
         div {
             margin-top: 10px;
             margin-bottom: 10px;
+
             input {
                 float: right;
+
                 &:hover {
                     cursor: pointer;
                 }
             }
         }
-    }
-    .quote {
-        max-width: 350px;
-        max-height: 300px;
-        display: none;
-        background-color: $bg3-dark;
-        padding: 5px 10px;
-        color: $c1-dark;
-        .quote-text {
-            width: 90%;
-            margin: 0 auto;
-            text-align: center;
-            font-style: italic;
-            line-height: 17px;
-        }
-        .quote-author {
-            text-align: right;
+
+        input[type="checkbox"] {
+            display: none;
         }
     }
+
     .footer {
         background-color: $bg-dark;
         padding: 5px 10px;
+
         a {
             text-decoration: none;
         }
+
         span {
             position: relative;
             color: $c1-dark;
         }
+
         #fBtn span {
             text-decoration: underline;
         }
+
         // img {
         //     height: 20px;
         //     width: auto;
@@ -117,6 +122,7 @@ body {
             cursor: pointer;
         }
     }
+
     .details {
         color: $c1-dark;
         background-color: $bg-dark;
@@ -127,12 +133,15 @@ body {
         a {
             color: $c1-dark;
         }
+
     }
+
     .creator {
         color: $c1-dark;
         background-color: $bg-dark;
         padding: 5px 10px;
         text-align: center;
+
         .linkedin {
             height: 20px;
             width: 20px;
@@ -144,33 +153,83 @@ body {
         a {
             color: $c1-dark;
         }
+
         padding: 5px 10px;
         text-align: center;
     }
+
 }
 
 /* Checkbox UI enhancement */
 
-input[type="checkbox"] {
-    display: none;
-  }
-  
-  .checkbox-label {
+.checkbox-label {
     display: inline-block;
     width: 1.2rem;
     height: 1.2rem;
     background-image: url('/icons/close_eye.png');
     background-size: contain;
-  }
-  
-  input[type="checkbox"]:checked + .checkbox-label {
+}
+
+input[type="checkbox"]:checked+.checkbox-label {
     background-image: url('/icons/eye_open.png');
-  }
-  
-  
-  .option-div{
+}
+
+
+.option-div {
     width: 100%;
     display: flex;
     justify-content: space-between;
-  }
-  
+}
+
+.ai-box {
+    background-color: $bg2-dark;
+    color: $c1-dark;
+    padding:10px;
+
+    .ai-terms {
+        margin-bottom: 5px;
+    }
+    
+    #api-key {
+        width: 99%;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    
+    .ai-inputs {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    
+    .ai-getKey {
+        font-size: $f2;
+        text-decoration: underline;
+        cursor: pointer;
+
+        :hover {
+            color: $link-color;
+            text-decoration: $link-color;
+        }
+    }
+
+    .output {
+        background-color: $output-bg;
+        border: $output-border;
+        padding: $output-padding;
+        height: 300px;
+        overflow: auto;
+        border-radius: 5px; // Optional: rounded corners
+        color: $bg-dark; // Text color (modify as needed)
+        font-size: $f2; // Font size (modify as needed)
+        font-family: monospace;
+        white-space: pre-wrap; /* Preserve both spaces and line breaks */
+    }
+
+    .ai-button {
+        margin-left: 5px;
+
+        &:hover {
+            cursor: pointer; // Change cursor on hover
+        }
+    }
+}
