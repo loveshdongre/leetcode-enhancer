@@ -213,9 +213,6 @@ input[type="checkbox"]:checked+.checkbox-label {
     }
 
     .output {
-        background-color: $output-bg;
-        border: $output-border;
-        padding: $output-padding;
         height: 300px;
         overflow: auto;
         border-radius: 5px; // Optional: rounded corners

@@ -151,9 +151,6 @@ input[type=checkbox]:checked + .checkbox-label {
   margin-top: 5px;
   margin-bottom: 5px;
 }
-.ai-box .ai-button {
-  margin-left: 5px;
-}
 .ai-box .ai-getKey {
   font-size: 12px;
   text-decoration: underline;
@@ -163,4 +160,19 @@ input[type=checkbox]:checked + .checkbox-label {
   color: rgb(14, 115, 222);
   -webkit-text-decoration: rgb(14, 115, 222);
           text-decoration: rgb(14, 115, 222);
+}
+.ai-box .output {
+  height: 300px;
+  overflow: auto;
+  border-radius: 5px;
+  color: rgb(40, 42, 46);
+  font-size: 12px;
+  font-family: monospace;
+  white-space: pre-wrap; /* Preserve both spaces and line breaks */
+}
+.ai-box .ai-button {
+  margin-left: 5px;
+}
+.ai-box .ai-button:hover {
+  cursor: pointer;
 }/*# sourceMappingURL=popup.css.map */

@@ -1,32 +1,3 @@
-(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-const KEY_NAME_OPTIONS = "options";
-const APP_NAME = "Leetcode Enhancer";
-const MESSAGE_ACTIVATE_ICON = 'activate_icon';
-const MESSAGE_GET_CODE = 'get_code'
-const FIREFOX_APP_PAGE_URL = "https://addons.mozilla.org/en-US/firefox/addon/leetcode-enhancer/";
-const CHROME_APP_PAGE_URL = "https://chrome.google.com/webstore/detail/leetcode-enhancer/gcmncppaaebldbkgkcbojghpmpjkdlmp";
-
-module.exports = {KEY_NAME_OPTIONS, APP_NAME, MESSAGE_ACTIVATE_ICON, FIREFOX_APP_PAGE_URL, CHROME_APP_PAGE_URL, MESSAGE_GET_CODE};
-},{}],2:[function(require,module,exports){
-// debugger.js
-const {APP_NAME} = require('./constants');
-// Set the debug mode (true to enable debugging)
-const debug = true;
-
-/**
- * Prints a message to the console if debugging is enabled.
- * @param {string} message - The message to print.
- */
-function print(message) {
-    if (debug) {
-        console.log(`[${APP_NAME}]: ${message}`);
-    }
-}
-
-// Export the print function
-module.exports = print;
-
-},{"./constants":1}],3:[function(require,module,exports){
 const {KEY_NAME_OPTIONS, MESSAGE_GET_CODE} = require('./constants.js');
 const print = require('./debugger.js');
 const {isIterable, storeDataWithObjectWrapping, getData, getDataAsUint8Array, storeData} = require('./utils.js');
@@ -324,45 +295,3 @@ function actionButtonUnusable() {
     triggerButton.style.backgroundColor = 'yellow'; // Set background to yellow when unusable
     triggerButton.disabled = true; // Disable the button
 }
-},{"./constants.js":1,"./debugger.js":2,"./utils.js":4}],4:[function(require,module,exports){
-const print = require('./debugger.js');
-let browser = window.browser || window.chrome;
-
-/**
- * Checks if an object is iterable.
- * @param {Object} obj - The object to check.
- * @returns {boolean} - True if the object is iterable, false otherwise.
- */
-function isIterable(obj) {
-    if(obj != null && typeof obj[Symbol.iterator] === 'function')
-        return true;
-    print(`${JSON.stringify(obj)} is not iterable`)
-}
-
-function storeDataWithObjectWrapping(key, value) {
-    const data = {};
-    data[key] = value;
-    storeData(data);
-}
-
-function storeData(data) {
-    browser.storage.local.set(data);
-}
- 
-
-function getData(key, callback) {
-    try {
-        browser.storage.local.get([key], result => callback(result[key]));
-    }
-    catch (err) {
-        print("Error while retrieving key");
-    }
-}
-
-async function getDataAsUint8Array(key) {
-    return new Uint8Array((await browser.storage.local.get(key))[key] || []);
-}
-
-// Export the isIterable function using CommonJS syntax
-module.exports = {isIterable, storeDataWithObjectWrapping, getData, getDataAsUint8Array, storeData};
-},{"./debugger.js":2}]},{},[3]);

@@ -15,7 +15,7 @@
     }],
 
     "background": {
-        "service_worker": "service_worker.js"
+        "service_worker": "service-worker.js"
     },
     "action": {
         "browser_style": true,
