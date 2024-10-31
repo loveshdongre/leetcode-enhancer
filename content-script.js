@@ -112,7 +112,6 @@ function hideSolvedDiffFromCodingArea(checked) {
     if (diffCodingArea) {
         if (checked) {
             diffCodingArea.classList.remove('hide_leetcode-enhancer');
-
             for (var i = 0; i < diffType.length; ++i) {
                 diffType[i].classList.remove('hide_leetcode-enhancer');
             }
@@ -133,6 +132,12 @@ function hideSolvedDiffFromCodingArea(checked) {
         }
     }
 }
+
+// function toggleClass(elements, className, checked) {
+//     elements.forEach(element => {
+//         element.classList[checked ? 'remove' : 'add'](className);
+//     });
+// }
 
 //###################### HIDE DIFF OF SIMILAR Problems FROM NEW CODING AREA
 function hideDiffOfSimilarProbFromNewCodingArea(checked) {

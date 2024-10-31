@@ -68,19 +68,31 @@ $ cd leetcode-enhancer
 ### Microsoft Edge
 * follow steps in this [link](https://www.windowscentral.com/how-install-non-store-extensions-microsoft-edge)
 
+## Testing a change
+
+1. Install Live Sass Compiler (Ritwick Dey) extension on VS code or any other compiler of you choice and make sure before testing the compiler is watching and converting you scss file into css if making any changes in scss file.
+2. Install browserify globally 
+`npm i browserify -g`
+3. Once code changes are done run `run_browserify.sh` file. This take content-script-main.js, popup-main.js and service-worker-main.js and convert them to content-script.js, popup.js and service-worker.js respectively. For script files only edit the ones inside the scripts folder as the ones in root directory are generated via browserify.
+
 ## :file_folder: File Description
+- docs: Contains terms and condition, Licence and guide to obtain API key of Cohere
 - icons: contains app logo, custom checkmark logos, etc
 - images: contains display images for web stores (not deployed so don't add images in this folder)
+- scripts: this is the main source folder where all the scripts are present. Browserify will bundle scripts within this folder.
+- .babelrc: babel configuration file
 - .gitignore: files ignored by git
-- background.js: One important function is listens event from the content-script and enables extensioin icon in the browser
 - content-script.css: for injecting custom style sheet.
-- LICENSE: MIT License file
+- deployment-zip-maker.sh: bash file to create zip file of the only files important for deployment
 - manifest.json: Heart of the extension which contains all the configurations. (tip: understand this first)
 - popup.css: style sheet for extension pop
 - popup.css.map: intermediate file generated while converting .scss file to .css file with Live Sass Compiler extension (Vscode)
 - popup.html: html file for extension pop
 - popup.js: js file to handle changes like storaging checkbox preferences.
+- popup.scss: Scss file for styling popup.html file.
 - README.md: Guide for the entire extension
+- run_browserify.sh: It will convert scripts written in scripts folder to service-worker.js, content-scripts.js and popup.js in the root directory.
+- service-worker.js (background script): One important function is listens event from the content-script and enables extensioin icon in the browser
 
 ## :handshake: Contribution
 Contributions are always welcomed, here is what you need to do:
@@ -102,7 +114,6 @@ In order to add more useful features and keep the extension bug free your feedba
 * Ubuntu 20.04
 * Mozilla Firefox 83.0
 * Google Chrome 87.0
-* Live Sass Compiler (Ritwick Dey)
 
 ## :clipboard: License
 MIT © <a href = "https://loveshdongre.tech" target="_blank">Lovesh Dongre</a>

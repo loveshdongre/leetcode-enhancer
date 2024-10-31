@@ -188,6 +188,10 @@ input[type="checkbox"]:checked+.checkbox-label {
 
     .ai-terms {
         margin-bottom: 5px;
+
+        a {
+            color: $c1;
+        }
     }
     
     #api-key {
@@ -209,6 +213,10 @@ input[type="checkbox"]:checked+.checkbox-label {
         :hover {
             color: $link-color;
             text-decoration: $link-color;
+        }
+
+        a {
+            color: $c1;
         }
     }
 

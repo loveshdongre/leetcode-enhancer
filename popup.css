@@ -142,6 +142,9 @@ input[type=checkbox]:checked + .checkbox-label {
 .ai-box .ai-terms {
   margin-bottom: 5px;
 }
+.ai-box .ai-terms a {
+  color: #F0F0F0;
+}
 .ai-box #api-key {
   width: 99%;
   margin-top: 5px;
@@ -160,6 +163,9 @@ input[type=checkbox]:checked + .checkbox-label {
   color: rgb(14, 115, 222);
   -webkit-text-decoration: rgb(14, 115, 222);
           text-decoration: rgb(14, 115, 222);
+}
+.ai-box .ai-getKey a {
+  color: #F0F0F0;
 }
 .ai-box .output {
   height: 300px;
