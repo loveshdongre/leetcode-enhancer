@@ -118,7 +118,7 @@ function hideSolvedDiffFromCodingArea(checked) {
             }
 
             for (var i = 0; i < diffNext.length; ++i) {
-                diffNext[i].classList.remove('blur');
+                diffNext[i].classList.remove('remove_diff_color_leetcode-enhancer');
             }
         } else {
             diffCodingArea.classList.add('hide_leetcode-enhancer');
@@ -128,7 +128,7 @@ function hideSolvedDiffFromCodingArea(checked) {
             }
 
             for (var i = 0; i < diffNext.length; ++i) {
-                diffNext[i].classList.add('blur');
+                diffNext[i].classList.add('remove_diff_color_leetcode-enhancer');
             }
         }
     }
