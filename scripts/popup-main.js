@@ -233,7 +233,7 @@ function sendMessageToContentScriptToGetCode(apiKey) {
                     if (response && response.code) {
                         const code = response.code;
                         const question = "Refactoring my LeetCode solution to improve its code quality and readability in the same programming language as written. Give meaning full names\n";
-                        makeCohereRequest(apiKey, question + code);
+                        requestCoherePermissionIfNeeded(makeCohereRequest, apiKey, question + code);
                     }
                 });
             });
@@ -245,6 +245,32 @@ function sendMessageToContentScriptToGetCode(apiKey) {
 }
 
 /* ==================== Cohere API Call ==================== */
+
+function requestCoherePermissionIfNeeded(callback, apiKey, payload) {
+    chrome.permissions.contains(
+      { origins: ["https://api.cohere.ai/*"] },
+      (hasPermission) => {
+        if (hasPermission) {
+          // Permission already granted, proceed with the API call
+          callback(apiKey, payload);
+        } else {
+          // Permission not granted, request it
+          chrome.permissions.request(
+            { origins: ["https://api.cohere.ai/*"] },
+            (granted) => {
+              if (granted) {
+                // Permission granted, proceed with the API call
+                callback();
+              } else {
+                // Permission denied, handle accordingly
+                print("Permission denied for Cohere API access.");
+              }
+            }
+          );
+        }
+      }
+    );
+  }
 
 function makeCohereRequest(apiKey, question) {
     actionButtonUnusable();

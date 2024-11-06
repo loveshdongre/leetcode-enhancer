@@ -327,9 +327,11 @@ function hideStatusFromProblemSetTableOfCodingArea(checked) {
 
 // ################# HIDE STATUS FROM NEW CODING AREA ############
 function hideStatusFromNewCodingArea(checked) {
-    solvedMarkParent = document.querySelector('[data-track-load="description_content"]').parentNode.previousSibling.previousSibling.lastChild
-    if(solvedMarkParent == null || !solvedMarkParent.classList.contains('text-body'))
+    solvedMarkParent = document.querySelector('[data-track-load="description_content"]')?.parentNode?.previousSibling?.previousSibling?.lastChild
+    if(solvedMarkParent == null || !solvedMarkParent.classList.contains('text-body')) {
+        print("Couldn't find selector for status in new coding area. Could also be because the page didn't loaded");
         return;
+    }
     
     if(solvedMarkParent) {
         if(checked) {

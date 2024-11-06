@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Leetcode Enhancer",
-    "version": "1.67",
+    "version": "1.68",
     "author": "Lovesh Dongre",
     "description": "A browser extension to improve productivity on Leetcode.",
     "icons": {
@@ -33,5 +33,5 @@
         "show_matches": ["https://leetcode.com/*"]
     },
     "permissions": ["storage"],
-    "host_permissions": ["https://api.cohere.ai/*"]
+    "optional_host_permissions": ["https://api.cohere.ai/*"]
 }
