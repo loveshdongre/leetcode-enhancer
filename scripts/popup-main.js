@@ -232,7 +232,7 @@ function sendMessageToContentScriptToGetCode(apiKey) {
                 browser.tabs.sendMessage(tab.id, { action: MESSAGE_GET_CODE }, (response) => {
                     if (response && response.code) {
                         const code = response.code;
-                        const question = "Refactoring my LeetCode solution to improve its code quality and readability in the same programming language as written. Give meaning full names\n";
+                        const question = "Provide time and space complexity of the code.\n";
                         requestCoherePermissionIfNeeded(makeCohereRequest, apiKey, question + code);
                     }
                 });
