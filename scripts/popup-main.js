@@ -227,19 +227,37 @@ function isTermsCheckboxChecked() {
 
 function sendMessageToContentScriptToGetCode(apiKey) {
     browser.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        if (!tabs || tabs.length === 0) {
+            alert("No active tab found. Please make sure you're on a LeetCode page.");
+            return;
+        }
+
+        const activeTab = tabs[0];
+        if (!activeTab.url.includes("leetcode.com")) {
+            alert("Please navigate to a LeetCode page first.");
+            return;
+        }
+
         try {
-            tabs.forEach(tab => {
-                browser.tabs.sendMessage(tab.id, { action: MESSAGE_GET_CODE }, (response) => {
+            browser.tabs.sendMessage(activeTab.id, { action: MESSAGE_GET_CODE })
+                .then(response => {
                     if (response && response.code) {
                         const code = response.code;
                         const question = "Provide time and space complexity of the code.\n";
                         requestCoherePermissionIfNeeded(makeCohereRequest, apiKey, question + code);
+                    } else if (response && response.error) {
+                        alert(response.error);
+                    } else {
+                        alert("Failed to get code from the page. Please make sure you're on a LeetCode problem page.");
                     }
+                })
+                .catch(error => {
+                    print(`Error: ${error.message}`);
+                    alert("Failed to communicate with the page. Please refresh the page and try again.");
                 });
-            });
-        }
-        catch(err) {
-            print("error while sending the message");
+        } catch (err) {
+            print(`Error while sending message: ${err.message}`);
+            alert("An error occurred. Please refresh the page and try again.");
         }
     });
 }

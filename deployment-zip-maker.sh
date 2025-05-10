@@ -1,22 +1,66 @@
 #!/bin/bash
 
-# Specify the name of the output zip file
-OUTPUT_ZIP="my_archive.zip"
+# Run browserify to bundle the scripts
+echo "Running browserify..."
+./run_browserify.sh
 
-# Specify the files and folders to include in the zip
-FILES_AND_FOLDERS=(
-  "icons"
-  "content-script.css"
-  "content-script.js"
-  "manifest.json"
-  "popup.css"
-  "popup.html"
-  "popup.js"
-  "service-worker.js"
-)
+# Create deployment directories
+echo "Creating deployment directories..."
+mkdir -p deployment/chrome
+mkdir -p deployment/firefox
 
-# Create the zip file with the specified files and folders
-zip -r "$OUTPUT_ZIP" "${FILES_AND_FOLDERS[@]}"
+# Define files and folders to copy
+FOLDERS=("icons")
+FILES=("content-script.css" "content-script.js" "service-worker.js" "popup.html" "popup.css" "popup.js")
+
+# Create Chrome deployment
+echo "Creating Chrome deployment..."
+# Copy folders
+for folder in "${FOLDERS[@]}"; do
+    cp -r "$folder" deployment/chrome/
+done
+
+# Copy files
+for file in "${FILES[@]}"; do
+    cp "$file" deployment/chrome/
+done
+
+# Copy Chrome manifest
+cp manifest-chrome.json deployment/chrome/manifest.json
+
+# Verify Chrome deployment
+echo "Verifying Chrome deployment..."
+ls -la deployment/chrome/
+echo "Chrome deployment files copied successfully!"
+
+# Create Firefox deployment
+echo "Creating Firefox deployment..."
+# Copy folders
+for folder in "${FOLDERS[@]}"; do
+    cp -r "$folder" deployment/firefox/
+done
+
+# Copy files
+for file in "${FILES[@]}"; do
+    cp "$file" deployment/firefox/
+done
+
+# Copy Firefox manifest
+cp manifest-firefox.json deployment/firefox/manifest.json
+
+# Verify Firefox deployment
+echo "Verifying Firefox deployment..."
+ls -la deployment/firefox/
+echo "Firefox deployment files copied successfully!"
+
+# Create zip files
+echo "Creating zip files..."
+cd deployment
+zip -r chrome.zip chrome/
+zip -r firefox.zip firefox/
+cd ..
+
+echo "Deployment packages created in deployment directory!"
 
 echo "
 **********************[IMPORTANT]**************************

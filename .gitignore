@@ -3,3 +3,7 @@
 
 # TODO: Add More Relevant Ones
 popup.css.map
+
+# Deployment files
+deployment/
+*.zip
