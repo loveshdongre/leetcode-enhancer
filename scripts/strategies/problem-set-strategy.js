@@ -3,43 +3,39 @@ const FeatureStrategy = require('./base-strategy');
 class NewProblemSetStrategy extends FeatureStrategy {
     
     hideLockedProblems(checked) {
-        const temp = document.querySelectorAll('[role="table"] [role="row"]');
-        const lockIconPath = 'M7 8v2H6a3 3 0 00-3 3v6a3 3 0 003 3h12a3 3 0 003-3v-6a3 3 0 00-3-3h-1V8A5 5 0 007 8zm8 0v2H9V8a3 3 0 116 0zm-3 6a2 2 0 100 4 2 2 0 000-4z';
+        const temp = document.querySelectorAll('a[id]');
         
         temp.forEach(row => {
-            if (row.querySelector(`[role="cell"]:nth-child(1) path[d="${lockIconPath}"]`)) {
+            const cell = row.querySelector(`div>div:nth-child(1)>svg`);
+            if (cell && cell.getAttribute('data-icon') == 'lock') {
                 row.classList[checked ? 'remove' : 'add']('hide_leetcode-enhancer');
             }
         });
     }
 
     highlightSolvedProblems(checked) {
-        const temp = document.querySelectorAll('[role="table"] [role="row"]');
-        const solvedCheckMarkSvg = 'M21.6 12a9.6 9.6 0 01-9.6 9.6 9.6 9.6 0 110-19.2c1.507 0 2.932.347 4.2.965M19.8 6l-8.4 8.4L9 12';
-        const add_bg_class = document.querySelector('html').classList.contains('dark') ? 'add-bg-dark' : 'add-bg-old';
-        
+        const temp = document.querySelectorAll('a[id]');
+        const isDarkMode = document.querySelector('html').classList.contains('dark');
         temp.forEach(row => {
-            if (row.querySelector(`[role="cell"]:nth-child(1) path[d="${solvedCheckMarkSvg}"]`)) {
-                row.classList[checked ? 'add' : 'remove'](add_bg_class);
+            const cell = row.querySelector(`div>div:nth-child(1)>svg`);
+            if (cell && cell.getAttribute('data-icon') == 'check') {
+                if(!checked) {
+                    row.classList.add(isDarkMode ? 'add-bg-dark_leetcode-enhancer' : 'add-bg-light_leetcode-enhancer');
+                }
+                else {
+                    row.classList.remove('add-bg-dark_leetcode-enhancer');
+                    row.classList.remove('add-bg-light_leetcode-enhancer');
+                }
             }
         });
     }
 
-    hideSolvedDiff(checked) {
-        const el = document.querySelector("div.col-span-4.md\\:col-span-1")?.children;
-        if (el && el.length && el[3]) {
-            el[3].classList[checked ? 'remove' : 'add']('hide_leetcode-enhancer');
-        }
-    }
-
     hideSolvedProb(checked) {
-        const temp = document.querySelectorAll('[role="table"] [role="row"]');
-        const solvedCheckMarkSvg = 'M21.6 12a9.6 9.6 0 01-9.6 9.6 9.6 9.6 0 110-19.2c1.507 0 2.932.347 4.2.965M19.8 6l-8.4 8.4L9 12';
-        const attemptedCheckMarkSvg = 'M20 12.005v-.828a1 1 0 112 0v.829a10 10 0 11-5.93-9.14 1 1 0 01-.814 1.826A8 8 0 1020 12.005zM8.593 10.852a1 1 0 011.414 0L12 12.844l8.293-8.3a1 1 0 011.415 1.413l-9 9.009a1 1 0 01-1.415 0l-2.7-2.7a1 1 0 010-1.414z';
+        const temp = document.querySelectorAll('a[id]');
         
         temp.forEach(row => {
-            if (row.querySelector(`[role="cell"]:nth-child(1) path[d="${solvedCheckMarkSvg}"]`) || 
-                row.querySelector(`[role="cell"]:nth-child(1) path[d="${attemptedCheckMarkSvg}"]`)) {
+            const cell = row.querySelector(`div>div:nth-child(1)>svg`);
+            if (cell && cell.getAttribute('data-icon') == 'check') {
                 row.classList[checked ? 'remove' : 'add']('hide_leetcode-enhancer');
             }
         });

@@ -1,7 +1,6 @@
 class FeatureStrategy {
     hideLockedProblems(checked) {}
     highlightSolvedProblems(checked) {}
-    hideSolvedDiff(checked) {}
     hideSolvedProb(checked) {}
     setSolutionsUsers(checked) {}
     toggleByColName(colName, checked) {}

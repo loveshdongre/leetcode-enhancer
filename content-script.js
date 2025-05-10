@@ -62,8 +62,6 @@ function applyChanges(options) {
             currentStrategy.hideLockedProblems(option.checked);
         } else if (name === 'highlight') {
             currentStrategy.highlightSolvedProblems(option.checked);
-        } else if (name === 'solvedDiff') {
-            currentStrategy.hideSolvedDiff(option.checked);
         } else if (name === 'solved') {
             currentStrategy.hideSolvedProb(option.checked);
         } else if(name === 'disUsers') {
@@ -85,7 +83,7 @@ function getUserCode() {
 // debugger.js
 const {APP_NAME} = require('./constants');
 // Set the debug mode (true to enable debugging)
-const debug = true;
+const debug = false;
 
 /**
  * Prints a message to the console if debugging is enabled.
@@ -154,15 +152,15 @@ const { KEY_NAME_OPTIONS } = require('./constants.js');
 
 const ERROR_IN_MUTATION_OBSERVER_CALLBACK = "Error in MutationObserver callback";
 const ERROR_PROBLEM_SET_UI_NOT_FOUND = "Problem Set UI element not found.";
-const ERROR_APP_PAGE_NOT_FOUND = "App page element not found.";
-const ERROR_BASE_CONTENT_NOT_FOUND = "Base content element not found.";
 const ERROR_CODING_AREA_NOT_FOUND = "Coding Area element not found.";
+const ERROR_BASE_CONTENT_NOT_FOUND = "Base content element and qd-content element not found.";
 const ERROR_NO_VALID_MODE = "No valid mode found yet to observe.";
 
-const SELECTOR_PROBLEM_SET_UI = '__next';
-const SELECTOR_APP_PAGE = 'app';
+// More specific selectors for better targeting
+const SELECTOR_PROBLEM_SET_UI = '#__next';  // Using ID selector for better specificity
+const SELECTOR_CODING_AREA = '#__next';     // Using ID selector for better specificity
 const SELECTOR_BASE_CONTENT = 'base_content';
-const SELECTOR_CODING_AREA = '__next';
+const SELECTOR_NEW_CONTEST_PAGE = 'qd-content';
 
 /**
  * Initialize the Mutation Observer.
@@ -181,7 +179,7 @@ function initMutationObserver(browser, mode, modifyThenApplyChanges) {
     // Start observing based on mode
     switch (mode) {
         case Mode.PROBLEM_SET:
-            const ui = document.getElementById(SELECTOR_PROBLEM_SET_UI);
+            const ui = document.querySelector(SELECTOR_PROBLEM_SET_UI);
             if (ui) {
                 observer.observe(ui, {
                     childList: true,
@@ -193,7 +191,7 @@ function initMutationObserver(browser, mode, modifyThenApplyChanges) {
             break;
 
         case Mode.CODING_AREA:
-            const code_ui = document.getElementById(SELECTOR_CODING_AREA);
+            const code_ui = document.querySelector(SELECTOR_CODING_AREA);
             if (code_ui) {
                 observer.observe(code_ui, {
                     childList: true,
@@ -204,26 +202,36 @@ function initMutationObserver(browser, mode, modifyThenApplyChanges) {
             }
             break;
 
-        case Mode.SOLUTIONS:
-            const page = document.getElementById(SELECTOR_APP_PAGE);
-            if (page) {
-                observer.observe(page, {
-                    childList: true,
-                    subtree: true
-                });
-            } else {
-                print(ERROR_APP_PAGE_NOT_FOUND);
-            }
-            break;
-
         case Mode.CONTEST:
-            const base_content = document.getElementById(SELECTOR_BASE_CONTENT);
-            if (base_content) {
-                observer.observe(base_content, {
+            // Handle old contest page
+            const old_contest_page = document.getElementById(SELECTOR_BASE_CONTENT);
+            if (old_contest_page) {
+                observer.observe(old_contest_page, {
                     childList: true,
                     subtree: true
                 });
-            } else {
+                break;
+            }
+
+            // Handle new contest page
+            const new_contest_page = document.getElementById(SELECTOR_NEW_CONTEST_PAGE);
+            if (new_contest_page) {
+                observer.observe(new_contest_page, {
+                    childList: true,
+                    subtree: true
+                });
+            }
+
+            // Handle new contest page sidebar (loads after 2-3 seconds)
+            const next_root = document.querySelector('#__next');
+            if (next_root) {
+                observer.observe(next_root.parentElement, {
+                    childList: true,
+                    subtree: true
+                });
+            }
+
+            if (!old_contest_page && !new_contest_page && !next_root) {
                 print(ERROR_BASE_CONTENT_NOT_FOUND);
             }
             break;
@@ -277,12 +285,12 @@ function isContest() {
  */
 function findMode() {
     let mode;
-    if (isCodingArea()) {
+    if (isContest()) {
+        mode = Mode.CONTEST;
+    } else if (isCodingArea()) {
         mode = Mode.CODING_AREA;
     } else if (isProblemSetPage()) {
         mode = Mode.PROBLEM_SET;
-    } else if (isContest()) {
-        mode = Mode.CONTEST;
     }
     print(`Current mode value = ${mode}`);
     return mode;
@@ -294,7 +302,6 @@ module.exports = findMode;
 class FeatureStrategy {
     hideLockedProblems(checked) {}
     highlightSolvedProblems(checked) {}
-    hideSolvedDiff(checked) {}
     hideSolvedProb(checked) {}
     setSolutionsUsers(checked) {}
     toggleByColName(colName, checked) {}
@@ -306,6 +313,7 @@ module.exports = FeatureStrategy;
 const FeatureStrategy = require('./base-strategy');
 
 class CodingAreaStrategy extends FeatureStrategy {
+
     hideSolvedDiff(checked) {
         const diffCodingArea = document.querySelector('[data-track-load="description_content"]')?.parentElement?.previousElementSibling?.firstChild;
         const diffNext = document.querySelectorAll("a[rel ='noopener noreferrer'] div");
@@ -387,10 +395,45 @@ const FeatureStrategy = require('./base-strategy');
 
 class ContestStrategy extends FeatureStrategy {
     hideDiffFromContest(checked) {
+        
+        // old UI
         const diffLabel = document.querySelectorAll('.contest-question-info .list-group .list-group-item:nth-child(5) .label')[0];
         if (diffLabel) {
             diffLabel.style.visibility = checked ? 'visible_leetcode-enhancer' : 'hidden';
+            return;
         }
+
+        // new UI
+        const easyDiffLabel = document.querySelector('.text-difficulty-easy');
+        if (easyDiffLabel) {
+            easyDiffLabel.classList[checked ? 'remove' : 'add']('hide_leetcode-enhancer');
+        }
+
+        const mediumDiffLabel = document.querySelector('.text-difficulty-medium');
+        if (mediumDiffLabel) {
+            mediumDiffLabel.classList[checked ? 'remove' : 'add']('hide_leetcode-enhancer');
+        }
+
+        const hardDiffLabel = document.querySelector('.text-difficulty-hard');
+        if (hardDiffLabel) {
+            hardDiffLabel.classList[checked ? 'remove' : 'add']('hide_leetcode-enhancer');
+        }
+
+        // Handle multiple elements in sidebar
+        const easyDiffLabelsSideBar = document.querySelectorAll('.text-sd-easy');
+        easyDiffLabelsSideBar.forEach(label => {
+            label.classList[checked ? 'remove' : 'add']('hide_leetcode-enhancer');
+        });
+
+        const mediumDiffLabelsSideBar = document.querySelectorAll('.text-sd-medium');
+        mediumDiffLabelsSideBar.forEach(label => {
+            label.classList[checked ? 'remove' : 'add']('hide_leetcode-enhancer');
+        });
+
+        const hardDiffLabelsSideBar = document.querySelectorAll('.text-sd-hard');
+        hardDiffLabelsSideBar.forEach(label => {
+            label.classList[checked ? 'remove' : 'add']('hide_leetcode-enhancer');
+        });
     }
 
     toggleByColName(colName, checked) {
@@ -407,43 +450,39 @@ const FeatureStrategy = require('./base-strategy');
 class NewProblemSetStrategy extends FeatureStrategy {
     
     hideLockedProblems(checked) {
-        const temp = document.querySelectorAll('[role="table"] [role="row"]');
-        const lockIconPath = 'M7 8v2H6a3 3 0 00-3 3v6a3 3 0 003 3h12a3 3 0 003-3v-6a3 3 0 00-3-3h-1V8A5 5 0 007 8zm8 0v2H9V8a3 3 0 116 0zm-3 6a2 2 0 100 4 2 2 0 000-4z';
+        const temp = document.querySelectorAll('a[id]');
         
         temp.forEach(row => {
-            if (row.querySelector(`[role="cell"]:nth-child(1) path[d="${lockIconPath}"]`)) {
+            const cell = row.querySelector(`div>div:nth-child(1)>svg`);
+            if (cell && cell.getAttribute('data-icon') == 'lock') {
                 row.classList[checked ? 'remove' : 'add']('hide_leetcode-enhancer');
             }
         });
     }
 
     highlightSolvedProblems(checked) {
-        const temp = document.querySelectorAll('[role="table"] [role="row"]');
-        const solvedCheckMarkSvg = 'M21.6 12a9.6 9.6 0 01-9.6 9.6 9.6 9.6 0 110-19.2c1.507 0 2.932.347 4.2.965M19.8 6l-8.4 8.4L9 12';
-        const add_bg_class = document.querySelector('html').classList.contains('dark') ? 'add-bg-dark' : 'add-bg-old';
-        
+        const temp = document.querySelectorAll('a[id]');
+        const isDarkMode = document.querySelector('html').classList.contains('dark');
         temp.forEach(row => {
-            if (row.querySelector(`[role="cell"]:nth-child(1) path[d="${solvedCheckMarkSvg}"]`)) {
-                row.classList[checked ? 'add' : 'remove'](add_bg_class);
+            const cell = row.querySelector(`div>div:nth-child(1)>svg`);
+            if (cell && cell.getAttribute('data-icon') == 'check') {
+                if(!checked) {
+                    row.classList.add(isDarkMode ? 'add-bg-dark_leetcode-enhancer' : 'add-bg-light_leetcode-enhancer');
+                }
+                else {
+                    row.classList.remove('add-bg-dark_leetcode-enhancer');
+                    row.classList.remove('add-bg-light_leetcode-enhancer');
+                }
             }
         });
     }
 
-    hideSolvedDiff(checked) {
-        const el = document.querySelector("div.col-span-4.md\\:col-span-1")?.children;
-        if (el && el.length && el[3]) {
-            el[3].classList[checked ? 'remove' : 'add']('hide_leetcode-enhancer');
-        }
-    }
-
     hideSolvedProb(checked) {
-        const temp = document.querySelectorAll('[role="table"] [role="row"]');
-        const solvedCheckMarkSvg = 'M21.6 12a9.6 9.6 0 01-9.6 9.6 9.6 9.6 0 110-19.2c1.507 0 2.932.347 4.2.965M19.8 6l-8.4 8.4L9 12';
-        const attemptedCheckMarkSvg = 'M20 12.005v-.828a1 1 0 112 0v.829a10 10 0 11-5.93-9.14 1 1 0 01-.814 1.826A8 8 0 1020 12.005zM8.593 10.852a1 1 0 011.414 0L12 12.844l8.293-8.3a1 1 0 011.415 1.413l-9 9.009a1 1 0 01-1.415 0l-2.7-2.7a1 1 0 010-1.414z';
+        const temp = document.querySelectorAll('a[id]');
         
         temp.forEach(row => {
-            if (row.querySelector(`[role="cell"]:nth-child(1) path[d="${solvedCheckMarkSvg}"]`) || 
-                row.querySelector(`[role="cell"]:nth-child(1) path[d="${attemptedCheckMarkSvg}"]`)) {
+            const cell = row.querySelector(`div>div:nth-child(1)>svg`);
+            if (cell && cell.getAttribute('data-icon') == 'check') {
                 row.classList[checked ? 'remove' : 'add']('hide_leetcode-enhancer');
             }
         });

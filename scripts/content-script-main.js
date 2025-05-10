@@ -52,8 +52,6 @@ function applyChanges(options) {
             currentStrategy.hideLockedProblems(option.checked);
         } else if (name === 'highlight') {
             currentStrategy.highlightSolvedProblems(option.checked);
-        } else if (name === 'solvedDiff') {
-            currentStrategy.hideSolvedDiff(option.checked);
         } else if (name === 'solved') {
             currentStrategy.hideSolvedProb(option.checked);
         } else if(name === 'disUsers') {

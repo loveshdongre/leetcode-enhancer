@@ -1,6 +1,7 @@
 const FeatureStrategy = require('./base-strategy');
 
 class CodingAreaStrategy extends FeatureStrategy {
+
     hideSolvedDiff(checked) {
         const diffCodingArea = document.querySelector('[data-track-load="description_content"]')?.parentElement?.previousElementSibling?.firstChild;
         const diffNext = document.querySelectorAll("a[rel ='noopener noreferrer'] div");

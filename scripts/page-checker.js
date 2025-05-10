@@ -36,12 +36,12 @@ function isContest() {
  */
 function findMode() {
     let mode;
-    if (isCodingArea()) {
+    if (isContest()) {
+        mode = Mode.CONTEST;
+    } else if (isCodingArea()) {
         mode = Mode.CODING_AREA;
     } else if (isProblemSetPage()) {
         mode = Mode.PROBLEM_SET;
-    } else if (isContest()) {
-        mode = Mode.CONTEST;
     }
     print(`Current mode value = ${mode}`);
     return mode;
