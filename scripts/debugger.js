@@ -1,7 +1,7 @@
 // debugger.js
 const {APP_NAME} = require('./constants');
 // Set the debug mode (true to enable debugging)
-const debug = true;
+const debug = false;
 
 /**
  * Prints a message to the console if debugging is enabled.
