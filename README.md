@@ -6,28 +6,27 @@
 **A cross-browser extension to improve :rocket: productivity on 
 <a href="https://leetcode.com" target="_blank">Leetcode</a>**.
 
-It is a light-weight browser extension which runs in the menu bar. It boosts your productivity by hiding unnecessary visual elements from the screen, enabling you to focus on what is important. You can change your preferences form the popup menu and find out what best suits your needs.
+It is a light-weight browser extension which can be pinned in menu bar. It boosts your productivity by hiding unnecessary visual elements from the screen, enabling you to focus on what is important. You can change your preferences form the popup menu and find out what best suits your needs.
 
 <div align="center">
     <img src="./images/ui-dark-new.png">
     <br>
-    <img src="./images/ui4-dark.png">
+    <img src="./images/lock-hide.gif">
     <br>
-    <img src="./images/ui3-dark.png">
+    <img src="./images/solve-highlight.gif">
 </div>
 
 ## :heavy_check_mark: Features
+* Hide Difficulty
 * Hide Locked Problems
-* Hide / Show Specific Table Columns (incl. Difficulty, Acceptance etc.)
 * Highlight Solved Problems
-* Hide Difficulty Count
-* Hide Solutions Users' Profile Images
+* Hide Solved Problems
+* Hide / Show Problems Table Columns (incl. Difficulty, Acceptance etc.)
 
 **Note**: The extension functions on the following URLs :
-* https://leetcode.com/problemset/all/ (old and new UI)
-* https://leetcode.com/tag/
-* https://leetcode.com/problems/
-* https://leetcode.com/problems/discuss/
+* https://leetcode.com/problemset/
+* https://leetcode.com/problems/*
+* https://leetcode.com/contest/
 
 ## :star2: Installation
 ### Google Chrome
@@ -55,31 +54,39 @@ Would really appreciate if you can :star: the repository
 $ git clone https://github.com/loveshdongre/leetcode-enhancer/
 $ cd leetcode-enhancer
 ```
-### Google Chrome
-* Go to `chrome://extensions/` and enable `Developer mode`
+
+### 1. Building the Extension locally
+
+1. Install Live Sass Compiler (Ritwick Dey) extension on VS code or any other compiler of you choice and make sure before testing the compiler is watching and converting you scss file into css if making any changes in scss file. It is required to convert the file popup.scss to popup.css only.
+2. Install browserify globally 
+`npm i browserify -g`
+3. Once code changes are done run `deployment-zip-maker.sh` file.
+    >a. This take content-script-main.js, popup-main.js and service-worker-main.js and convert them to content-script.js, popup.js and service-worker.js respectively.
+    
+    >b. Creates the `deployment` folder which will be used to load the extension in the browser
+
+### 2. Load Extension in the Browser
+#### Google Chrome
+* Go to `chrome://extensions/` from url search and enable `Developer mode`
 * Click on `load unpacked` and select the folder containing `manifest.json` file
 * Pin this extension to use it.
 
-### Mozilla Firefox
-* Go to `about:debugging` and click on `This Firefox` (if you are not already there)
+#### Mozilla Firefox
+* Go to `about:debugging` from url search and click on `This Firefox` (if you are not already there)
 * Click on `Load Temporary Add-on...` and select the `manifest.json` file
 * The addon will appear next to the address bar only when you are on leetcode
 
-### Microsoft Edge
+#### Microsoft Edge
 * follow steps in this [link](https://www.windowscentral.com/how-install-non-store-extensions-microsoft-edge)
 
-## Testing a change
-
-1. Install Live Sass Compiler (Ritwick Dey) extension on VS code or any other compiler of you choice and make sure before testing the compiler is watching and converting you scss file into css if making any changes in scss file.
-2. Install browserify globally 
-`npm i browserify -g`
-3. Once code changes are done run `run_browserify.sh` file. This take content-script-main.js, popup-main.js and service-worker-main.js and convert them to content-script.js, popup.js and service-worker.js respectively. For script files only edit the ones inside the scripts folder as the ones in root directory are generated via browserify.
 
 ## :file_folder: File Description
+- .github: Hidden directory that contains git template for submitting an issue.
+- deployment: It's gets generated when user run file `deployment-zip-maker.sh`. It is used to build browser specific directory for testing and creating zip for deployment in extension app stores.
 - docs: Contains terms and condition, Licence and guide to obtain API key of Cohere
 - icons: contains app logo, custom checkmark logos, etc
-- images: contains display images for web stores (not deployed so don't add images in this folder)
-- scripts: this is the main source folder where all the scripts are present. Browserify will bundle scripts within this folder.
+- images: contains display images for web stores
+- scripts: this is the main source folder where all the scripts are present. This code is mostly modified for development.
 - .babelrc: babel configuration file
 - .gitignore: files ignored by git
 - content-script.css: for injecting custom style sheet.
@@ -91,8 +98,7 @@ $ cd leetcode-enhancer
 - popup.js: js file to handle changes like storaging checkbox preferences.
 - popup.scss: Scss file for styling popup.html file.
 - README.md: Guide for the entire extension
-- run_browserify.sh: It will convert scripts written in scripts folder to service-worker.js, content-scripts.js and popup.js in the root directory.
-- service-worker.js (background script): One important function is listens event from the content-script and enables extensioin icon in the browser
+- service-worker.js (background script): One important function is listens event from the content-script and enables extension icon in the browser
 
 ## :handshake: Contribution
 Contributions are always welcomed, here is what you need to do:
