@@ -9,11 +9,11 @@
 It is a light-weight browser extension which can be pinned in menu bar. It boosts your productivity by hiding unnecessary visual elements from the screen, enabling you to focus on what is important. You can change your preferences form the popup menu and find out what best suits your needs.
 
 <div align="center">
-    <img src="./images/ui-dark-new.png">
+    <img src="./images/ui-dark-new.png" style="max-height:400px">
     <br>
-    <img src="./images/lock-hide.gif">
+    <img src="./images/lock-hide.gif" style="min-height:400px">
     <br>
-    <img src="./images/solve-highlight.gif">
+    <img src="./images/solve-highlight.gif" style="min-height:400px">
 </div>
 
 ## :heavy_check_mark: Features
