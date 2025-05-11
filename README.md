@@ -9,7 +9,7 @@
 It is a light-weight browser extension which can be pinned in menu bar. It boosts your productivity by hiding unnecessary visual elements from the screen, enabling you to focus on what is important. You can change your preferences form the popup menu and find out what best suits your needs.
 
 <div align="center">
-    <img src="./images/ui-dark-new.png" style="max-height:400px">
+    <img src="./images/ui-dark-new.png" style="max-height:200px">
     <br>
     <img src="./images/lock-hide.gif" style="min-height:400px">
     <br>
