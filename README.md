@@ -46,7 +46,8 @@ It is a light-weight browser extension which can be pinned in menu bar. It boost
 * In case of Mozilla Firefox, the icon will appear in the address bar as this is a page specific extension, this makes sure the extension is running, only when you need it and not all the time.
 
 ## :crown: For developers
-Clone the source code locally:
+
+### 1. Clone the source code locally:
 
 Would really appreciate if you can :star: the repository
 
@@ -55,7 +56,7 @@ $ git clone https://github.com/loveshdongre/leetcode-enhancer/
 $ cd leetcode-enhancer
 ```
 
-### 1. Building the Extension locally
+### 2. Building the Extension locally
 
 1. Install Live Sass Compiler (Ritwick Dey) extension on VS code or any other compiler of you choice and make sure before testing the compiler is watching and converting you scss file into css if making any changes in scss file. It is required to convert the file popup.scss to popup.css only.
 2. Install browserify globally 
@@ -65,7 +66,7 @@ $ cd leetcode-enhancer
     
     >b. Creates the `deployment` folder which will be used to load the extension in the browser
 
-### 2. Load Extension in the Browser
+### 3. Load Extension in the Browser
 #### Google Chrome
 * Go to `chrome://extensions/` from url search and enable `Developer mode`
 * Click on `load unpacked` and select the folder containing `manifest.json` file
@@ -117,9 +118,9 @@ In order to add more useful features and keep the extension bug free your feedba
 
 
 ## :earth_asia: Development Env Tools
-* Ubuntu 20.04
-* Mozilla Firefox 83.0
-* Google Chrome 87.0
+* MacOS Sequoia: 15.4.1
+* Mozilla Firefox: 138.0.1
+* Google Chrome / Brave / Edge: (Chromium) 136.0.7103.93
 
 ## :clipboard: License
 MIT © <a href = "https://loveshdongre.tech" target="_blank">Lovesh Dongre</a>
