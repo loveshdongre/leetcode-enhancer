@@ -7,7 +7,7 @@ const print = require('./debugger.js');
 const { MESSAGE_ACTIVATE_ICON, MESSAGE_GET_CODE } = require('./constants.js');
 const { FeatureStrategyFactory } = require('./feature-strategies.js');
 
-const browser = window.browser || window.chrome;
+var browser = browser || chrome;
 let mode = findMode();
 let currentStrategy = FeatureStrategyFactory.getStrategy(mode);
 
@@ -36,6 +36,7 @@ browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
     if (request.action === MESSAGE_GET_CODE) {
         const code = getUserCode();
+        print(`code obtained: ${code}`);
         sendResponse({ code: code });
     }
 });

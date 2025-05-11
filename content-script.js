@@ -17,7 +17,7 @@ const print = require('./debugger.js');
 const { MESSAGE_ACTIVATE_ICON, MESSAGE_GET_CODE } = require('./constants.js');
 const { FeatureStrategyFactory } = require('./feature-strategies.js');
 
-const browser = window.browser || window.chrome;
+var browser = browser || chrome;
 let mode = findMode();
 let currentStrategy = FeatureStrategyFactory.getStrategy(mode);
 
@@ -46,6 +46,7 @@ browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
     if (request.action === MESSAGE_GET_CODE) {
         const code = getUserCode();
+        print(`code obtained: ${code}`);
         sendResponse({ code: code });
     }
 });
@@ -114,14 +115,14 @@ const print = require('./debugger.js');
  * @param {Object} payload - The message payload to send.
  */
 function sendMessage(payload) {
-    const browserAPI = window.browser || window.chrome;
-    if (!browserAPI || !browserAPI.runtime) {
+    var browser = browser || chrome;
+    if (!browser || !browser.runtime) {
         print('Browser API not available');
         return;
     }
 
     try {
-        browserAPI.runtime.sendMessage(payload);
+        browser.runtime.sendMessage(payload);
     } catch (err) {
         print(`Failed to send message: ${JSON.stringify(payload)} because of the following error: ${err}`);
     }

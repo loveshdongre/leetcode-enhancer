@@ -3,7 +3,7 @@ const print = require('./debugger.js');
 const {isIterable, storeDataWithObjectWrapping, getData, getDataAsUint8Array, storeData} = require('./utils.js');
 
 /* ==================== Compatibility Between Chrome and Firefox ==================== */
-let browser = window.browser || window.chrome;
+var browser = browser || chrome
 
 /* ==================== Initialization ==================== */
 document.addEventListener('DOMContentLoaded', initExtension);
@@ -233,6 +233,7 @@ function sendMessageToContentScriptToGetCode(apiKey) {
         }
 
         const activeTab = tabs[0];
+
         if (!activeTab.url.includes("leetcode.com")) {
             alert("Please navigate to a LeetCode page first.");
             return;
@@ -265,23 +266,24 @@ function sendMessageToContentScriptToGetCode(apiKey) {
 /* ==================== Cohere API Call ==================== */
 
 function requestCoherePermissionIfNeeded(callback, apiKey, payload) {
-    chrome.permissions.contains(
+    browser.permissions.contains(
       { origins: ["https://api.cohere.ai/*"] },
-      (hasPermission) => {
+      async (hasPermission) => {
         if (hasPermission) {
           // Permission already granted, proceed with the API call
           callback(apiKey, payload);
         } else {
           // Permission not granted, request it
-          chrome.permissions.request(
+          await browser.permissions.request(
             { origins: ["https://api.cohere.ai/*"] },
             (granted) => {
               if (granted) {
                 // Permission granted, proceed with the API call
-                callback();
+                callback(apiKey, payload);
               } else {
                 // Permission denied, handle accordingly
                 print("Permission denied for Cohere API access.");
+                alert("Permission denied for Cohere API access. Please grant permission to use the Cohere API.");
               }
             }
           );
@@ -328,7 +330,7 @@ function makeCohereRequest(apiKey, question) {
 
 function actionButtonUsable() {
     const triggerButton = document.getElementById('trigger-action');
-    triggerButton.innerText="Refactor Code"
+    triggerButton.innerText="TC & SC"
     triggerButton.style.backgroundColor = 'buttonface'; // Set background to green when usable
     triggerButton.disabled = false; // Enable the button
 }

@@ -5,14 +5,14 @@ const print = require('./debugger.js');
  * @param {Object} payload - The message payload to send.
  */
 function sendMessage(payload) {
-    const browserAPI = window.browser || window.chrome;
-    if (!browserAPI || !browserAPI.runtime) {
+    var browser = browser || chrome;
+    if (!browser || !browser.runtime) {
         print('Browser API not available');
         return;
     }
 
     try {
-        browserAPI.runtime.sendMessage(payload);
+        browser.runtime.sendMessage(payload);
     } catch (err) {
         print(`Failed to send message: ${JSON.stringify(payload)} because of the following error: ${err}`);
     }

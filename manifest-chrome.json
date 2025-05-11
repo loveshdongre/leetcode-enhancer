@@ -32,6 +32,6 @@
         }],
         "show_matches": ["https://leetcode.com/*"]
     },
-    "permissions": ["storage"],
+    "permissions": ["activeTab", "storage"],
     "optional_host_permissions": ["https://api.cohere.ai/*"]
 }

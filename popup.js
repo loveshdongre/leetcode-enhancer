@@ -11,7 +11,7 @@ module.exports = {KEY_NAME_OPTIONS, APP_NAME, MESSAGE_ACTIVATE_ICON, FIREFOX_APP
 // debugger.js
 const {APP_NAME} = require('./constants');
 // Set the debug mode (true to enable debugging)
-const debug = false;
+const debug = true;
 
 /**
  * Prints a message to the console if debugging is enabled.
@@ -32,7 +32,7 @@ const print = require('./debugger.js');
 const {isIterable, storeDataWithObjectWrapping, getData, getDataAsUint8Array, storeData} = require('./utils.js');
 
 /* ==================== Compatibility Between Chrome and Firefox ==================== */
-let browser = window.browser || window.chrome;
+var browser = browser || chrome
 
 /* ==================== Initialization ==================== */
 document.addEventListener('DOMContentLoaded', initExtension);
@@ -256,19 +256,38 @@ function isTermsCheckboxChecked() {
 
 function sendMessageToContentScriptToGetCode(apiKey) {
     browser.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        if (!tabs || tabs.length === 0) {
+            alert("No active tab found. Please make sure you're on a LeetCode page.");
+            return;
+        }
+
+        const activeTab = tabs[0];
+
+        if (!activeTab.url.includes("leetcode.com")) {
+            alert("Please navigate to a LeetCode page first.");
+            return;
+        }
+
         try {
-            tabs.forEach(tab => {
-                browser.tabs.sendMessage(tab.id, { action: MESSAGE_GET_CODE }, (response) => {
+            browser.tabs.sendMessage(activeTab.id, { action: MESSAGE_GET_CODE })
+                .then(response => {
                     if (response && response.code) {
                         const code = response.code;
                         const question = "Provide time and space complexity of the code.\n";
                         requestCoherePermissionIfNeeded(makeCohereRequest, apiKey, question + code);
+                    } else if (response && response.error) {
+                        alert(response.error);
+                    } else {
+                        alert("Failed to get code from the page. Please make sure you're on a LeetCode problem page.");
                     }
+                })
+                .catch(error => {
+                    print(`Error: ${error.message}`);
+                    alert("Failed to communicate with the page. Please refresh the page and try again.");
                 });
-            });
-        }
-        catch(err) {
-            print("error while sending the message");
+        } catch (err) {
+            print(`Error while sending message: ${err.message}`);
+            alert("An error occurred. Please refresh the page and try again.");
         }
     });
 }
@@ -276,23 +295,24 @@ function sendMessageToContentScriptToGetCode(apiKey) {
 /* ==================== Cohere API Call ==================== */
 
 function requestCoherePermissionIfNeeded(callback, apiKey, payload) {
-    chrome.permissions.contains(
+    browser.permissions.contains(
       { origins: ["https://api.cohere.ai/*"] },
-      (hasPermission) => {
+      async (hasPermission) => {
         if (hasPermission) {
           // Permission already granted, proceed with the API call
           callback(apiKey, payload);
         } else {
           // Permission not granted, request it
-          chrome.permissions.request(
+          await browser.permissions.request(
             { origins: ["https://api.cohere.ai/*"] },
             (granted) => {
               if (granted) {
                 // Permission granted, proceed with the API call
-                callback();
+                callback(apiKey, payload);
               } else {
                 // Permission denied, handle accordingly
                 print("Permission denied for Cohere API access.");
+                alert("Permission denied for Cohere API access. Please grant permission to use the Cohere API.");
               }
             }
           );
@@ -339,7 +359,7 @@ function makeCohereRequest(apiKey, question) {
 
 function actionButtonUsable() {
     const triggerButton = document.getElementById('trigger-action');
-    triggerButton.innerText="Refactor Code"
+    triggerButton.innerText="TC & SC"
     triggerButton.style.backgroundColor = 'buttonface'; // Set background to green when usable
     triggerButton.disabled = false; // Enable the button
 }

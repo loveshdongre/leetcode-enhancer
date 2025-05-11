@@ -28,8 +28,7 @@
             "light": "icons/logo.png",
             "dark": "icons/logo.png",
             "size": 48
-        }],
-        "show_matches": ["https://leetcode.com/*"]
+        }]
     },
     "permissions": ["storage"],
     "optional_host_permissions": ["https://api.cohere.ai/*"]
