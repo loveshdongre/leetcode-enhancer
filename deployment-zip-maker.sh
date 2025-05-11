@@ -71,8 +71,9 @@ echo "Firefox deployment files copied successfully!"
 echo "Creating zip files..."
 cd deployment
 zip -r chrome.zip chrome/
-zip -r firefox.zip firefox/
-cd ..
+cd firefox
+zip -r ../firefox.zip ./*
+cd ../..
 
 echo "Deployment packages created in deployment directory!"
 

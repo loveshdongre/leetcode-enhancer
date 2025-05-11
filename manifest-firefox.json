@@ -31,5 +31,10 @@
         }]
     },
     "permissions": ["storage"],
-    "optional_host_permissions": ["https://api.cohere.ai/*"]
+    "optional_host_permissions": ["https://api.cohere.ai/*"],
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "{ca2d6de6-3a5e-4ab3-afae-2ef6e1f241f0}"
+        }
+    }
 }
