@@ -3,7 +3,7 @@ const FeatureStrategy = require('./base-strategy');
 class CodingAreaStrategy extends FeatureStrategy {
 
     hideSolvedDiff(checked) {
-        const diffCodingArea = document.querySelector('[data-track-load="description_content"]')?.parentElement?.previousElementSibling?.firstChild;
+        const diffCodingArea = document.querySelector("div[data-track-load='description_content']").parentNode.parentNode.previousSibling.firstChild;
         const diffNext = document.querySelectorAll("a[rel ='noopener noreferrer'] div");
 
         if (diffCodingArea) {
@@ -33,21 +33,27 @@ class CodingAreaStrategy extends FeatureStrategy {
     }
 
     hideStatus(checked) {
-        const solvedMarkParent = document.querySelector('[data-track-load="description_content"]')?.parentNode?.previousSibling?.previousSibling?.lastChild;
-        if (solvedMarkParent && solvedMarkParent.classList.contains('text-body')) {
-            solvedMarkParent.classList[checked ? 'remove' : 'add']('hide_leetcode-enhancer');
+        const parts = window.location.pathname.split("/");
+        const href = `/problems/${parts[2]}/`;
+        const problemLink = document.querySelector(`a[href='${href}']`)
+
+        if(problemLink) {
+            const solvedStatus = problemLink.parentNode.parentNode.nextSibling;
+            if(solvedStatus) {
+                solvedStatus.classList[checked ? 'remove' : 'add']('hide_leetcode-enhancer');
+            }
         }
     }
 
     hideAcceptance(checked) {
-        const parentElement = document.querySelector('[data-track-load="description_content"]')?.parentElement?.nextSibling;
-        if (!parentElement) return;
+    
+        const parts = window.location.pathname.split("/");
+        const href = `/problems/${parts[2]}/`;
+        const problemLink = document.querySelector(`a[href='${href}']`)
+        const acceptanceElement = problemLink.parentNode.parentNode.parentNode.nextSibling.nextSibling.nextSibling.children[3];
 
-        const acceptanceRateElement = [...parentElement.children]
-            .find(child => child.textContent.toLowerCase().includes('acceptance'))?.lastElementChild;
-
-        if (acceptanceRateElement) {
-            acceptanceRateElement.classList[checked ? 'remove' : 'add']('hide_leetcode-enhancer');
+        if (acceptanceElement) {
+            acceptanceElement.classList[checked ? 'remove' : 'add']('hide_leetcode-enhancer');
         }
     }
 

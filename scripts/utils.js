@@ -1,4 +1,4 @@
-const print = require('./debugger.js');
+const printToConsole = require('./debugger.js');
 let browser = window.browser || window.chrome;
 
 /**
@@ -9,7 +9,7 @@ let browser = window.browser || window.chrome;
 function isIterable(obj) {
     if(obj != null && typeof obj[Symbol.iterator] === 'function')
         return true;
-    print(`${JSON.stringify(obj)} is not iterable`)
+    printToConsole(`${JSON.stringify(obj)} is not iterable`)
 }
 
 function storeDataWithObjectWrapping(key, value) {
@@ -28,7 +28,7 @@ function getData(key, callback) {
         browser.storage.local.get([key], result => callback(result[key]));
     }
     catch (err) {
-        print("Error while retrieving key");
+        printToConsole("Error while retrieving key");
     }
 }
 

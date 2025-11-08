@@ -13,7 +13,7 @@ const findMode = require('./page-checker.js');
 const initMutationObserver = require('./mutation-observer.js');
 const {isIterable} = require('./utils.js');
 const Mode = require('./mode.js');
-const print = require('./debugger.js');
+const printToConsole = require('./debugger.js');
 const { MESSAGE_ACTIVATE_ICON, MESSAGE_GET_CODE } = require('./constants.js');
 const { FeatureStrategyFactory } = require('./feature-strategies.js');
 
@@ -35,7 +35,7 @@ function modifyThenApplyChanges(options) {
 
 // ################### EVENT LISTENER #####################
 browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    print(`Received Notification in content script: ${JSON.stringify(request)}`);
+    printToConsole(`Received Notification in content script: ${JSON.stringify(request)}`);
     if(request.options) {
         ops = []
         for (option of request.options) {
@@ -46,14 +46,14 @@ browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
     if (request.action === MESSAGE_GET_CODE) {
         const code = getUserCode();
-        print(`code obtained: ${code}`);
+        printToConsole(`code obtained: ${code}`);
         sendResponse({ code: code });
     }
 });
 
 function applyChanges(options) {
     if (!currentStrategy) {
-        print('No strategy found for current mode');
+        printToConsole('No strategy found for current mode');
         return;
     }
 
@@ -75,7 +75,7 @@ function applyChanges(options) {
 
 function getUserCode() {
     if (!currentStrategy) {
-        print('Unable to read the code. If you are seeing this error in code editor page, please report this issue.');
+        printToConsole('Unable to read the code. If you are seeing this error in code editor page, please report this issue.');
         return '';
     }
     return currentStrategy.getUserCode();
@@ -84,20 +84,20 @@ function getUserCode() {
 // debugger.js
 const {APP_NAME} = require('./constants');
 // Set the debug mode (true to enable debugging)
-const debug = false;
+const debug = true;
 
 /**
  * Prints a message to the console if debugging is enabled.
  * @param {string} message - The message to print.
  */
-function print(message) {
+function printToConsole(message) {
     if (debug) {
         console.log(`[${APP_NAME}]: ${message}`);
     }
 }
 
 // Export the print function
-module.exports = print;
+module.exports = printToConsole;
 
 },{"./constants":1}],4:[function(require,module,exports){
 const FeatureStrategy = require('./strategies/base-strategy');
@@ -108,7 +108,7 @@ module.exports = {
     FeatureStrategyFactory
 }; 
 },{"./strategies/base-strategy":9,"./strategies/strategy-factory":13}],5:[function(require,module,exports){
-const print = require('./debugger.js');
+const printToConsole = require('./debugger.js');
 
 /**
  * Sends a message to the background script (service-worker) or other parts of the extension.
@@ -117,14 +117,14 @@ const print = require('./debugger.js');
 function sendMessage(payload) {
     var browser = browser || chrome;
     if (!browser || !browser.runtime) {
-        print('Browser API not available');
+        printToConsole('Browser API not available');
         return;
     }
 
     try {
         browser.runtime.sendMessage(payload);
     } catch (err) {
-        print(`Failed to send message: ${JSON.stringify(payload)} because of the following error: ${err}`);
+        printToConsole(`Failed to send message: ${JSON.stringify(payload)} because of the following error: ${err}`);
     }
 }
 
@@ -147,7 +147,7 @@ const Mode = {
 
 module.exports = { Mode };
 },{}],7:[function(require,module,exports){
-const print = require('./debugger.js');
+const printToConsole = require('./debugger.js');
 const { Mode } = require('./mode.js');
 const { KEY_NAME_OPTIONS } = require('./constants.js');
 
@@ -173,7 +173,7 @@ function initMutationObserver(browser, mode, modifyThenApplyChanges) {
                 browser.storage.local.get([KEY_NAME_OPTIONS], modifyThenApplyChanges);
             }
         } catch (error) {
-            print(`${ERROR_IN_MUTATION_OBSERVER_CALLBACK}: ${error}`);
+            printToConsole(`${ERROR_IN_MUTATION_OBSERVER_CALLBACK}: ${error}`);
         }
     });
 
@@ -187,7 +187,7 @@ function initMutationObserver(browser, mode, modifyThenApplyChanges) {
                     subtree: true
                 });
             } else {
-                print(ERROR_PROBLEM_SET_UI_NOT_FOUND);
+                printToConsole(ERROR_PROBLEM_SET_UI_NOT_FOUND);
             }
             break;
 
@@ -199,7 +199,7 @@ function initMutationObserver(browser, mode, modifyThenApplyChanges) {
                     subtree: true
                 });
             } else {
-                print(ERROR_CODING_AREA_NOT_FOUND);
+                printToConsole(ERROR_CODING_AREA_NOT_FOUND);
             }
             break;
 
@@ -233,12 +233,12 @@ function initMutationObserver(browser, mode, modifyThenApplyChanges) {
             }
 
             if (!old_contest_page && !new_contest_page && !next_root) {
-                print(ERROR_BASE_CONTENT_NOT_FOUND);
+                printToConsole(ERROR_BASE_CONTENT_NOT_FOUND);
             }
             break;
 
         default:
-            print(ERROR_NO_VALID_MODE);
+            printToConsole(ERROR_NO_VALID_MODE);
             break;
     }
     return observer;
@@ -249,7 +249,7 @@ module.exports = initMutationObserver;
 
 },{"./constants.js":1,"./debugger.js":3,"./mode.js":6}],8:[function(require,module,exports){
 const { Mode } = require('./mode.js');
-const print = require('./debugger.js');
+const printToConsole = require('./debugger.js');
 
 // Constant URLs
 const PROBLEMSET_URL = '/problemset/';
@@ -293,7 +293,7 @@ function findMode() {
     } else if (isProblemSetPage()) {
         mode = Mode.PROBLEM_SET;
     }
-    print(`Current mode value = ${mode}`);
+    printToConsole(`Current mode value = ${mode}`);
     return mode;
 }
 
@@ -316,7 +316,7 @@ const FeatureStrategy = require('./base-strategy');
 class CodingAreaStrategy extends FeatureStrategy {
 
     hideSolvedDiff(checked) {
-        const diffCodingArea = document.querySelector('[data-track-load="description_content"]')?.parentElement?.previousElementSibling?.firstChild;
+        const diffCodingArea = document.querySelector("div[data-track-load='description_content']").parentNode.parentNode.previousSibling.firstChild;
         const diffNext = document.querySelectorAll("a[rel ='noopener noreferrer'] div");
 
         if (diffCodingArea) {
@@ -346,21 +346,27 @@ class CodingAreaStrategy extends FeatureStrategy {
     }
 
     hideStatus(checked) {
-        const solvedMarkParent = document.querySelector('[data-track-load="description_content"]')?.parentNode?.previousSibling?.previousSibling?.lastChild;
-        if (solvedMarkParent && solvedMarkParent.classList.contains('text-body')) {
-            solvedMarkParent.classList[checked ? 'remove' : 'add']('hide_leetcode-enhancer');
+        const parts = window.location.pathname.split("/");
+        const href = `/problems/${parts[2]}/`;
+        const problemLink = document.querySelector(`a[href='${href}']`)
+
+        if(problemLink) {
+            const solvedStatus = problemLink.parentNode.parentNode.nextSibling;
+            if(solvedStatus) {
+                solvedStatus.classList[checked ? 'remove' : 'add']('hide_leetcode-enhancer');
+            }
         }
     }
 
     hideAcceptance(checked) {
-        const parentElement = document.querySelector('[data-track-load="description_content"]')?.parentElement?.nextSibling;
-        if (!parentElement) return;
+    
+        const parts = window.location.pathname.split("/");
+        const href = `/problems/${parts[2]}/`;
+        const problemLink = document.querySelector(`a[href='${href}']`)
+        const acceptanceElement = problemLink.parentNode.parentNode.parentNode.nextSibling.nextSibling.nextSibling.children[3];
 
-        const acceptanceRateElement = [...parentElement.children]
-            .find(child => child.textContent.toLowerCase().includes('acceptance'))?.lastElementChild;
-
-        if (acceptanceRateElement) {
-            acceptanceRateElement.classList[checked ? 'remove' : 'add']('hide_leetcode-enhancer');
+        if (acceptanceElement) {
+            acceptanceElement.classList[checked ? 'remove' : 'add']('hide_leetcode-enhancer');
         }
     }
 
@@ -560,7 +566,7 @@ class FeatureStrategyFactory {
 
 module.exports = FeatureStrategyFactory; 
 },{"../mode.js":6,"./coding-area-strategy.js":10,"./contest-strategy.js":11,"./problem-set-strategy.js":12}],14:[function(require,module,exports){
-const print = require('./debugger.js');
+const printToConsole = require('./debugger.js');
 let browser = window.browser || window.chrome;
 
 /**
@@ -571,7 +577,7 @@ let browser = window.browser || window.chrome;
 function isIterable(obj) {
     if(obj != null && typeof obj[Symbol.iterator] === 'function')
         return true;
-    print(`${JSON.stringify(obj)} is not iterable`)
+    printToConsole(`${JSON.stringify(obj)} is not iterable`)
 }
 
 function storeDataWithObjectWrapping(key, value) {
@@ -590,7 +596,7 @@ function getData(key, callback) {
         browser.storage.local.get([key], result => callback(result[key]));
     }
     catch (err) {
-        print("Error while retrieving key");
+        printToConsole("Error while retrieving key");
     }
 }
 

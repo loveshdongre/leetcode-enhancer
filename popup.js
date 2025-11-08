@@ -11,24 +11,24 @@ module.exports = {KEY_NAME_OPTIONS, APP_NAME, MESSAGE_ACTIVATE_ICON, FIREFOX_APP
 // debugger.js
 const {APP_NAME} = require('./constants');
 // Set the debug mode (true to enable debugging)
-const debug = false;
+const debug = true;
 
 /**
  * Prints a message to the console if debugging is enabled.
  * @param {string} message - The message to print.
  */
-function print(message) {
+function printToConsole(message) {
     if (debug) {
         console.log(`[${APP_NAME}]: ${message}`);
     }
 }
 
 // Export the print function
-module.exports = print;
+module.exports = printToConsole;
 
 },{"./constants":1}],3:[function(require,module,exports){
 const {KEY_NAME_OPTIONS, MESSAGE_GET_CODE} = require('./constants.js');
-const print = require('./debugger.js');
+const printToConsole = require('./debugger.js');
 const {isIterable, storeDataWithObjectWrapping, getData, getDataAsUint8Array, storeData} = require('./utils.js');
 
 /* ==================== Compatibility Between Chrome and Firefox ==================== */
@@ -97,7 +97,7 @@ async function loadApiKey() {
     const aesKeyBytes = await getDataAsUint8Array('aesKey');
 
     if (!encryptedData || !iv || !aesKeyBytes) {
-        print("No API key or encryption details found.");
+        printToConsole("No API key or encryption details found.");
         return null;
     }
 
@@ -144,7 +144,7 @@ function onCheckboxChange() {
             tabs.forEach(tab => browser.tabs.sendMessage(tab.id, response));
         }
         catch {
-            print("error while sending the message");
+            printToConsole("error while sending the message");
         }
     });
 }
@@ -182,7 +182,7 @@ function initAISection() {
         if (decryptedApiKey) {
             apiKeyInput.value = decryptedApiKey;
         } else {
-            print("No API key found in storage.");
+            printToConsole("No API key found in storage.");
         }
     });
 
@@ -190,14 +190,14 @@ function initAISection() {
         const apiKey = apiKeyInput.value.trim();
         if (apiKey.length > 0) {
             storeApiKey(apiKey);
-            print("API Key saved.");
+            printToConsole("API Key saved.");
         }
     });
 
     deleteApiKeyButton.addEventListener('click', () => {
         apiKeyInput.value = '';
         browser.storage.local.remove(['encryptedApiKey', 'aesIV', 'aesKey']);
-        print("API Key deleted.");
+        printToConsole("API Key deleted.");
     });
 
     triggerActionButton.addEventListener('click', async () => {
@@ -245,7 +245,7 @@ function loadTermsCheckboxState() {
         });
     }
     catch (err) {
-        print("Error while reading termsAccepted");
+        printToConsole("Error while reading termsAccepted");
     }
 }
 
@@ -282,11 +282,11 @@ function sendMessageToContentScriptToGetCode(apiKey) {
                     }
                 })
                 .catch(error => {
-                    print(`Error: ${error.message}`);
+                    printToConsole(`Error: ${error.message}`);
                     alert("Failed to communicate with the page. Please refresh the page and try again.");
                 });
         } catch (err) {
-            print(`Error while sending message: ${err.message}`);
+            printToConsole(`Error while sending message: ${err.message}`);
             alert("An error occurred. Please refresh the page and try again.");
         }
     });
@@ -311,7 +311,7 @@ function requestCoherePermissionIfNeeded(callback, apiKey, payload) {
                 callback(apiKey, payload);
               } else {
                 // Permission denied, handle accordingly
-                print("Permission denied for Cohere API access.");
+                printToConsole("Permission denied for Cohere API access.");
                 alert("Permission denied for Cohere API access. Please grant permission to use the Cohere API.");
               }
             }
@@ -323,10 +323,10 @@ function requestCoherePermissionIfNeeded(callback, apiKey, payload) {
 
 function makeCohereRequest(apiKey, question) {
     actionButtonUnusable();
-    const apiUrl = 'https://api.cohere.ai/v1/generate';
+    const apiUrl = 'https://api.cohere.ai/v1/chat';
     const data = {
-        model: 'command',
-        prompt: question,
+        model: 'command-a-03-2025',
+        message: question,
         temperature: 0.7,
         k: 0,
         p: 0.1,
@@ -345,13 +345,14 @@ function makeCohereRequest(apiKey, question) {
     })
     .then(response => response.json())
     .then(data => {
+        alert(JSON.stringify(data));
         const outputDiv = document.getElementById('output');
-        outputDiv.innerHTML = data.generations[0].text.replace(/\n/g, '<br>').replace(/```(.*?)```/gs, '<pre><code>$1</code></pre>');
+        outputDiv.innerHTML = data.text.replace(/\n/g, '<br>').replace(/```(.*?)```/gs, '<pre><code>$1</code></pre>');
         storeDataWithObjectWrapping("outputDivCode", outputDiv.innerHTML);
     })
     .catch(error => {
-        alert("Operation failed. Please check your api key.");
-        print("error while sending request to cohere" + error);
+        printToConsole("error while sending request to cohere" + error);
+        alert("Operation failed. Please check your api key");
     }).finally( () => {
         actionButtonUsable();
     })
@@ -371,7 +372,7 @@ function actionButtonUnusable() {
     triggerButton.disabled = true; // Disable the button
 }
 },{"./constants.js":1,"./debugger.js":2,"./utils.js":4}],4:[function(require,module,exports){
-const print = require('./debugger.js');
+const printToConsole = require('./debugger.js');
 let browser = window.browser || window.chrome;
 
 /**
@@ -382,7 +383,7 @@ let browser = window.browser || window.chrome;
 function isIterable(obj) {
     if(obj != null && typeof obj[Symbol.iterator] === 'function')
         return true;
-    print(`${JSON.stringify(obj)} is not iterable`)
+    printToConsole(`${JSON.stringify(obj)} is not iterable`)
 }
 
 function storeDataWithObjectWrapping(key, value) {
@@ -401,7 +402,7 @@ function getData(key, callback) {
         browser.storage.local.get([key], result => callback(result[key]));
     }
     catch (err) {
-        print("Error while retrieving key");
+        printToConsole("Error while retrieving key");
     }
 }
 

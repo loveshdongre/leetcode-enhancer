@@ -1,4 +1,4 @@
-const print = require('./debugger.js');
+const printToConsole = require('./debugger.js');
 const { Mode } = require('./mode.js');
 const { KEY_NAME_OPTIONS } = require('./constants.js');
 
@@ -24,7 +24,7 @@ function initMutationObserver(browser, mode, modifyThenApplyChanges) {
                 browser.storage.local.get([KEY_NAME_OPTIONS], modifyThenApplyChanges);
             }
         } catch (error) {
-            print(`${ERROR_IN_MUTATION_OBSERVER_CALLBACK}: ${error}`);
+            printToConsole(`${ERROR_IN_MUTATION_OBSERVER_CALLBACK}: ${error}`);
         }
     });
 
@@ -38,7 +38,7 @@ function initMutationObserver(browser, mode, modifyThenApplyChanges) {
                     subtree: true
                 });
             } else {
-                print(ERROR_PROBLEM_SET_UI_NOT_FOUND);
+                printToConsole(ERROR_PROBLEM_SET_UI_NOT_FOUND);
             }
             break;
 
@@ -50,7 +50,7 @@ function initMutationObserver(browser, mode, modifyThenApplyChanges) {
                     subtree: true
                 });
             } else {
-                print(ERROR_CODING_AREA_NOT_FOUND);
+                printToConsole(ERROR_CODING_AREA_NOT_FOUND);
             }
             break;
 
@@ -84,12 +84,12 @@ function initMutationObserver(browser, mode, modifyThenApplyChanges) {
             }
 
             if (!old_contest_page && !new_contest_page && !next_root) {
-                print(ERROR_BASE_CONTENT_NOT_FOUND);
+                printToConsole(ERROR_BASE_CONTENT_NOT_FOUND);
             }
             break;
 
         default:
-            print(ERROR_NO_VALID_MODE);
+            printToConsole(ERROR_NO_VALID_MODE);
             break;
     }
     return observer;

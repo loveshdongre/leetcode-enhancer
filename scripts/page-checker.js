@@ -1,5 +1,5 @@
 const { Mode } = require('./mode.js');
-const print = require('./debugger.js');
+const printToConsole = require('./debugger.js');
 
 // Constant URLs
 const PROBLEMSET_URL = '/problemset/';
@@ -43,7 +43,7 @@ function findMode() {
     } else if (isProblemSetPage()) {
         mode = Mode.PROBLEM_SET;
     }
-    print(`Current mode value = ${mode}`);
+    printToConsole(`Current mode value = ${mode}`);
     return mode;
 }
 

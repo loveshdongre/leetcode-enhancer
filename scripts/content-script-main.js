@@ -3,7 +3,7 @@ const findMode = require('./page-checker.js');
 const initMutationObserver = require('./mutation-observer.js');
 const {isIterable} = require('./utils.js');
 const Mode = require('./mode.js');
-const print = require('./debugger.js');
+const printToConsole = require('./debugger.js');
 const { MESSAGE_ACTIVATE_ICON, MESSAGE_GET_CODE } = require('./constants.js');
 const { FeatureStrategyFactory } = require('./feature-strategies.js');
 
@@ -25,7 +25,7 @@ function modifyThenApplyChanges(options) {
 
 // ################### EVENT LISTENER #####################
 browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    print(`Received Notification in content script: ${JSON.stringify(request)}`);
+    printToConsole(`Received Notification in content script: ${JSON.stringify(request)}`);
     if(request.options) {
         ops = []
         for (option of request.options) {
@@ -36,14 +36,14 @@ browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
     if (request.action === MESSAGE_GET_CODE) {
         const code = getUserCode();
-        print(`code obtained: ${code}`);
+        printToConsole(`code obtained: ${code}`);
         sendResponse({ code: code });
     }
 });
 
 function applyChanges(options) {
     if (!currentStrategy) {
-        print('No strategy found for current mode');
+        printToConsole('No strategy found for current mode');
         return;
     }
 
@@ -65,7 +65,7 @@ function applyChanges(options) {
 
 function getUserCode() {
     if (!currentStrategy) {
-        print('Unable to read the code. If you are seeing this error in code editor page, please report this issue.');
+        printToConsole('Unable to read the code. If you are seeing this error in code editor page, please report this issue.');
         return '';
     }
     return currentStrategy.getUserCode();

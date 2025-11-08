@@ -1,4 +1,4 @@
-const print = require('./debugger.js');
+const printToConsole = require('./debugger.js');
 
 /**
  * Sends a message to the background script (service-worker) or other parts of the extension.
@@ -7,14 +7,14 @@ const print = require('./debugger.js');
 function sendMessage(payload) {
     var browser = browser || chrome;
     if (!browser || !browser.runtime) {
-        print('Browser API not available');
+        printToConsole('Browser API not available');
         return;
     }
 
     try {
         browser.runtime.sendMessage(payload);
     } catch (err) {
-        print(`Failed to send message: ${JSON.stringify(payload)} because of the following error: ${err}`);
+        printToConsole(`Failed to send message: ${JSON.stringify(payload)} because of the following error: ${err}`);
     }
 }
 
